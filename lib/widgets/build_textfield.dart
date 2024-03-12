@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
+import 'package:get/get.dart';
 
 class BuildTextField extends StatelessWidget {
   BuildTextField({
@@ -8,11 +9,9 @@ class BuildTextField extends StatelessWidget {
     this.isPassword,
     this.isNumber,
     this.func,
-    this.label,
     this.controller,
     required this.hintText,
   });
-  String? label;
   final String hintText;
   bool? isPassword = false;
   bool? isNumber = false;
@@ -21,39 +20,25 @@ class BuildTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: label == null ? 47 : 67,
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      height: 40,
+      width: Get.width * 0.85,
       decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: AppColors.shadow,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 12),
-          label != null
-              ? Text(
-                  label!,
-                  style: TxtStyle.labelStyle,
-                )
-              : Container(),
-          TextFormField(
-            controller: controller,
-            onChanged: (value) => func!(value),
-            keyboardType: isNumber == true ? TextInputType.number : null,
-            obscureText: isPassword ?? false,
-            style: TxtStyle.inputStyle,
-            decoration: InputDecoration(
-              isDense: true,
-              hintText: hintText,
-              contentPadding: const EdgeInsets.symmetric(vertical: 6),
-              labelStyle: TxtStyle.labelStyle,
-              border: InputBorder.none,
-            ),
-          ),
-        ],
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColors.grey)),
+      child: TextField(
+        controller: controller,
+        autocorrect: true,
+        onChanged: (value) => func!(value),
+        keyboardType: isNumber == true ? TextInputType.number : null,
+        obscureText: isPassword ?? false,
+        style: TxtStyle.pBold,
+        decoration: InputDecoration(
+          hintText: hintText,
+          contentPadding: const EdgeInsets.fromLTRB(10, 0, 16, 10),
+          labelStyle: TxtStyle.p,
+          border: InputBorder.none,
+        ),
       ),
     );
   }

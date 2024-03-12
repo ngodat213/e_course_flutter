@@ -1,15 +1,104 @@
+import 'package:e_course_flutter/controller/signin_controller.dart';
+import 'package:e_course_flutter/generated/l10n.dart';
+import 'package:e_course_flutter/themes/colors.dart';
+import 'package:e_course_flutter/themes/images.dart';
+import 'package:e_course_flutter/themes/text_styles.dart';
+import 'package:e_course_flutter/widgets/base_text.dart';
+import 'package:e_course_flutter/widgets/build_button.dart';
+import 'package:e_course_flutter/widgets/build_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends GetView<SignInController> {
   const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SignUpScreen> {
-  @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      appBar: AppBar(
+        title: Padding(
+          padding: const EdgeInsets.all(23),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BaseText(
+                text: 'Create Your Account',
+                textAlign: TextAlign.center,
+                style: TxtStyle.h3.copyWith(color: AppColors.input),
+                duration: const Duration(milliseconds: 1500),
+                curve: Curves.easeInOut,
+              ),
+              BaseText(
+                text: 'Create your account to start learning',
+                textAlign: TextAlign.center,
+                style: TxtStyle.p.copyWith(color: AppColors.label),
+                duration: const Duration(milliseconds: 1500),
+                curve: Curves.easeInOut,
+              )
+            ],
+          ),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(23),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: Get.height * 0.26,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(Images.signin),
+                  scale: 1,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            BaseText(
+              text: S.of(context).name,
+              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 8),
+            BuildTextField(
+              hintText: S.of(context).name,
+            ),
+            const SizedBox(height: 20),
+            BaseText(
+              text: S.of(context).email,
+              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 8),
+            BuildTextField(
+              hintText: S.of(context).emailExample,
+            ),
+            const SizedBox(height: 20),
+            BaseText(
+              text: S.of(context).password,
+              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 8),
+            BuildTextField(
+              hintText: S.of(context).passwordExample,
+            ),
+            const SizedBox(height: 20),
+            BaseText(
+              text: S.of(context).confirmPassword,
+              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 8),
+            BuildTextField(
+              hintText: S.of(context).passwordExample,
+            ),
+            const SizedBox(height: 20),
+            BuildButton(
+              text: 'Login',
+              duration: const Duration(seconds: 2),
+              curve: Curves.easeInOut,
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

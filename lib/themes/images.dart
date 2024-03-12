@@ -37,6 +37,6 @@ class Images {
   static const String onboarding1 = '$imagePath/on_boarding_1.png';
   static const String onboarding2 = '$imagePath/on_boarding_2.png';
   static const String onboarding3 = '$imagePath/on_boarding_3.png';
-  static const String signin = '$imagePath/login.png';
-  static const String signup = '$imagePath/signup.png';
+  static const String signin = '$imagePath/signup.png';
+  static const String signup = '$imagePath/signin.png';
 }
