@@ -23,6 +23,9 @@ dependencies:
   intl_utils: ^2.8.4
   flutter_localizations:
     sdk: flutter
+  fluttertoast: ^8.2.4
+  google_nav_bar: ^5.0.6
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:

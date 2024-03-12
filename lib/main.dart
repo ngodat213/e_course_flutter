@@ -1,7 +1,9 @@
 import 'package:e_course_flutter/generated/l10n.dart';
+import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +14,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      getPages: ManagerRoutes.manager,
+      initialRoute: ManagerRoutes.splashScreen,
+      // INTL
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -29,11 +34,11 @@ class MyApp extends StatelessWidget {
         }
         return supportedLocales.first;
       },
+      // CP
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
     );
   }
 }
