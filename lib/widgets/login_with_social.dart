@@ -38,7 +38,8 @@ class BuildLoginWithSocial extends StatelessWidget {
               ),
               Text(
                 text,
-                style: textStyle ?? TxtStyle.buttonBlack,
+                style: textStyle ??
+                    TxtStyle.button.copyWith(color: AppColors.input),
               )
             ],
           ),

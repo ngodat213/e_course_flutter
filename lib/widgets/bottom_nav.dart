@@ -1,6 +1,5 @@
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:e_course_flutter/themes/colors.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class BuildBottomNavBar extends StatefulWidget {

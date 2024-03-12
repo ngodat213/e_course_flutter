@@ -34,4 +34,9 @@ class Images {
   static const String imageGoldCup = '$imagePath/gold_cup.png';
   static const String imageConfetti = '$imagePath/confetti.png';
   static const String imageNothing = '$imagePath/nothing.png';
+  static const String onboarding1 = '$imagePath/on_boarding_1.png';
+  static const String onboarding2 = '$imagePath/on_boarding_2.png';
+  static const String onboarding3 = '$imagePath/on_boarding_3.png';
+  static const String signin = '$imagePath/login.png';
+  static const String signup = '$imagePath/signup.png';
 }

@@ -4,6 +4,7 @@ class ManagerRoutes {
   ManagerRoutes._();
 
   static String splashScreen = '/';
+  static String onboarding = '/onboarding';
   static String signInScreen = '/sign_in';
   static String signUpScreen = '/sign_up';
   static String forgotPwScreen = '/forgot_password';
@@ -26,6 +27,11 @@ class ManagerRoutes {
       name: splashScreen,
       page: () => const SplashScreen(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: onboarding,
+      page: () => const OnboardingScreen(),
+      binding: OnboardingBinding(),
     ),
     GetPage(
       name: signInScreen,

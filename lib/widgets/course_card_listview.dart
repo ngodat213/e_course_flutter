@@ -38,7 +38,8 @@ class CourseCardListView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(course.title, style: TxtStyle.buttonBlack),
+                Text(course.title,
+                    style: TxtStyle.button.copyWith(color: AppColors.input)),
                 const Expanded(child: SizedBox()),
                 Container(
                   padding: const EdgeInsets.only(bottom: 8),

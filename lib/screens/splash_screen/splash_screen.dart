@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 5), () {
-      Get.offAllNamed(ManagerRoutes.signInScreen);
+      Get.offAllNamed(ManagerRoutes.onboarding);
     });
     return GetBuilder<SplashController>(
       builder: (controller) => Scaffold(
@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 const SizedBox(height: 20),
                 Text(
                   S.of(context).progressTitle,
-                  style: TxtStyle.buttonBlack,
+                  style: TxtStyle.button,
                 )
               ],
             ),

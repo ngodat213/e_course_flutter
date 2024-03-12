@@ -1,3 +1,4 @@
+import 'package:e_course_flutter/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 
@@ -14,7 +15,8 @@ class TitleScreen extends StatelessWidget {
       margin: const EdgeInsets.only(top: 32),
       child: Align(
         alignment: Alignment.topCenter,
-        child: Text(title, style: TxtStyle.buttonBlack),
+        child: Text(title,
+            style: TxtStyle.button.copyWith(color: AppColors.input)),
       ),
     );
   }

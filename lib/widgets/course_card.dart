@@ -35,7 +35,8 @@ class CourseCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Learning How To Write As A Professional Author',
-                        style: TxtStyle.buttonBlack),
+                        style:
+                            TxtStyle.button.copyWith(color: AppColors.input)),
                     const Expanded(child: SizedBox()),
                     const SizedBox(height: 8),
                     Text('Lesson 10', style: TxtStyle.labelStyle),
