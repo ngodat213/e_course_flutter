@@ -93,9 +93,9 @@ class ManagerRoutes {
       name: favoriteScreen,
       page: () => const FavoriteScreen(),
     ),
-    GetPage(
-      name: courseListScreen,
-      page: () => const CourseListScreen(),
-    ),
+    // GetPage(
+    //   name: courseListScreen,
+    //   page: () => const CourseListScreen(),
+    // ),
   ];
 }

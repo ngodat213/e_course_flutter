@@ -17,30 +17,7 @@ class SignInScreen extends GetView<SignInController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.all(23),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BaseText(
-                text: S.of(context).login,
-                textAlign: TextAlign.center,
-                style: TxtStyle.h3.copyWith(color: AppColors.input),
-                duration: const Duration(milliseconds: 1500),
-                curve: Curves.easeInOut,
-              ),
-              BaseText(
-                text: S.of(context).hiTitle,
-                textAlign: TextAlign.center,
-                style: TxtStyle.p.copyWith(color: AppColors.label),
-                duration: const Duration(milliseconds: 1500),
-                curve: Curves.easeInOut,
-              )
-            ],
-          ),
-        ),
-      ),
+      appBar: _signInAppbar(context),
       body: Padding(
         padding: const EdgeInsets.all(23),
         child: Column(
@@ -73,46 +50,85 @@ class SignInScreen extends GetView<SignInController> {
             BuildTextField(
               hintText: S.of(context).passwordExample,
             ),
-            Align(
-              alignment: Alignment.topRight,
-              child: GestureDetector(
-                onTap: () {
-                  Get.toNamed(ManagerRoutes.forgotPwScreen);
-                },
-                child: Text(
-                  S.of(context).forgotPasswordAnswer,
-                  style: TxtStyle.text,
-                ),
-              ),
-            ),
+            _forgotPwButton(context),
             const SizedBox(height: 20),
-            BuildButton(
+            _loginButton(context),
+            const SizedBox(height: 20),
+            _signUpButton(context)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Align _forgotPwButton(BuildContext context) {
+    return Align(
+      alignment: Alignment.topRight,
+      child: GestureDetector(
+        onTap: () {
+          Get.toNamed(ManagerRoutes.forgotPwScreen);
+        },
+        child: Text(
+          S.of(context).forgotPasswordAnswer,
+          style: TxtStyle.text,
+        ),
+      ),
+    );
+  }
+
+  BuildButton _loginButton(BuildContext context) {
+    return BuildButton(
+      text: S.of(context).login,
+      onTap: () {
+        Get.offAllNamed(ManagerRoutes.mainScreen);
+      },
+      duration: const Duration(seconds: 2),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  Row _signUpButton(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          S.of(context).dontHaveAccount,
+          style: TxtStyle.text,
+        ),
+        GestureDetector(
+          onTap: () {
+            Get.toNamed(ManagerRoutes.signUpScreen);
+          },
+          child: Text(
+            S.of(context).signUp,
+            style: TxtStyle.text
+                .copyWith(color: AppColors.main, fontWeight: FontWeight.w600),
+          ),
+        )
+      ],
+    );
+  }
+
+  AppBar _signInAppbar(BuildContext context) {
+    return AppBar(
+      title: Padding(
+        padding: const EdgeInsets.all(23),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BaseText(
               text: S.of(context).login,
-              onTap: () {
-                Get.offAllNamed(ManagerRoutes.mainScreen);
-              },
-              duration: const Duration(seconds: 2),
+              textAlign: TextAlign.center,
+              style: TxtStyle.h3.copyWith(color: AppColors.input),
+              duration: const Duration(milliseconds: 1500),
               curve: Curves.easeInOut,
             ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  S.of(context).dontHaveAccount,
-                  style: TxtStyle.text,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Get.toNamed(ManagerRoutes.signUpScreen);
-                  },
-                  child: Text(
-                    S.of(context).signUp,
-                    style: TxtStyle.text.copyWith(
-                        color: AppColors.main, fontWeight: FontWeight.w600),
-                  ),
-                )
-              ],
+            BaseText(
+              text: S.of(context).hiTitle,
+              textAlign: TextAlign.center,
+              style: TxtStyle.p.copyWith(color: AppColors.label),
+              duration: const Duration(milliseconds: 1500),
+              curve: Curves.easeInOut,
             )
           ],
         ),

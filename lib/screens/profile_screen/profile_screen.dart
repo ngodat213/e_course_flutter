@@ -10,6 +10,6 @@ class ProfileScreen extends StatefulWidget {
 class _SplashScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold();
   }
 }

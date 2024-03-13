@@ -41,15 +41,7 @@ class OnboardingScreen extends GetView<OnboardingController> {
               )
             ],
           ),
-          Container(
-            alignment: const Alignment(0.8, -0.85),
-            child: GestureDetector(
-              onTap: () {
-                Get.offAllNamed(ManagerRoutes.signInScreen);
-              },
-              child: Text('Skip', style: TxtStyle.pBold),
-            ),
-          ),
+          _skipButton(),
           Obx(
             () => Container(
               alignment: const Alignment(0, 0.85),
@@ -77,6 +69,18 @@ class OnboardingScreen extends GetView<OnboardingController> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Container _skipButton() {
+    return Container(
+      alignment: const Alignment(0.8, -0.85),
+      child: GestureDetector(
+        onTap: () {
+          Get.offAllNamed(ManagerRoutes.signInScreen);
+        },
+        child: Text('Skip', style: TxtStyle.pBold),
       ),
     );
   }
