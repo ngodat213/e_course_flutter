@@ -88,6 +88,9 @@ class SignInScreen extends GetView<SignInController> {
             const SizedBox(height: 20),
             BuildButton(
               text: 'Login',
+              onTap: () {
+                Get.offAllNamed(ManagerRoutes.homeScreen);
+              },
               duration: const Duration(seconds: 2),
               curve: Curves.easeInOut,
             ),

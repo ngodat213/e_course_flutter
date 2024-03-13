@@ -7,8 +7,8 @@ class Course {
   final String time;
   final List<String> lessons;
   final String category;
-  final double ratting;
-  final List<String> listFeedBack;
+  final double rating;
+  final List<String> feedbacks;
   final int register;
   final String videos;
 
@@ -21,8 +21,8 @@ class Course {
     required this.time,
     required this.lessons,
     required this.category,
-    required this.ratting,
-    required this.listFeedBack,
+    required this.rating,
+    required this.feedbacks,
     required this.register,
     required this.videos,
   });
@@ -36,8 +36,8 @@ class Course {
         description: data['course']['description'],
         lessons: List.from(data['course']['lessons']),
         category: data['course']['category'],
-        ratting: data['course']['ratting'],
-        listFeedBack: List.from(data['course']['listFeedBack']),
+        rating: data['course']['ratting'],
+        feedbacks: List.from(data['course']['listFeedBack']),
         register: data['course']['register'],
         videos: data['course']['videos'],
       );
