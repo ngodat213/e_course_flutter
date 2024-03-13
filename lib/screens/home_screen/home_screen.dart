@@ -322,7 +322,7 @@ class _SplashScreenState extends State<HomeScreen> {
         children: [
           Text('${S.of(context).hi}, ${user.displayName}',
               style: TxtStyle.title),
-          const SizedBox(height: 8),
+          const SizedBox(height: 2),
           Text(S.of(context).progressTitle, style: TxtStyle.hintStyle),
         ],
       ),

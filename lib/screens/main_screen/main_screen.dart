@@ -1,15 +1,25 @@
+import 'package:e_course_flutter/controller/main_controller.dart';
+import 'package:e_course_flutter/screens/course_screen/course_screen.dart';
+import 'package:e_course_flutter/screens/home_screen/home_screen.dart';
+import 'package:e_course_flutter/screens/setting_screen/setting_screen.dart';
+import 'package:e_course_flutter/screens/main_screen/widget/bottom_nav.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends GetView<MainController> {
   const MainScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<MainScreen> {
-  @override
   Widget build(BuildContext context) {
-    return Container();
+    List<Widget> pages = [
+      const HomeScreen(),
+      const CourseScreen(),
+      const CourseScreen(),
+      const SettingScreen(),
+    ];
+    return Scaffold(
+      bottomNavigationBar: const BuildBottomNavBar(),
+      body: Obx(() => pages[controller.page.value]),
+    );
   }
 }

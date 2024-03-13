@@ -10,6 +10,6 @@ class CourseScreen extends StatefulWidget {
 class _SplashScreenState extends State<CourseScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold();
   }
 }

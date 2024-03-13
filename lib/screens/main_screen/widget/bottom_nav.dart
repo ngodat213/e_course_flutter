@@ -1,17 +1,14 @@
+import 'package:e_course_flutter/controller/main_controller.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-class BuildBottomNavBar extends StatefulWidget {
+class BuildBottomNavBar extends GetView<MainController> {
   const BuildBottomNavBar({
     super.key,
   });
 
-  @override
-  State<BuildBottomNavBar> createState() => _BuildBottomNavBarState();
-}
-
-class _BuildBottomNavBarState extends State<BuildBottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +16,7 @@ class _BuildBottomNavBarState extends State<BuildBottomNavBar> {
       padding: const EdgeInsets.symmetric(horizontal: 39, vertical: 15),
       child: GNav(
         onTabChange: (value) {
-          // context.read<MainCubit>().indexChanged(value);
+          controller.page.value = value;
         },
         gap: 8,
         backgroundColor: Colors.white,

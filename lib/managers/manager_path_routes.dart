@@ -7,6 +7,7 @@ import 'package:e_course_flutter/screens/favorite_screen/favorite_screen.dart';
 import 'package:e_course_flutter/screens/forgot_pw_screen/forgot_pw_binding.dart';
 import 'package:e_course_flutter/screens/forgot_pw_screen/forgot_pw_screen.dart';
 import 'package:e_course_flutter/screens/home_screen/home_screen.dart';
+import 'package:e_course_flutter/screens/main_screen/main_binding.dart';
 import 'package:e_course_flutter/screens/main_screen/main_screen.dart';
 import 'package:e_course_flutter/screens/onboarding_screen/onboarding_binding.dart';
 import 'package:e_course_flutter/screens/onboarding_screen/onboarding_screen.dart';

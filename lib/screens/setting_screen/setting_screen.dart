@@ -10,6 +10,6 @@ class SettingScreen extends StatefulWidget {
 class _SplashScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold();
   }
 }

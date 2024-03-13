@@ -51,6 +51,7 @@ class ManagerRoutes {
     GetPage(
       name: mainScreen,
       page: () => const MainScreen(),
+      binding: MainBinding(),
     ),
     GetPage(
       name: homeScreen,
