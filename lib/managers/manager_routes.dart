@@ -36,14 +36,17 @@ class ManagerRoutes {
     GetPage(
       name: signInScreen,
       page: () => const SignInScreen(),
+      binding: SignInBinding(),
     ),
     GetPage(
       name: signUpScreen,
       page: () => const SignUpScreen(),
+      binding: SignUpBinding(),
     ),
     GetPage(
       name: forgotPwScreen,
       page: () => const ForgotPwScreen(),
+      binding: ForgotPwBinding(),
     ),
     GetPage(
       name: mainScreen,
