@@ -5,6 +5,7 @@ import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:e_course_flutter/widgets/skeleton_widget.dart';
 import 'package:e_course_flutter/widgets/title_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CourseScreen extends StatelessWidget {
   const CourseScreen({super.key});
@@ -153,8 +154,7 @@ class CourseScreen extends StatelessWidget {
                   Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 25),
+                    margin: const EdgeInsets.symmetric(horizontal: 25),
                     decoration: BoxDecoration(
                       boxShadow: AppColors.shadow,
                       color: AppColors.white,
@@ -172,6 +172,7 @@ class CourseScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  _listCategory(),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 25),
                     child: GridView.custom(
@@ -234,10 +235,53 @@ class CourseScreen extends StatelessWidget {
                   const SizedBox(height: 70),
                 ],
               ),
-              TitleScreen(title: S.of(context).course),
+              TitleScreen(title: S.of(context).myCourse),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Container _listCategory() {
+    const listCategory = [
+      'All',
+      'C++',
+      'C#',
+      'Python',
+      'Javascript',
+      'HTML',
+      'Android',
+      'Flutter',
+    ];
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 18, horizontal: 25),
+      height: Get.height * 0.04,
+      child: ListView.builder(
+        itemCount: listCategory.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              // widget.onPressedExam.call(quizs[index]);
+            },
+            child: Container(
+              margin: const EdgeInsets.only(right: 10),
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+              decoration: BoxDecoration(
+                color: AppColors.grey,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                listCategory[index],
+                style: TxtStyle.inputStyle.copyWith(
+                  fontWeight: index == 0 ? FontWeight.w600 : FontWeight.w500,
+                  color: index == 0 ? AppColors.main : AppColors.input,
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

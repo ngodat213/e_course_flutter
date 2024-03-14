@@ -87,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
         "min": MessageLookupByLibrary.simpleMessage("phút"),
         "minutes": MessageLookupByLibrary.simpleMessage("Phút"),
+        "myCourse": MessageLookupByLibrary.simpleMessage("Khóa học của tôi"),
         "myFavorite": MessageLookupByLibrary.simpleMessage("Yêu thích"),
         "name": MessageLookupByLibrary.simpleMessage("Tên"),
         "newEmail": MessageLookupByLibrary.simpleMessage("Email mới"),

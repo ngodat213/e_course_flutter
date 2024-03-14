@@ -420,6 +420,16 @@ class S {
     );
   }
 
+  /// `My Course`
+  String get myCourse {
+    return Intl.message(
+      'My Course',
+      name: 'myCourse',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Search course, exam test`
   String get searchTitle {
     return Intl.message(

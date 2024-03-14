@@ -1,4 +1,5 @@
 import 'package:e_course_flutter/controller/main_controller.dart';
+import 'package:e_course_flutter/screens/community_screen/community_screen.dart';
 import 'package:e_course_flutter/screens/course_screen/course_screen.dart';
 import 'package:e_course_flutter/screens/home_screen/home_screen.dart';
 import 'package:e_course_flutter/screens/setting_screen/setting_screen.dart';
@@ -14,7 +15,7 @@ class MainScreen extends GetView<MainController> {
     List<Widget> pages = [
       const HomeScreen(),
       const CourseScreen(),
-      const CourseScreen(),
+      const CommunityScreen(),
       const SettingScreen(),
     ];
     return Scaffold(

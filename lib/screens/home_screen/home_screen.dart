@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
+import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/models/models.dart';
 import 'package:e_course_flutter/screens/home_screen/widget/card_course.dart';
 import 'package:e_course_flutter/screens/home_screen/widget/card_exam.dart';
@@ -160,45 +161,44 @@ class _SplashScreenState extends State<HomeScreen> {
   }
 
   Container _listCategory() {
+    const listCategory = [
+      'All',
+      'C++',
+      'C#',
+      'Python',
+      'Javascript',
+      'HTML',
+      'Android',
+      'Flutter',
+    ];
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Category', style: TxtStyle.title),
-          const SizedBox(height: 8),
-          SizedBox(
-            height: Get.height * 0.1,
-            child: ListView.builder(
-              itemCount: 6,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    // widget.onPressedExam.call(quizs[index]);
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(width: 2, color: AppColors.main),
-                          ),
-                          width: Get.height * 0.07,
-                          height: Get.height * 0.07,
-                        ),
-                        const Text('Flutter')
-                      ],
-                    ),
-                  ),
-                );
-              },
+      margin: const EdgeInsets.symmetric(vertical: 18, horizontal: 25),
+      height: Get.height * 0.04,
+      child: ListView.builder(
+        itemCount: listCategory.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              // widget.onPressedExam.call(quizs[index]);
+            },
+            child: Container(
+              margin: const EdgeInsets.only(right: 10),
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+              decoration: BoxDecoration(
+                color: AppColors.grey,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                listCategory[index],
+                style: TxtStyle.inputStyle.copyWith(
+                  fontWeight: index == 0 ? FontWeight.w600 : FontWeight.w500,
+                  color: index == 0 ? AppColors.main : AppColors.input,
+                ),
+              ),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
@@ -448,7 +448,9 @@ class _SplashScreenState extends State<HomeScreen> {
           children: [
             Text(S.of(context).populraCourse, style: TxtStyle.title),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(ManagerRoutes.courseListScreen);
+              },
               child: Text(
                 S.of(context).all,
                 style: TxtStyle.p.copyWith(color: AppColors.main),

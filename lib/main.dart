@@ -1,11 +1,13 @@
+import 'package:e_course_flutter/controller/community_controller.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
-import 'package:e_course_flutter/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
 void main() {
+  Get.put(CommunityController());
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

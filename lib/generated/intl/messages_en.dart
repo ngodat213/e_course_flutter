@@ -93,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "min": MessageLookupByLibrary.simpleMessage("min"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
+        "myCourse": MessageLookupByLibrary.simpleMessage("My Course"),
         "myFavorite": MessageLookupByLibrary.simpleMessage("My favorite"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newEmail": MessageLookupByLibrary.simpleMessage("New email"),
