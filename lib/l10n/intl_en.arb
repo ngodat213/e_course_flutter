@@ -37,6 +37,7 @@
     "question": "Question",
     
     "course": "Course",
+    "recommended": "Recommended",
     "myCourse": "My Course",
     "searchTitle":"Search course, exam test",
     "progressTitle": "Welcome to E-Course",

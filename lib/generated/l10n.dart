@@ -420,6 +420,16 @@ class S {
     );
   }
 
+  /// `Recommended`
+  String get recommended {
+    return Intl.message(
+      'Recommended',
+      name: 'recommended',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My Course`
   String get myCourse {
     return Intl.message(

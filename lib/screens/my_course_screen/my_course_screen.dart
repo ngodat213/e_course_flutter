@@ -1,10 +1,12 @@
 import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/models/course.dart';
 import 'package:e_course_flutter/themes/colors.dart';
+import 'package:e_course_flutter/themes/images.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:e_course_flutter/widgets/skeleton_widget.dart';
 import 'package:e_course_flutter/widgets/title_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class CourseScreen extends StatelessWidget {
@@ -61,86 +63,6 @@ class CourseScreen extends StatelessWidget {
         videos:
             "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
       ),
-      const Course(
-        uid: "4",
-        teacherId: "teacher4",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 4",
-        description: "Description for Course 4",
-        time: "8:00 AM - 10:00 AM",
-        lessons: ["Lesson 1"],
-        category: "Category 4",
-        rating: 4.0,
-        feedbacks: [],
-        register: 80,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
-      ),
-      const Course(
-        uid: "4",
-        teacherId: "teacher4",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 4",
-        description: "Description for Course 4",
-        time: "8:00 AM - 10:00 AM",
-        lessons: ["Lesson 1"],
-        category: "Category 4",
-        rating: 4.0,
-        feedbacks: [],
-        register: 80,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
-      ),
-      const Course(
-        uid: "4",
-        teacherId: "teacher4",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 4",
-        description: "Description for Course 4",
-        time: "8:00 AM - 10:00 AM",
-        lessons: ["Lesson 1"],
-        category: "Category 4",
-        rating: 4.0,
-        feedbacks: [],
-        register: 80,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
-      ),
-      const Course(
-        uid: "4",
-        teacherId: "teacher4",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 4",
-        description: "Description for Course 4",
-        time: "8:00 AM - 10:00 AM",
-        lessons: ["Lesson 1"],
-        category: "Category 4",
-        rating: 4.0,
-        feedbacks: [],
-        register: 80,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
-      ),
-      const Course(
-        uid: "4",
-        teacherId: "teacher4",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 4",
-        description: "Description for Course 4",
-        time: "8:00 AM - 10:00 AM",
-        lessons: ["Lesson 1"],
-        category: "Category 4",
-        rating: 4.0,
-        feedbacks: [],
-        register: 80,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
-      ),
     ];
     return Scaffold(
       body: SingleChildScrollView(
@@ -151,87 +73,11 @@ class CourseScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 70),
-                  Container(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.symmetric(horizontal: 25),
-                    decoration: BoxDecoration(
-                      boxShadow: AppColors.shadow,
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: TextFormField(
-                      // onChanged: (value) => _runFilter(value),
-                      decoration: InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 17),
-                        prefixIcon: const Icon(Icons.search),
-                        hintText: S.of(context).searchTitle,
-                        hintStyle: TxtStyle.description,
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                  _listCategory(),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 25),
-                    child: GridView.custom(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 15,
-                        crossAxisSpacing: 15,
-                        childAspectRatio: 1.6,
-                      ),
-                      childrenDelegate: SliverChildBuilderDelegate(
-                        childCount: courses.length,
-                        (context, index) => GestureDetector(
-                          onTap: () {},
-                          child: Stack(
-                            children: [
-                              ClipRRect(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(8)),
-                                child: Image.network(
-                                  courses[index].courseImage,
-                                  fit: BoxFit.cover,
-                                  width: 200,
-                                  height: 200,
-                                  loadingBuilder: (BuildContext context,
-                                      Widget child,
-                                      ImageChunkEvent? loadingProgress) {
-                                    if (loadingProgress == null) return child;
-                                    return const Skeleton(radius: 8);
-                                  },
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return const Skeleton(radius: 8);
-                                  },
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 8),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      courses[index].title,
-                                      style: TxtStyle.text
-                                          .copyWith(color: AppColors.white),
-                                    ),
-                                    Text('Hydra', style: TxtStyle.p),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  _searchCourse(context),
+                  const SizedBox(height: 10),
+                  _myCourseList(courses),
+                  const SizedBox(height: 15),
+                  _recommendCourse(context, courses),
                   const SizedBox(height: 70),
                 ],
               ),
@@ -243,46 +89,182 @@ class CourseScreen extends StatelessWidget {
     );
   }
 
-  Container _listCategory() {
-    const listCategory = [
-      'All',
-      'C++',
-      'C#',
-      'Python',
-      'Javascript',
-      'HTML',
-      'Android',
-      'Flutter',
-    ];
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 18, horizontal: 25),
-      height: Get.height * 0.04,
-      child: ListView.builder(
-        itemCount: listCategory.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              // widget.onPressedExam.call(quizs[index]);
-            },
-            child: Container(
-              margin: const EdgeInsets.only(right: 10),
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-              decoration: BoxDecoration(
-                color: AppColors.grey,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                listCategory[index],
-                style: TxtStyle.inputStyle.copyWith(
-                  fontWeight: index == 0 ? FontWeight.w600 : FontWeight.w500,
-                  color: index == 0 ? AppColors.main : AppColors.input,
+  Column _recommendCourse(BuildContext context, List<Course> courses) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 25),
+          child: Text(S.of(context).recommended, style: TxtStyle.title),
+        ),
+        Container(
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+          height: Get.height * 0.25,
+          child: ListView.builder(
+            itemCount: courses.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  // widget.onPressedExam.call(quizs[index]);
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(right: 10),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    boxShadow: AppColors.shadow,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(25),
+                                topRight: Radius.circular(25)),
+                            child: Image.network(
+                              width: Get.width * 0.6,
+                              height: Get.height * 0.12,
+                              fit: BoxFit.cover,
+                              courses[index].courseImage,
+                            ),
+                          ),
+                          Container(
+                            width: Get.width * 0.6,
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '1h30m',
+                                  style: TxtStyle.text.copyWith(
+                                    color: AppColors.label,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  'Flutter for beginer',
+                                  style: TxtStyle.button,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  courses[index].description,
+                                  style: TxtStyle.p,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Container _searchCourse(BuildContext context) {
+    return Container(
+      height: 50,
+      width: MediaQuery.of(context).size.width,
+      margin: const EdgeInsets.symmetric(horizontal: 25),
+      decoration: BoxDecoration(
+        boxShadow: AppColors.shadow,
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: TextFormField(
+        // onChanged: (value) => _runFilter(value),
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(vertical: 17),
+          prefixIcon: const Icon(Icons.search),
+          hintText: S.of(context).searchTitle,
+          hintStyle: TxtStyle.description,
+          border: InputBorder.none,
+        ),
+      ),
+    );
+  }
+
+  Column _myCourseList(List<Course> courses) {
+    return Column(
+      children: courses
+          .map(
+            (e) => Container(
+              margin: const EdgeInsets.fromLTRB(25, 10, 25, 0),
+              child: Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                    ),
+                    child: Image.network(
+                      e.courseImage,
+                      fit: BoxFit.cover,
+                      width: Get.width * 0.35,
+                      height: Get.height * 0.12,
+                    ),
+                  ),
+                  Container(
+                    width: Get.width * 0.52,
+                    height: Get.height * 0.12,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    decoration: BoxDecoration(
+                      boxShadow: AppColors.shadow,
+                      color: AppColors.white,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              e.title,
+                              style: TxtStyle.inputStyle,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Text(
+                              '- 1h30m',
+                              style: TxtStyle.inputStyle.copyWith(
+                                color: AppColors.main,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          e.description,
+                          maxLines: 1,
+                          style: TxtStyle.p,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text('Lesson 1: How to install Flutter',
+                            style: TxtStyle.text),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-          );
-        },
-      ),
+          )
+          .toList(),
     );
   }
 }

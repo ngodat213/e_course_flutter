@@ -104,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Chào mừng bạn đến với E-Course"),
         "question": MessageLookupByLibrary.simpleMessage("Câu"),
         "readmore": MessageLookupByLibrary.simpleMessage("Đọc thêm"),
+        "recommended": MessageLookupByLibrary.simpleMessage("Khuyến khích"),
         "register": MessageLookupByLibrary.simpleMessage("Đăng kí"),
         "remaining": MessageLookupByLibrary.simpleMessage("Thời gian còn lại"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Lưu thông tin"),

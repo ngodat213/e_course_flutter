@@ -1,6 +1,6 @@
 import 'package:e_course_flutter/controller/main_controller.dart';
 import 'package:e_course_flutter/screens/community_screen/community_screen.dart';
-import 'package:e_course_flutter/screens/course_screen/course_screen.dart';
+import 'package:e_course_flutter/screens/my_course_screen/my_course_screen.dart';
 import 'package:e_course_flutter/screens/home_screen/home_screen.dart';
 import 'package:e_course_flutter/screens/setting_screen/setting_screen.dart';
 import 'package:e_course_flutter/screens/main_screen/widget/bottom_nav.dart';

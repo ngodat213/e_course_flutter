@@ -112,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Welcome to E-Course"),
         "question": MessageLookupByLibrary.simpleMessage("Question"),
         "readmore": MessageLookupByLibrary.simpleMessage("Readmore"),
+        "recommended": MessageLookupByLibrary.simpleMessage("Recommended"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "remaining": MessageLookupByLibrary.simpleMessage("Remaining"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
