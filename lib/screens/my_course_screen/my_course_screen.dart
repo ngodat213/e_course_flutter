@@ -161,6 +161,24 @@ class CourseScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+                      Positioned(
+                        left: Get.width * 0.45,
+                        top: Get.height * 0.1,
+                        child: Container(
+                          width: Get.width * 0.1,
+                          height: Get.width * 0.1,
+                          decoration: BoxDecoration(
+                            color: AppColors.main,
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          child: const Center(
+                            child: Icon(
+                              Icons.play_arrow_rounded,
+                              color: AppColors.white,
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),

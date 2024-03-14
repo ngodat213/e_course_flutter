@@ -85,7 +85,7 @@ class CommunityScreen extends GetView<CommunityController> {
     return Column(
       children: [
         Container(
-          margin: const EdgeInsets.fromLTRB(25, 10, 25, 25),
+          margin: const EdgeInsets.fromLTRB(25, 15, 25, 25),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -172,13 +172,19 @@ class CommunityScreen extends GetView<CommunityController> {
                           ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               )
             ],
           ),
         ),
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 25),
+          child: const Divider(
+            height: 1,
+          ),
+        )
       ],
     );
   }
