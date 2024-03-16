@@ -468,7 +468,11 @@ class _SplashScreenState extends State<HomeScreen> {
       children: [
         CarouselSlider(
           items: courses
-              .map((e) => GestureDetector(onTap: () {}, child: CardSlider(e)))
+              .map((e) => GestureDetector(
+                  onTap: () {
+                    Get.toNamed(ManagerRoutes.courseDetailScreen);
+                  },
+                  child: CardSlider(e)))
               .toList(),
           options: CarouselOptions(
             autoPlay: true,

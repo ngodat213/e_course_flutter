@@ -23,6 +23,10 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 1), () {
       Get.offAllNamed(ManagerRoutes.onboarding);
     });
+    return _splashContent(context);
+  }
+
+  GetBuilder<SplashController> _splashContent(BuildContext context) {
     return GetBuilder<SplashController>(
       builder: (controller) => Scaffold(
         backgroundColor: AppColors.white,

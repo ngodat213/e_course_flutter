@@ -2,9 +2,7 @@ import 'package:e_course_flutter/controller/community_controller.dart';
 import 'package:e_course_flutter/models/models.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class CommunityScreen extends GetView<CommunityController> {

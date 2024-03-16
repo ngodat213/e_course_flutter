@@ -18,45 +18,49 @@ class SignInScreen extends GetView<SignInController> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: _signInAppbar(context),
-      body: Padding(
-        padding: const EdgeInsets.all(23),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: Get.height * 0.26,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(Images.signin),
-                  scale: 1,
-                ),
+      body: signin_content(context),
+    );
+  }
+
+  Padding signin_content(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(23),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: Get.height * 0.26,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(Images.signin),
+                scale: 1,
               ),
             ),
-            const SizedBox(height: 20),
-            BaseText(
-              text: S.of(context).email,
-              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 8),
-            BuildTextField(
-              hintText: S.of(context).emailExample,
-            ),
-            const SizedBox(height: 20),
-            BaseText(
-              text: S.of(context).password,
-              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 8),
-            BuildTextField(
-              hintText: S.of(context).passwordExample,
-            ),
-            _forgotPwButton(context),
-            const SizedBox(height: 20),
-            _loginButton(context),
-            const SizedBox(height: 20),
-            _signUpButton(context)
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+          BaseText(
+            text: S.of(context).email,
+            style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 8),
+          BuildTextField(
+            hintText: S.of(context).emailExample,
+          ),
+          const SizedBox(height: 20),
+          BaseText(
+            text: S.of(context).password,
+            style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 8),
+          BuildTextField(
+            hintText: S.of(context).passwordExample,
+          ),
+          _forgotPwButton(context),
+          const SizedBox(height: 20),
+          _loginButton(context),
+          const SizedBox(height: 20),
+          _signUpButton(context)
+        ],
       ),
     );
   }

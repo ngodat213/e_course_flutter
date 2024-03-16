@@ -40,37 +40,41 @@ class ForgotPwScreen extends GetView<ForgotPwController> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(23),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: Get.height * 0.26,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(Images.signin),
-                  scale: 1,
-                ),
+      body: _forgotPwContent(context),
+    );
+  }
+
+  Padding _forgotPwContent(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(23),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: Get.height * 0.26,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(Images.signin),
+                scale: 1,
               ),
             ),
-            const SizedBox(height: 20),
-            BaseText(
-              text: S.of(context).email,
-              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 8),
-            BuildTextField(
-              hintText: S.of(context).emailExample,
-            ),
-            const SizedBox(height: 20),
-            BuildButton(
-              text: S.of(context).send,
-              duration: const Duration(seconds: 2),
-              curve: Curves.easeInOut,
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+          BaseText(
+            text: S.of(context).email,
+            style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 8),
+          BuildTextField(
+            hintText: S.of(context).emailExample,
+          ),
+          const SizedBox(height: 20),
+          BuildButton(
+            text: S.of(context).send,
+            duration: const Duration(seconds: 2),
+            curve: Curves.easeInOut,
+          ),
+        ],
       ),
     );
   }

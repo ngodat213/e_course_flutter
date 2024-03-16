@@ -144,118 +144,130 @@ class CourseListScreen extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: SizedBox(
-          width: Get.width * 0.65,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              BaseText(
-                text: S.of(context).myCourse,
-                textAlign: TextAlign.center,
-                style: TxtStyle.h3.copyWith(color: AppColors.input),
-                duration: const Duration(milliseconds: 1500),
-                curve: Curves.easeInOut,
-              ),
-              BaseText(
-                text: 'Start searching for courses',
-                textAlign: TextAlign.center,
-                style: TxtStyle.p.copyWith(color: AppColors.label),
-                duration: const Duration(milliseconds: 1500),
-                curve: Curves.easeInOut,
-              )
-            ],
-          ),
-        ),
+        title: _appbar(context),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 50,
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.symmetric(horizontal: 25),
-                decoration: BoxDecoration(
-                  boxShadow: AppColors.shadow,
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: TextFormField(
-                  // onChanged: (value) => _runFilter(value),
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 17),
-                    prefixIcon: const Icon(Icons.search),
-                    hintText: S.of(context).searchTitle,
-                    hintStyle: TxtStyle.description,
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
+              _searchCourse(context),
               _listCategory(),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 25),
-                child: GridView.custom(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 15,
-                    crossAxisSpacing: 15,
-                    childAspectRatio: 1.6,
-                  ),
-                  childrenDelegate: SliverChildBuilderDelegate(
-                    childCount: courses.length,
-                    (context, index) => GestureDetector(
-                      onTap: () {},
-                      child: Stack(
-                        children: [
-                          ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(8)),
-                            child: Image.network(
-                              courses[index].courseImage,
-                              fit: BoxFit.cover,
-                              width: 200,
-                              height: 200,
-                              loadingBuilder: (BuildContext context,
-                                  Widget child,
-                                  ImageChunkEvent? loadingProgress) {
-                                if (loadingProgress == null) return child;
-                                return const Skeleton(radius: 8);
-                              },
-                              errorBuilder: (context, error, stackTrace) {
-                                return const Skeleton(radius: 8);
-                              },
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  courses[index].title,
-                                  style: TxtStyle.text
-                                      .copyWith(color: AppColors.white),
-                                ),
-                                Text('Hydra', style: TxtStyle.p),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              _gridviewCourse(courses),
               const SizedBox(height: 70),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  SizedBox _appbar(BuildContext context) {
+    return SizedBox(
+      width: Get.width * 0.65,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          BaseText(
+            text: S.of(context).myCourse,
+            textAlign: TextAlign.center,
+            style: TxtStyle.h3.copyWith(color: AppColors.input),
+            duration: const Duration(milliseconds: 1500),
+            curve: Curves.easeInOut,
+          ),
+          BaseText(
+            text: 'Start searching for courses',
+            textAlign: TextAlign.center,
+            style: TxtStyle.p.copyWith(color: AppColors.label),
+            duration: const Duration(milliseconds: 1500),
+            curve: Curves.easeInOut,
+          )
+        ],
+      ),
+    );
+  }
+
+  Container _searchCourse(BuildContext context) {
+    return Container(
+      height: 50,
+      width: MediaQuery.of(context).size.width,
+      margin: const EdgeInsets.symmetric(horizontal: 25),
+      decoration: BoxDecoration(
+        boxShadow: AppColors.shadow,
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: TextFormField(
+        // onChanged: (value) => _runFilter(value),
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(vertical: 17),
+          prefixIcon: const Icon(Icons.search),
+          hintText: S.of(context).searchTitle,
+          hintStyle: TxtStyle.description,
+          border: InputBorder.none,
+        ),
+      ),
+    );
+  }
+
+  Container _gridviewCourse(List<Course> courses) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 25),
+      child: GridView.custom(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 15,
+          crossAxisSpacing: 15,
+          childAspectRatio: 1.6,
+        ),
+        childrenDelegate: SliverChildBuilderDelegate(
+          childCount: courses.length,
+          (context, index) => GestureDetector(
+            onTap: () {},
+            child: _cardCourse(courses, index),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Stack _cardCourse(List<Course> courses, int index) {
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          child: Image.network(
+            courses[index].courseImage,
+            fit: BoxFit.cover,
+            width: 200,
+            height: 200,
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) return child;
+              return const Skeleton(radius: 8);
+            },
+            errorBuilder: (context, error, stackTrace) {
+              return const Skeleton(radius: 8);
+            },
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                courses[index].title,
+                style: TxtStyle.text.copyWith(color: AppColors.white),
+              ),
+              Text('Hydra', style: TxtStyle.p),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
