@@ -83,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logOutTitle":
             MessageLookupByLibrary.simpleMessage("Đăng xuất tài khoản"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+        "loginFail": MessageLookupByLibrary.simpleMessage("Đăng nhập thất bại"),
         "loginWith": MessageLookupByLibrary.simpleMessage("đăng nhập bằng"),
         "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
         "min": MessageLookupByLibrary.simpleMessage("phút"),

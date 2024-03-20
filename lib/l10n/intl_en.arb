@@ -35,6 +35,7 @@
     "minutes": "Minutes",
     "remaining": "Remaining",
     "question": "Question",
+    "loginFail": "Login fail",
     
     "course": "Course",
     "recommended": "Recommended",

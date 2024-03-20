@@ -2,13 +2,13 @@ class CourseFeedback {
   final String uid;
   final String userId;
   final String time;
-  final double ratting;
+  final double rating;
   final String feedback;
   const CourseFeedback({
     required this.uid,
     required this.userId,
     required this.time,
-    required this.ratting,
+    required this.rating,
     required this.feedback,
   });
 
@@ -16,14 +16,14 @@ class CourseFeedback {
     String? uid,
     String? userId,
     String? time,
-    double? ratting,
+    double? rating,
     String? feedback,
   }) {
     return CourseFeedback(
       uid: uid ?? this.uid,
       userId: userId ?? this.userId,
       time: time ?? this.time,
-      ratting: ratting ?? this.ratting,
+      rating: rating ?? this.rating,
       feedback: feedback ?? this.feedback,
     );
   }
@@ -32,7 +32,7 @@ class CourseFeedback {
         uid: data['courseFeedback']['_id'],
         userId: data['courseFeedback']['teacher_id'],
         time: data['courseFeedback']['time'],
-        ratting: data['courseFeedback']['ratting'],
+        rating: data['courseFeedback']['rating'],
         feedback: data['courseFeedback']['feedback'],
       );
 }

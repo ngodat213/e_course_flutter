@@ -11,10 +11,9 @@ class CommunityScreen extends GetView<CommunityController> {
   @override
   Widget build(BuildContext context) {
     const user = User(
-        uid: '',
-        displayName: 'HydraCoder',
+        username: 'HydraCoder',
         photoUrl:
-            'https://scontent.fsgn1-1.fna.fbcdn.net/v/t39.30808-1/431748094_1579360056191638_9162859787187610457_n.jpg?stp=dst-jpg_p240x240&_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHusFhqSM3AO_EGy2lQW9EpmvWWzUXwWUGa9ZbNRfBZQRjhoa-v3mImqudPUzKO20VMH77F496rqzohYnMUCBAG&_nc_ohc=QWiVaDipxmEAX-TQLew&_nc_ht=scontent.fsgn1-1.fna&oh=00_AfCmwQJYbOwJzT-X9JHXVsbGziMmySE4Q3EBMVTPXw_8VA&oe=65F6971E');
+            'https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/431748094_1579360056191638_9162859787187610457_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHusFhqSM3AO_EGy2lQW9EpmvWWzUXwWUGa9ZbNRfBZQRjhoa-v3mImqudPUzKO20VMH77F496rqzohYnMUCBAG&_nc_ohc=QWiVaDipxmEAX-ODRIa&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfBkQnn2dfcMcWY3-O2AdqxODTO7Zjsj7rw3FIdg1tmesw&oe=65F6BDA0');
     const listCategory = [
       'All',
       'C++',
@@ -92,12 +91,12 @@ class CommunityScreen extends GetView<CommunityController> {
               ),
               const SizedBox(width: 16),
               SizedBox(
-                width: Get.width * 0.74,
+                width: Get.width * 0.7,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      user.displayName!,
+                      user.username!,
                       style: TxtStyle.button,
                     ),
                     Text(
@@ -120,7 +119,7 @@ class CommunityScreen extends GetView<CommunityController> {
                         image: const DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(
-                            'https://scontent.fsgn1-1.fna.fbcdn.net/v/t39.30808-1/431748094_1579360056191638_9162859787187610457_n.jpg?stp=dst-jpg_p240x240&_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHusFhqSM3AO_EGy2lQW9EpmvWWzUXwWUGa9ZbNRfBZQRjhoa-v3mImqudPUzKO20VMH77F496rqzohYnMUCBAG&_nc_ohc=QWiVaDipxmEAX-TQLew&_nc_ht=scontent.fsgn1-1.fna&oh=00_AfCmwQJYbOwJzT-X9JHXVsbGziMmySE4Q3EBMVTPXw_8VA&oe=65F6971E',
+                            'https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/431748094_1579360056191638_9162859787187610457_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHusFhqSM3AO_EGy2lQW9EpmvWWzUXwWUGa9ZbNRfBZQRjhoa-v3mImqudPUzKO20VMH77F496rqzohYnMUCBAG&_nc_ohc=QWiVaDipxmEAX-ODRIa&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfBkQnn2dfcMcWY3-O2AdqxODTO7Zjsj7rw3FIdg1tmesw&oe=65F6BDA0',
                           ),
                         ),
                       ),

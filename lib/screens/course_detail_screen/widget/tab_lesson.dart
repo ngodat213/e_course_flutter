@@ -31,7 +31,7 @@ class _TabLessonState extends State<TabLesson> {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: 2,
         itemBuilder: (context, index) {
-          final lesson = courseLesson[index];
+          final lesson = widget.courseLesson[index];
 
           List<CourseVideo> listVideo = [];
           // listVideo =

@@ -1,8 +1,8 @@
 class Comment {
   final String uid;
+  final String userId;
   final int like;
   final String title;
-  final String userId;
   final List<String> feedbacks;
   const Comment({
     required this.uid,

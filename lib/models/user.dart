@@ -1,32 +1,63 @@
 class User {
-  final String uid;
+  final String? token;
   final String? email;
-  final String? displayName;
+  final String? username;
   final String? photoUrl;
-  final String? phoneNumber;
-  final List<String>? favoritesCourse;
-  final List<String>? favoritesTeacher;
-  final List<String>? course;
+  final List<String>? blogs;
+  final List<String>? qAs;
+  final List<String>? courses;
+  final List<String>? favouritesCourses;
+  final List<String>? favouritesQuizs;
+  final List<String>? favouritesTeachers;
+  final List<String>? finishedQuizs;
+  final List<String>? favouritesBlogs;
+  final List<String>? favouritesQAs;
 
   const User({
-    required this.uid,
+    this.token,
     this.email,
-    this.displayName,
+    this.username,
     this.photoUrl,
-    this.phoneNumber,
-    this.favoritesCourse,
-    this.favoritesTeacher,
-    this.course,
+    this.blogs,
+    this.qAs,
+    this.courses,
+    this.favouritesCourses,
+    this.favouritesQuizs,
+    this.favouritesTeachers,
+    this.finishedQuizs,
+    this.favouritesBlogs,
+    this.favouritesQAs,
   });
 
   factory User.fromJson(Map<String, dynamic> data) => User(
-        uid: data['user']['id'],
-        email: data['user']['email'],
-        displayName: data['user']['email'],
-        photoUrl: data['user']['email'],
-        phoneNumber: data['user']['email'],
-        favoritesCourse: List.from(data['user']['favoriteCourse']),
-        favoritesTeacher: List.from(data['user']['favoritesTeacher']),
-        course: List.from(data['user']['course']),
+        token: data['token'],
+        email: data['email'],
+        username: data['username'],
+        photoUrl: data['photoUrl'],
+        blogs: List<String>.from(data['blogs'] ?? []),
+        qAs: List<String>.from(data['qAs'] ?? []),
+        courses: List<String>.from(data['courses'] ?? []),
+        favouritesCourses: List<String>.from(data['favouritesCourses'] ?? []),
+        favouritesQuizs: List<String>.from(data['favouritesQuizs'] ?? []),
+        favouritesTeachers: List<String>.from(data['favouritesTeachers'] ?? []),
+        finishedQuizs: List<String>.from(data['finishedQuizs'] ?? []),
+        favouritesBlogs: List<String>.from(data['favouritesBlogs'] ?? []),
+        favouritesQAs: List<String>.from(data['favouritesQAs'] ?? []),
       );
+
+  Map<String, dynamic> toJson() => {
+        'token': token,
+        'email': email,
+        'username': username,
+        'photoUrl': photoUrl,
+        'blogs': blogs,
+        'qAs': qAs,
+        'courses': courses,
+        'favouritesCourses': favouritesCourses,
+        'favouritesQuizs': favouritesQuizs,
+        'favouritesTeachers': favouritesTeachers,
+        'finishedQuizs': finishedQuizs,
+        'favouritesBlogs': favouritesBlogs,
+        'favouritesQAs': favouritesQAs,
+      };
 }

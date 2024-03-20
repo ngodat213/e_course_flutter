@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/images.dart';
-import 'package:e_course_flutter/utils/base_navigation.dart';
+import 'package:get/get.dart';
 
 class BuildBackButton extends StatelessWidget {
   BuildBackButton({
@@ -20,7 +20,7 @@ class BuildBackButton extends StatelessWidget {
       left: left ?? 25,
       child: GestureDetector(
         onTap: () {
-          BaseNavigation.pop(context);
+          Get.back();
         },
         child: Container(
           padding: const EdgeInsets.all(8),

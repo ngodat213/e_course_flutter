@@ -1,7 +1,6 @@
 class Teacher {
   final String uid;
   final String userId;
-  final String name;
   final String description;
   final List<String> courses;
   final List<String> blogs;
@@ -11,7 +10,6 @@ class Teacher {
   const Teacher({
     required this.uid,
     required this.userId,
-    required this.name,
     required this.description,
     required this.courses,
     required this.blogs,
@@ -20,7 +18,6 @@ class Teacher {
   });
   factory Teacher.fromDoc(Map<String, dynamic> data) => Teacher(
         uid: data['teacher']['_id'],
-        name: data['teacher']['name'],
         userId: data['teacher']['userId'],
         description: data['teacher']['description'],
         courses: List.from(data['teacher']['courses']),

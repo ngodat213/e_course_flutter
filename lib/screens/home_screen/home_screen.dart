@@ -20,10 +20,9 @@ class HomeScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<HomeScreen> {
   final user = const User(
-      uid: '',
-      displayName: 'HydraCoder',
+      username: 'HydraCoder',
       photoUrl:
-          'https://scontent.fsgn1-1.fna.fbcdn.net/v/t39.30808-1/431748094_1579360056191638_9162859787187610457_n.jpg?stp=dst-jpg_p240x240&_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHusFhqSM3AO_EGy2lQW9EpmvWWzUXwWUGa9ZbNRfBZQRjhoa-v3mImqudPUzKO20VMH77F496rqzohYnMUCBAG&_nc_ohc=QWiVaDipxmEAX-TQLew&_nc_ht=scontent.fsgn1-1.fna&oh=00_AfCmwQJYbOwJzT-X9JHXVsbGziMmySE4Q3EBMVTPXw_8VA&oe=65F6971E');
+          'https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-1/431748094_1579360056191638_9162859787187610457_n.jpg?stp=dst-jpg_p240x240&_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHusFhqSM3AO_EGy2lQW9EpmvWWzUXwWUGa9ZbNRfBZQRjhoa-v3mImqudPUzKO20VMH77F496rqzohYnMUCBAG&_nc_ohc=DZiA2vspbAwAX8Mj4ho&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfBvI-x-AS_EL2R4FrvDCsHcUq2CqsPEoi81ccqPutlQ1Q&oe=65FC85DE');
 
   List<Course> courses = [
     const Course(
@@ -173,7 +172,7 @@ class _SplashScreenState extends State<HomeScreen> {
     ];
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 18, horizontal: 25),
-      height: Get.height * 0.04,
+      height: 30,
       child: ListView.builder(
         itemCount: listCategory.length,
         scrollDirection: Axis.horizontal,
@@ -245,7 +244,7 @@ class _SplashScreenState extends State<HomeScreen> {
                               image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: NetworkImage(
-                                      'https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/431748094_1579360056191638_9162859787187610457_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHusFhqSM3AO_EGy2lQW9EpmvWWzUXwWUGa9ZbNRfBZQRjhoa-v3mImqudPUzKO20VMH77F496rqzohYnMUCBAG&_nc_ohc=QWiVaDipxmEAX-ODRIa&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfBkQnn2dfcMcWY3-O2AdqxODTO7Zjsj7rw3FIdg1tmesw&oe=65F6BDA0'))),
+                                      'https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-1/431748094_1579360056191638_9162859787187610457_n.jpg?stp=dst-jpg_p240x240&_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHusFhqSM3AO_EGy2lQW9EpmvWWzUXwWUGa9ZbNRfBZQRjhoa-v3mImqudPUzKO20VMH77F496rqzohYnMUCBAG&_nc_ohc=DZiA2vspbAwAX8Mj4ho&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfBvI-x-AS_EL2R4FrvDCsHcUq2CqsPEoi81ccqPutlQ1Q&oe=65FC85DE'))),
                         ),
                         Container(
                           padding: const EdgeInsets.all(8),
@@ -509,8 +508,7 @@ class _SplashScreenState extends State<HomeScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('${S.of(context).hi}, ${user.displayName}',
-              style: TxtStyle.title),
+          Text('${S.of(context).hi}, ${user.username}', style: TxtStyle.title),
           const SizedBox(height: 2),
           Text(S.of(context).progressTitle, style: TxtStyle.hintStyle),
         ],

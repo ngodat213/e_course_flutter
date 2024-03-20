@@ -410,6 +410,16 @@ class S {
     );
   }
 
+  /// `Login fail`
+  String get loginFail {
+    return Intl.message(
+      'Login fail',
+      name: 'loginFail',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Course`
   String get course {
     return Intl.message(

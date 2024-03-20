@@ -89,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logOutTitle":
             MessageLookupByLibrary.simpleMessage("Sign out the account"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "loginFail": MessageLookupByLibrary.simpleMessage("Login fail"),
         "loginWith": MessageLookupByLibrary.simpleMessage("or log in with"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "min": MessageLookupByLibrary.simpleMessage("min"),
