@@ -1,6 +1,4 @@
 import 'package:e_course_flutter/models/course_lesson.dart';
-import 'package:e_course_flutter/screens/course_detail_screen/widget/tab_lesson.dart';
-import 'package:e_course_flutter/screens/course_detail_screen/widget/tab_review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:e_course_flutter/generated/l10n.dart';

@@ -18,6 +18,7 @@ import 'package:e_course_flutter/screens/onboarding_screen/onboarding_screen.dar
 import 'package:e_course_flutter/screens/profile_screen/profile_screen.dart';
 import 'package:e_course_flutter/screens/quiz_play_screen/quiz_play_screen.dart';
 import 'package:e_course_flutter/screens/quiz_screen/quiz_screen.dart';
+import 'package:e_course_flutter/screens/setting_screen/setting_binding.dart';
 import 'package:e_course_flutter/screens/setting_screen/setting_screen.dart';
 import 'package:e_course_flutter/screens/signin_screen/signin_binding.dart';
 import 'package:e_course_flutter/screens/signin_screen/signin_screen.dart';

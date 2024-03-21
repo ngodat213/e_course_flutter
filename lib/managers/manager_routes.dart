@@ -62,6 +62,7 @@ class ManagerRoutes {
     GetPage(
       name: settingScreen,
       page: () => const SettingScreen(),
+      binding: SettingBinding(),
     ),
     GetPage(
       name: courseDetailScreen,

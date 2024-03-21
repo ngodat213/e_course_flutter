@@ -1,10 +1,12 @@
+import 'package:e_course_flutter/controller/setting_controller.dart';
 import 'package:e_course_flutter/screens/setting_screen/widget/logout.dart';
 import 'package:e_course_flutter/screens/setting_screen/widget/setting_menu.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/widgets/build_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class SettingScreen extends StatelessWidget {
+class SettingScreen extends GetView<SettingController> {
   const SettingScreen({super.key});
 
   @override
