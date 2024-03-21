@@ -90,13 +90,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sign out the account"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loginFail": MessageLookupByLibrary.simpleMessage("Login fail"),
+        "loginSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Login successfully"),
         "loginWith": MessageLookupByLibrary.simpleMessage("or log in with"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "min": MessageLookupByLibrary.simpleMessage("min"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
         "myCourse": MessageLookupByLibrary.simpleMessage("My Course"),
         "myFavorite": MessageLookupByLibrary.simpleMessage("My favorite"),
-        "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newEmail": MessageLookupByLibrary.simpleMessage("New email"),
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "oldEmail": MessageLookupByLibrary.simpleMessage("Old email"),
@@ -133,6 +134,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "showless": MessageLookupByLibrary.simpleMessage("Show less"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "signupSucessfully":
+            MessageLookupByLibrary.simpleMessage("Register successfully"),
         "summitMessage": MessageLookupByLibrary.simpleMessage("Submit Message"),
         "terms": MessageLookupByLibrary.simpleMessage(
             "By tapping sign up you agree to the Terms and Condition and Privacy Policy of this app"),

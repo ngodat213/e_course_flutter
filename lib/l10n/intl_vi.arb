@@ -18,6 +18,8 @@
     "emailExample": "xyz@example.com",
     "passwordExample": "********",
     "createYourAccount": "Khởi tạo tài khoản của bạn!",
+    "loginSuccessfull": "Đăng nhập thành công",
+    "signupSucessfully": "Đăng kí thành công",
     "name": "Tên",
     "phoneNumber": "Số điện thoại",
     "enterPhoneNumber": "Nhập số điện thoại của bạn",

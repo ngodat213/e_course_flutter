@@ -250,11 +250,21 @@ class S {
     );
   }
 
-  /// `Name`
-  String get name {
+  /// `Login successfully`
+  String get loginSuccessfully {
     return Intl.message(
-      'Name',
-      name: 'name',
+      'Login successfully',
+      name: 'loginSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register successfully`
+  String get signupSucessfully {
+    return Intl.message(
+      'Register successfully',
+      name: 'signupSucessfully',
       desc: '',
       args: [],
     );

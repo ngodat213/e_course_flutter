@@ -39,23 +39,15 @@ class SignInScreen extends GetView<SignInController> {
               ),
             ),
             const SizedBox(height: 20),
-            BaseText(
-              text: S.of(context).email,
-              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 8),
             BuildTextField(
+              text: S.of(context).email,
               controller: controller.emailController,
               hintText: S.of(context).emailExample,
             ),
             const SizedBox(height: 20),
-            BaseText(
-              text: S.of(context).password,
-              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 8),
             BuildTextField(
               isPassword: true,
+              text: S.of(context).password,
               controller: controller.passwordController,
               hintText: S.of(context).passwordExample,
             ),

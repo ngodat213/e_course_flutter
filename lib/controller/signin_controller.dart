@@ -44,7 +44,8 @@ class SignInController extends GetxController {
               currentAccount = User.fromJson(value.object);
               await BaseSharedPreferences.saveStringValue(
                   ManagerKeyStorage.accessToken, currentAccount.token ?? '');
-              Get.offAllNamed(ManagerRoutes.homeScreen);
+              Fluttertoast.showToast(msg: S.of(context).loginSuccessfully);
+              Get.offAllNamed(ManagerRoutes.mainScreen);
             }
           default:
             {

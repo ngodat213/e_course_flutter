@@ -90,7 +90,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "minutes": MessageLookupByLibrary.simpleMessage("Phút"),
         "myCourse": MessageLookupByLibrary.simpleMessage("Khóa học của tôi"),
         "myFavorite": MessageLookupByLibrary.simpleMessage("Yêu thích"),
-        "name": MessageLookupByLibrary.simpleMessage("Tên"),
         "newEmail": MessageLookupByLibrary.simpleMessage("Email mới"),
         "notification": MessageLookupByLibrary.simpleMessage("Thông báo"),
         "oldEmail": MessageLookupByLibrary.simpleMessage("Email cũ"),
@@ -125,6 +124,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("Gửi"),
         "showless": MessageLookupByLibrary.simpleMessage("Ít hơn"),
         "signUp": MessageLookupByLibrary.simpleMessage("Đăng kí"),
+        "signupSucessfully":
+            MessageLookupByLibrary.simpleMessage("Đăng kí thành công"),
         "summitMessage": MessageLookupByLibrary.simpleMessage("Gửi tin nhắn"),
         "terms": MessageLookupByLibrary.simpleMessage(
             "By tapping sign up you agree to the Terms and Condition and Privacy Policy of this app"),
