@@ -38,50 +38,34 @@ class SignUpScreen extends GetView<SignUpController> {
               ),
             ),
             const SizedBox(height: 20),
-            BaseText(
-              text: S.of(context).username,
-              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 8),
             BuildTextField(
+              label: S.of(context).username,
               controller: controller.usernameController,
               hintText: S.of(context).username,
             ),
             const SizedBox(height: 20),
-            BaseText(
-              text: S.of(context).email,
-              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 8),
             BuildTextField(
+              label: S.of(context).email,
               controller: controller.emailController,
               hintText: S.of(context).emailExample,
             ),
             const SizedBox(height: 20),
-            BaseText(
-              text: S.of(context).password,
-              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 8),
             BuildTextField(
               isPassword: true,
+              label: S.of(context).password,
               controller: controller.pwController,
               hintText: S.of(context).passwordExample,
             ),
             const SizedBox(height: 20),
-            BaseText(
-              text: S.of(context).confirmPassword,
-              style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 8),
             BuildTextField(
               isPassword: true,
+              label: S.of(context).confirmPassword,
               controller: controller.confirmPwController,
               hintText: S.of(context).passwordExample,
             ),
             const SizedBox(height: 20),
             BuildButton(
-              text: 'Login',
+              text: 'Register',
               duration: const Duration(seconds: 2),
               curve: Curves.easeInOut,
               onTap: () {

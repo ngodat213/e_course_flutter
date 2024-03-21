@@ -100,7 +100,6 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
                 ),
               ),
               _favoriteButton(context),
-              TitleScreen(title: course.title),
               BuildBackButton(top: 24),
             ],
           ),

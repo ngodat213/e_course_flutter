@@ -63,7 +63,17 @@ class CourseScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 70),
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 18, horizontal: 25),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Let\'s start learning', style: TxtStyle.p),
+                        Text('My course', style: TxtStyle.title),
+                      ],
+                    ),
+                  ),
                   _searchCourse(context),
                   const SizedBox(height: 10),
                   _myCourseList(courses),
@@ -72,7 +82,6 @@ class CourseScreen extends StatelessWidget {
                   const SizedBox(height: 70),
                 ],
               ),
-              TitleScreen(title: S.of(context).myCourse),
             ],
           ),
         ),

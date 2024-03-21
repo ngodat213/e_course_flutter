@@ -61,7 +61,7 @@ class LogoutTile extends StatelessWidget {
             TextButton(
               onPressed: () {
                 BaseSharedPreferences.remove(ManagerKeyStorage.accessToken);
-                Get.offNamed(ManagerRoutes.signInScreen);
+                Get.offAllNamed(ManagerRoutes.signInScreen);
               },
               style: const ButtonStyle(
                 backgroundColor:

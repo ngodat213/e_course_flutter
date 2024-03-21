@@ -40,14 +40,14 @@ class SignInScreen extends GetView<SignInController> {
             ),
             const SizedBox(height: 20),
             BuildTextField(
-              text: S.of(context).email,
+              label: S.of(context).email,
               controller: controller.emailController,
               hintText: S.of(context).emailExample,
             ),
             const SizedBox(height: 20),
             BuildTextField(
               isPassword: true,
-              text: S.of(context).password,
+              label: S.of(context).password,
               controller: controller.passwordController,
               hintText: S.of(context).passwordExample,
             ),

@@ -83,6 +83,7 @@ class ManagerRoutes {
     GetPage(
       name: profileScreen,
       page: () => const ProfileScreen(),
+      binding: ProfileBinding(),
     ),
     GetPage(
       name: courseVideoScreen,

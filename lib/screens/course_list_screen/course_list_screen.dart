@@ -14,14 +14,22 @@ class CourseListScreen extends GetView<CourseListController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: _appbar(context),
-      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                margin:
+                    const EdgeInsets.symmetric(vertical: 18, horizontal: 25),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Course for you!', style: TxtStyle.p),
+                    Text('List course', style: TxtStyle.title),
+                  ],
+                ),
+              ),
               _searchCourse(context),
               _listCategory(),
               _gridviewCourse(controller.courses),
@@ -155,7 +163,7 @@ class CourseListScreen extends GetView<CourseListController> {
     ];
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 18, horizontal: 25),
-      height: Get.height * 0.04,
+      height: 30,
       child: ListView.builder(
         itemCount: listCategory.length,
         scrollDirection: Axis.horizontal,

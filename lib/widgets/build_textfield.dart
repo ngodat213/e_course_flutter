@@ -10,12 +10,12 @@ class BuildTextField extends StatelessWidget {
     this.isPassword,
     this.isNumber,
     this.func,
-    this.text,
+    this.label,
     this.controller,
     required this.hintText,
   });
   final String hintText;
-  String? text;
+  String? label;
   bool? isPassword = false;
   bool? isNumber = false;
   void Function(String value)? func;
@@ -25,11 +25,11 @@ class BuildTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        text != ""
+        label != ""
             ? Container(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: BaseText(
-                  text: text ?? "",
+                  text: label ?? "",
                   style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
                 ),
               )

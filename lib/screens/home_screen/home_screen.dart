@@ -56,7 +56,6 @@ class HomeScreen extends GetView<HomeController> {
         ],
       ),
     ];
-    print("Home screen ${controller.currentAccount.username}");
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -430,13 +429,22 @@ class HomeScreen extends GetView<HomeController> {
 
   Widget _welcomeUser(BuildContext context, User user) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      margin: const EdgeInsets.symmetric(horizontal: 25),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('${S.of(context).hi}, ${user.username}', style: TxtStyle.title),
-          const SizedBox(height: 2),
-          Text(S.of(context).progressTitle, style: TxtStyle.hintStyle),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('${S.of(context).hi}, ${user.username}',
+                  style: TxtStyle.title),
+              const SizedBox(height: 2),
+              Text(S.of(context).progressTitle, style: TxtStyle.hintStyle),
+            ],
+          ),
+          CircleAvatar(
+            backgroundImage: NetworkImage(user.photoUrl!),
+          )
         ],
       ),
     );

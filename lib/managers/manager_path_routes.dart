@@ -15,6 +15,7 @@ import 'package:e_course_flutter/screens/main_screen/main_binding.dart';
 import 'package:e_course_flutter/screens/main_screen/main_screen.dart';
 import 'package:e_course_flutter/screens/onboarding_screen/onboarding_binding.dart';
 import 'package:e_course_flutter/screens/onboarding_screen/onboarding_screen.dart';
+import 'package:e_course_flutter/screens/profile_screen/profile_binding.dart';
 import 'package:e_course_flutter/screens/profile_screen/profile_screen.dart';
 import 'package:e_course_flutter/screens/quiz_play_screen/quiz_play_screen.dart';
 import 'package:e_course_flutter/screens/quiz_screen/quiz_screen.dart';

@@ -48,7 +48,7 @@ class CommunityScreen extends GetView<CommunityController> {
   Container _communityCategory(List<String> listCategory) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-      height: Get.height * 0.04,
+      height: 30,
       child: ListView.builder(
         itemCount: listCategory.length,
         scrollDirection: Axis.horizontal,
