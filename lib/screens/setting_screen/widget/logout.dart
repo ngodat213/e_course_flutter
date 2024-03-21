@@ -1,8 +1,11 @@
 import 'package:e_course_flutter/generated/l10n.dart';
+import 'package:e_course_flutter/managers/manager_key_storage.dart';
+import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/screens/setting_screen/widget/setting_menu.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/images.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
+import 'package:e_course_flutter/utils/base_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -57,11 +60,8 @@ class LogoutTile extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                // BaseSharedPreferences.remove(ManagerKeyStorage.accessToken);
-                // BaseSharedPreferences.remove(ManagerKeyStorage.keepLogin);
-                // context.read<SettingCubit>().signOut();
-                // BaseNavigation.push(context,
-                //     routeName: ManagerRoutes.signInScreen);
+                BaseSharedPreferences.remove(ManagerKeyStorage.accessToken);
+                Get.offNamed(ManagerRoutes.signInScreen);
               },
               style: const ButtonStyle(
                 backgroundColor:

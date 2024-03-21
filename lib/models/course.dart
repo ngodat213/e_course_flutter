@@ -5,12 +5,11 @@ class Course {
   final String title;
   final String description;
   final String time;
-  final List<String> lessons;
   final String category;
   final double rating;
-  final List<String> feedbacks;
   final int register;
-  final String videos;
+  final List<String> feedbacks;
+  final List<String> lessons;
 
   const Course({
     required this.uid,
@@ -24,21 +23,19 @@ class Course {
     required this.rating,
     required this.feedbacks,
     required this.register,
-    required this.videos,
   });
 
   factory Course.fromDoc(Map<String, dynamic> data) => Course(
-        uid: data['course']['_id'],
-        teacherId: data['course']['teacherId'],
-        courseImage: data['course']['courseImage'],
-        title: data['course']['title'],
-        time: data['course']['time'],
-        description: data['course']['description'],
-        lessons: List.from(data['course']['lessons']),
-        category: data['course']['category'],
-        rating: data['course']['ratting'],
-        feedbacks: List.from(data['course']['listFeedBack']),
-        register: data['course']['register'],
-        videos: data['course']['videos'],
+        uid: data['_id'],
+        teacherId: data['teacherId'],
+        courseImage: data['courseImage'],
+        title: data['title'],
+        time: data['time'],
+        description: data['description'],
+        category: data['category'],
+        rating: double.parse(data['rating'].toString()),
+        register: data['register'],
+        lessons: List<String>.from(data['lessons']),
+        feedbacks: List<String>.from(data['feedbacks']),
       );
 }

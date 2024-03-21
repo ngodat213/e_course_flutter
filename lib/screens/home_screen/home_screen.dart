@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:e_course_flutter/controller/home_screen_controller.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/models/models.dart';
@@ -11,145 +12,68 @@ import 'package:e_course_flutter/widgets/skeleton_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<HomeScreen> {
-  final user = const User(
-      username: 'HydraCoder',
-      photoUrl:
-          'https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-1/431748094_1579360056191638_9162859787187610457_n.jpg?stp=dst-jpg_p240x240&_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHusFhqSM3AO_EGy2lQW9EpmvWWzUXwWUGa9ZbNRfBZQRjhoa-v3mImqudPUzKO20VMH77F496rqzohYnMUCBAG&_nc_ohc=DZiA2vspbAwAX8Mj4ho&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfBvI-x-AS_EL2R4FrvDCsHcUq2CqsPEoi81ccqPutlQ1Q&oe=65FC85DE');
-
-  List<Course> courses = [
-    const Course(
-      uid: "1",
-      teacherId: "teacher1",
-      courseImage:
-          "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-      title: "Course 1",
-      description: "Description for Course 1",
-      time: "10:00 AM - 12:00 PM",
-      lessons: ["Lesson 1", "Lesson 2", "Lesson 3"],
-      category: "Category 1",
-      rating: 4.5,
-      feedbacks: ["Feedback 1", "Feedback 2"],
-      register: 100,
-      videos:
-          "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
-    ),
-    const Course(
-      uid: "2",
-      teacherId: "teacher2",
-      courseImage:
-          "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-      title: "Course 2",
-      description: "Description for Course 2",
-      time: "2:00 PM - 4:00 PM",
-      lessons: ["Lesson 1", "Lesson 2"],
-      category: "Category 2",
-      rating: 4.2,
-      feedbacks: ["Feedback 1", "Feedback 2", "Feedback 3"],
-      register: 120,
-      videos:
-          "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
-    ),
-    const Course(
-      uid: "3",
-      teacherId: "teacher3",
-      courseImage:
-          "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-      title: "Course 3",
-      description: "Description for Course 3",
-      time: "6:00 PM - 8:00 PM",
-      lessons: ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4"],
-      category: "Category 3",
-      rating: 4.8,
-      feedbacks: ["Feedback 1"],
-      register: 90,
-      videos:
-          "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
-    ),
-    const Course(
-      uid: "4",
-      teacherId: "teacher4",
-      courseImage:
-          "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-      title: "Course 4",
-      description: "Description for Course 4",
-      time: "8:00 AM - 10:00 AM",
-      lessons: ["Lesson 1"],
-      category: "Category 4",
-      rating: 4.0,
-      feedbacks: [],
-      register: 80,
-      videos:
-          "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
-    ),
-  ];
-
-  List<Quiz> quizs = [
-    const Quiz(
-      uid: '1',
-      title: 'Introduction to ',
-      image: 'intro_programming.jpg',
-      description: 'Learn the basics ',
-      type: 'Beginner',
-      lessons: ['Lesson 1', 'Lesson 2', 'Lesson 3'],
-    ),
-    const Quiz(
-      uid: '2',
-      title: 'Data Structures ',
-      image: 'data_structures.jpg',
-      description: 'Explore fundamental ',
-      type: 'Intermediate',
-      lessons: ['Lesson 1', 'Lesson 2', 'Lesson 3', 'Lesson 4'],
-    ),
-    const Quiz(
-      uid: '3',
-      title: 'Web Development',
-      image: 'web_development.jpg',
-      description: 'Learn to build ',
-      type: 'Intermediate',
-      lessons: ['HTML Basics', 'CSS Styling', 'JavaScript Fundamentals'],
-    ),
-    const Quiz(
-      uid: '4',
-      title: 'Machine Learning',
-      image: 'machine_learning.jpg',
-      description: 'Explore the world ',
-      type: 'Advanced',
-      lessons: [
-        'Introduction to ML',
-        'Supervised Learning',
-        'Unsupervised Learning',
-        'Deep Learning'
-      ],
-    ),
-  ];
-
-  @override
   Widget build(BuildContext context) {
+    List<Quiz> quizs = [
+      const Quiz(
+        uid: '1',
+        title: 'Introduction to ',
+        image: 'intro_programming.jpg',
+        description: 'Learn the basics ',
+        type: 'Beginner',
+        lessons: ['Lesson 1', 'Lesson 2', 'Lesson 3'],
+      ),
+      const Quiz(
+        uid: '2',
+        title: 'Data Structures ',
+        image: 'data_structures.jpg',
+        description: 'Explore fundamental ',
+        type: 'Intermediate',
+        lessons: ['Lesson 1', 'Lesson 2', 'Lesson 3', 'Lesson 4'],
+      ),
+      const Quiz(
+        uid: '3',
+        title: 'Web Development',
+        image: 'web_development.jpg',
+        description: 'Learn to build ',
+        type: 'Intermediate',
+        lessons: ['HTML Basics', 'CSS Styling', 'JavaScript Fundamentals'],
+      ),
+      const Quiz(
+        uid: '4',
+        title: 'Machine Learning',
+        image: 'machine_learning.jpg',
+        description: 'Explore the world ',
+        type: 'Advanced',
+        lessons: [
+          'Introduction to ML',
+          'Supervised Learning',
+          'Unsupervised Learning',
+          'Deep Learning'
+        ],
+      ),
+    ];
+    print("Home screen ${controller.currentAccount.username}");
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _welcomeUser(user),
-              _courseSilder(courses),
-              _dotIndicator(3),
+              _welcomeUser(context, controller.currentAccount),
+              _courseSilder(controller.courses),
+              Obx(() => _dotIndicator(controller.dotIndicator.value)),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _listCategory(),
-                  _gridviewCourse(context, courses),
-                  _listViewTeacher(),
-                  _listExams(context, quizs),
-                  _listBlog(),
+                  _gridviewCourse(context, controller.courses),
+                  _listViewTeacher(quizs),
+                  // _listExams(context, quizs),
+                  _listBlog(quizs),
                 ],
               ),
             ],
@@ -202,7 +126,7 @@ class _SplashScreenState extends State<HomeScreen> {
     );
   }
 
-  Container _listBlog() {
+  Container _listBlog(List<Quiz> quizs) {
     return Container(
       margin: const EdgeInsets.only(top: 25),
       padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -282,7 +206,7 @@ class _SplashScreenState extends State<HomeScreen> {
     );
   }
 
-  Container _listViewTeacher() {
+  Container _listViewTeacher(List<Quiz> quizs) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Column(
@@ -477,7 +401,9 @@ class _SplashScreenState extends State<HomeScreen> {
             autoPlay: true,
             aspectRatio: 2,
             viewportFraction: 1,
-            onPageChanged: (index, reason) {},
+            onPageChanged: (index, reason) {
+              controller.dotIndicator.value = index;
+            },
           ),
         ),
       ],
@@ -502,7 +428,7 @@ class _SplashScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _welcomeUser(User user) {
+  Widget _welcomeUser(BuildContext context, User user) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(

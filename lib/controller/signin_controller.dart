@@ -15,7 +15,7 @@ class SignInController extends GetxController {
 
   final BaseAPI _baseApi = BaseAPI();
 
-  User currentAccount = const User();
+  Rx<User> currentAccount = const User().obs;
 
   final RxBool _isShowLoading = false.obs;
 
@@ -41,11 +41,12 @@ class SignInController extends GetxController {
         switch (value.apiStatus) {
           case ApiStatus.SUCCEEDED:
             {
-              currentAccount = User.fromJson(value.object);
+              currentAccount.value = User.fromJson(value.object);
               await BaseSharedPreferences.saveStringValue(
-                  ManagerKeyStorage.accessToken, currentAccount.token ?? '');
+                  ManagerKeyStorage.accessToken,
+                  currentAccount.value.token ?? '');
               Fluttertoast.showToast(msg: S.of(context).loginSuccessfully);
-              Get.offAllNamed(ManagerRoutes.mainScreen);
+              Get.offAndToNamed(ManagerRoutes.mainScreen);
             }
           default:
             {
@@ -57,6 +58,7 @@ class SignInController extends GetxController {
     } else {
       Fluttertoast.showToast(msg: S.of(context).loginFail);
     }
+    print(currentAccount.value.toString());
     _isShowLoading.value = false;
   }
 }

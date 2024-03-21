@@ -26,8 +26,6 @@ class CourseListScreen extends StatelessWidget {
         rating: 4.5,
         feedbacks: ["Feedback 1", "Feedback 2"],
         register: 100,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
       ),
       const Course(
         uid: "2",
@@ -42,8 +40,6 @@ class CourseListScreen extends StatelessWidget {
         rating: 4.2,
         feedbacks: ["Feedback 1", "Feedback 2", "Feedback 3"],
         register: 120,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
       ),
       const Course(
         uid: "3",
@@ -58,8 +54,6 @@ class CourseListScreen extends StatelessWidget {
         rating: 4.8,
         feedbacks: ["Feedback 1"],
         register: 90,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
       ),
       const Course(
         uid: "4",
@@ -74,8 +68,6 @@ class CourseListScreen extends StatelessWidget {
         rating: 4.0,
         feedbacks: [],
         register: 80,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
       ),
       const Course(
         uid: "4",
@@ -90,8 +82,6 @@ class CourseListScreen extends StatelessWidget {
         rating: 4.0,
         feedbacks: [],
         register: 80,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
       ),
       const Course(
         uid: "4",
@@ -106,8 +96,6 @@ class CourseListScreen extends StatelessWidget {
         rating: 4.0,
         feedbacks: [],
         register: 80,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
       ),
       const Course(
         uid: "4",
@@ -122,8 +110,6 @@ class CourseListScreen extends StatelessWidget {
         rating: 4.0,
         feedbacks: [],
         register: 80,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
       ),
       const Course(
         uid: "4",
@@ -138,8 +124,6 @@ class CourseListScreen extends StatelessWidget {
         rating: 4.0,
         feedbacks: [],
         register: 80,
-        videos:
-            "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
       ),
     ];
     return Scaffold(

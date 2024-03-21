@@ -51,8 +51,6 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
       rating: 4.8,
       feedbacks: ["Feedback 1"],
       register: 90,
-      videos:
-          "https://res.cloudinary.com/duhncgkpo/video/upload/v1694794071/video_course/grtn1yylbc2xic9euxwa.mp4",
     );
 
     const courseLesson = [
