@@ -98,6 +98,7 @@ class ManagerRoutes {
     GetPage(
       name: courseListScreen,
       page: () => const CourseListScreen(),
+      binding: CourseListBinding(),
     ),
     GetPage(
       name: communityScreen,

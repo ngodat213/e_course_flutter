@@ -1,3 +1,4 @@
+import 'package:e_course_flutter/controller/course_list_controller.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/models/course.dart';
 import 'package:e_course_flutter/themes/colors.dart';
@@ -7,125 +8,11 @@ import 'package:e_course_flutter/widgets/skeleton_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CourseListScreen extends StatelessWidget {
+class CourseListScreen extends GetView<CourseListController> {
   const CourseListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Course> courses = [
-      const Course(
-        uid: "1",
-        teacherId: "teacher1",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 1",
-        description: "Description for Course 1",
-        time: "10:00 AM - 12:00 PM",
-        lessons: ["Lesson 1", "Lesson 2", "Lesson 3"],
-        category: "Category 1",
-        rating: 4.5,
-        feedbacks: ["Feedback 1", "Feedback 2"],
-        register: 100,
-      ),
-      const Course(
-        uid: "2",
-        teacherId: "teacher2",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 2",
-        description: "Description for Course 2",
-        time: "2:00 PM - 4:00 PM",
-        lessons: ["Lesson 1", "Lesson 2"],
-        category: "Category 2",
-        rating: 4.2,
-        feedbacks: ["Feedback 1", "Feedback 2", "Feedback 3"],
-        register: 120,
-      ),
-      const Course(
-        uid: "3",
-        teacherId: "teacher3",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 3",
-        description: "Description for Course 3",
-        time: "6:00 PM - 8:00 PM",
-        lessons: ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4"],
-        category: "Category 3",
-        rating: 4.8,
-        feedbacks: ["Feedback 1"],
-        register: 90,
-      ),
-      const Course(
-        uid: "4",
-        teacherId: "teacher4",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 4",
-        description: "Description for Course 4",
-        time: "8:00 AM - 10:00 AM",
-        lessons: ["Lesson 1"],
-        category: "Category 4",
-        rating: 4.0,
-        feedbacks: [],
-        register: 80,
-      ),
-      const Course(
-        uid: "4",
-        teacherId: "teacher4",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 4",
-        description: "Description for Course 4",
-        time: "8:00 AM - 10:00 AM",
-        lessons: ["Lesson 1"],
-        category: "Category 4",
-        rating: 4.0,
-        feedbacks: [],
-        register: 80,
-      ),
-      const Course(
-        uid: "4",
-        teacherId: "teacher4",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 4",
-        description: "Description for Course 4",
-        time: "8:00 AM - 10:00 AM",
-        lessons: ["Lesson 1"],
-        category: "Category 4",
-        rating: 4.0,
-        feedbacks: [],
-        register: 80,
-      ),
-      const Course(
-        uid: "4",
-        teacherId: "teacher4",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 4",
-        description: "Description for Course 4",
-        time: "8:00 AM - 10:00 AM",
-        lessons: ["Lesson 1"],
-        category: "Category 4",
-        rating: 4.0,
-        feedbacks: [],
-        register: 80,
-      ),
-      const Course(
-        uid: "4",
-        teacherId: "teacher4",
-        courseImage:
-            "https://www.wearetechtonic.com/wp-content/uploads/2020/06/Flutter-App-Development.png",
-        title: "Course 4",
-        description: "Description for Course 4",
-        time: "8:00 AM - 10:00 AM",
-        lessons: ["Lesson 1"],
-        category: "Category 4",
-        rating: 4.0,
-        feedbacks: [],
-        register: 80,
-      ),
-    ];
     return Scaffold(
       appBar: AppBar(
         title: _appbar(context),
@@ -137,7 +24,7 @@ class CourseListScreen extends StatelessWidget {
             children: [
               _searchCourse(context),
               _listCategory(),
-              _gridviewCourse(courses),
+              _gridviewCourse(controller.courses),
               const SizedBox(height: 70),
             ],
           ),

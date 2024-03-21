@@ -26,11 +26,11 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     currentAccount = _signInController.currentAccount.value;
-    await fetchCourse();
+    await handleCourse();
     super.onInit();
   }
 
-  Future<void> fetchCourse() async {
+  Future<void> handleCourse() async {
     _isShowLoading.value = true;
     await _baseAPI
         .fetchData(ManagerAddress.baseCourse, method: ApiMethod.GET)
