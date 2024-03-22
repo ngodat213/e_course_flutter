@@ -43,8 +43,7 @@ class SignInController extends GetxController {
           case ApiStatus.SUCCEEDED:
             {
               await BaseSharedPreferences.saveStringValue(
-                  ManagerKeyStorage.accessToken,
-                  currentAccount.value.token ?? '');
+                  ManagerKeyStorage.accessToken, value.object["token"] ?? '');
               decodeToken();
               Fluttertoast.showToast(msg: S.of(context).loginSuccessfully);
               Get.offAndToNamed(ManagerRoutes.mainScreen);
