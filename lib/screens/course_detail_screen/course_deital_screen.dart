@@ -8,7 +8,6 @@ import 'package:e_course_flutter/themes/images.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:e_course_flutter/widgets/back_button.dart';
 import 'package:e_course_flutter/widgets/build_button.dart';
-import 'package:e_course_flutter/widgets/title_screen.dart';
 import 'package:readmore/readmore.dart';
 
 class CourseDetailScreen extends StatefulWidget {

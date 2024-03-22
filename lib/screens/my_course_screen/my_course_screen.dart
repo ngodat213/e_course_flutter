@@ -2,7 +2,6 @@ import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/models/course.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
-import 'package:e_course_flutter/widgets/title_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

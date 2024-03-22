@@ -8,6 +8,7 @@ import 'package:e_course_flutter/utils/base_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class SignInController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -41,10 +42,10 @@ class SignInController extends GetxController {
         switch (value.apiStatus) {
           case ApiStatus.SUCCEEDED:
             {
-              currentAccount.value = User.fromJson(value.object);
               await BaseSharedPreferences.saveStringValue(
                   ManagerKeyStorage.accessToken,
                   currentAccount.value.token ?? '');
+              decodeToken();
               Fluttertoast.showToast(msg: S.of(context).loginSuccessfully);
               Get.offAndToNamed(ManagerRoutes.mainScreen);
             }
@@ -60,5 +61,16 @@ class SignInController extends GetxController {
     }
     print(currentAccount.value.toString());
     _isShowLoading.value = false;
+  }
+
+  Future<void> decodeToken() async {
+    if (await BaseSharedPreferences.getStringValue(
+            ManagerKeyStorage.accessToken) !=
+        "") {
+      Map<String, dynamic> decodedJwt = JwtDecoder.decode(
+          await BaseSharedPreferences.getStringValue(
+              ManagerKeyStorage.accessToken));
+      currentAccount.value = User.fromJson(decodedJwt);
+    }
   }
 }
