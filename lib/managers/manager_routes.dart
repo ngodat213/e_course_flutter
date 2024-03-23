@@ -67,6 +67,7 @@ class ManagerRoutes {
     GetPage(
       name: courseDetailScreen,
       page: () => const CourseDetailScreen(),
+      binding: CourseDetailBinding(),
     ),
     GetPage(
       name: quizScreen,

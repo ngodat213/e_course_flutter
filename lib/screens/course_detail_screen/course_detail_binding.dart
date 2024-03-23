@@ -1,11 +1,9 @@
 import 'package:e_course_flutter/controller/course_detail_controller.dart';
-import 'package:e_course_flutter/controller/home_screen_controller.dart';
 import 'package:get/get.dart';
 
-class HomeScreenBinding extends Bindings {
+class CourseDetailBinding extends Bindings {
   @override
   void dependencies() {
     Get.put(CourseDetailController());
-    Get.put(HomeController());
   }
 }

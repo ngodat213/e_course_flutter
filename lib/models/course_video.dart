@@ -1,32 +1,31 @@
 class CourseVideo {
-  final String uid;
-  final String title;
-  final String part;
-  final String video;
-  final String description;
-  final int hour;
-  final int minute;
-  final List<String> comment;
+  String? sId;
+  String? title;
+  int? part;
+  String? videoUrl;
+  String? description;
+  int? hour;
+  int? minute;
+  List<Null>? comments;
 
-  const CourseVideo({
-    required this.uid,
-    required this.title,
-    required this.part,
-    required this.video,
-    required this.description,
-    required this.hour,
-    required this.minute,
-    required this.comment,
-  });
+  CourseVideo(
+      {this.sId,
+      this.title,
+      this.part,
+      this.videoUrl,
+      this.description,
+      this.hour,
+      this.minute,
+      this.comments});
 
-  factory CourseVideo.fromDoc(Map<String, dynamic> data) => CourseVideo(
-        uid: data['courseVideo']['_id'],
-        title: data['courseVideo']['title'],
-        part: data['courseVideo']['part'],
-        video: data['courseVideo']['video'],
-        description: data['courseVideo']['description'],
-        hour: data['courseVideo']['hour'],
-        minute: data['courseVideo']['minute'],
-        comment: List.from(data['courseVideo']['comment']),
-      );
+  CourseVideo.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    title = json['title'];
+    part = json['part'];
+    videoUrl = json['videoUrl'];
+    description = json['description'];
+    hour = json['hour'];
+    minute = json['minute'];
+    comments = List.from(json['comments']);
+  }
 }

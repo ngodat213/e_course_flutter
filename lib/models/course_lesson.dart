@@ -1,20 +1,22 @@
+import 'package:e_course_flutter/models/models.dart';
+
 class CourseLesson {
-  final String uid;
-  final int selection;
-  final String title;
-  final List<String> videos;
+  String? sId;
+  String? title;
+  int? selection;
+  List<CourseVideo>? videos;
 
-  const CourseLesson({
-    required this.uid,
-    required this.selection,
-    required this.title,
-    required this.videos,
-  });
+  CourseLesson({this.sId, this.title, this.selection, this.videos});
 
-  factory CourseLesson.fromDoc(Map<String, dynamic> data) => CourseLesson(
-        uid: data['courseLesson']['_id'],
-        title: data['courseLesson']['title'],
-        selection: data['courseLesson']['selection'],
-        videos: List.from(data['courseLesson']['videos']),
-      );
+  CourseLesson.fromDoc(Map<String, dynamic> json) {
+    sId = json['_id'];
+    title = json['title'];
+    selection = json['selection'];
+    if (json['videos'] != null) {
+      videos = <CourseVideo>[];
+      json['videos'].forEach((v) {
+        videos!.add(CourseVideo.fromJson(v));
+      });
+    }
+  }
 }

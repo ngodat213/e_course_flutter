@@ -27,7 +27,7 @@ class CardSlider extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Image.network(
-              course.courseImage,
+              course.courseImage!,
               fit: BoxFit.cover,
               height: MediaQuery.of(context).size.height,
               loadingBuilder: (BuildContext context, Widget child,
@@ -48,10 +48,10 @@ class CardSlider extends StatelessWidget {
               children: [
                 SizedBox(
                   width: 200,
-                  child: Text(course.title,
+                  child: Text(course.title!,
                       style: TxtStyle.title.copyWith(color: AppColors.white)),
                 ),
-                Text('${course.lessons.length} ${S.of(context).lesson}',
+                Text('${course.lessons!.length} ${S.of(context).lesson}',
                     style: TxtStyle.p),
                 const SizedBox(height: 5),
                 Text(

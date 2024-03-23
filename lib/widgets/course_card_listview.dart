@@ -29,7 +29,7 @@ class CourseCardListView extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.main,
               image: DecorationImage(
-                  image: NetworkImage(course.courseImage), fit: BoxFit.cover),
+                  image: NetworkImage(course.courseImage!), fit: BoxFit.cover),
               borderRadius: BorderRadius.circular(8),
             ),
           ),
@@ -38,7 +38,7 @@ class CourseCardListView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(course.title,
+                Text(course.title!,
                     style: TxtStyle.button.copyWith(color: AppColors.input)),
                 const Expanded(child: SizedBox()),
                 Container(
@@ -87,7 +87,7 @@ class _CourseInfo extends StatelessWidget {
           children: [
             SvgPicture.asset(Images.iconLesson),
             const SizedBox(width: 8),
-            Text('${course.lessons.length} ${S.of(context).lesson}',
+            Text('${course.lessons!.length} ${S.of(context).lesson}',
                 style: TxtStyle.time.copyWith(fontWeight: FontWeight.w500)),
           ],
         ),

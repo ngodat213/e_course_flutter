@@ -314,13 +314,15 @@ class HomeScreen extends GetView<HomeController> {
             childrenDelegate: SliverChildBuilderDelegate(
               childCount: courses.length < 4 ? courses.length : 4,
               (context, index) => GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  controller.onPressCourse(courses[index]);
+                },
                 child: Stack(
                   children: [
                     ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(8)),
                       child: Image.network(
-                        courses[index].courseImage,
+                        courses[index].courseImage!,
                         fit: BoxFit.cover,
                         width: 200,
                         height: 200,
@@ -342,7 +344,7 @@ class HomeScreen extends GetView<HomeController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            courses[index].title,
+                            courses[index].title!,
                             style:
                                 TxtStyle.text.copyWith(color: AppColors.white),
                           ),
@@ -392,7 +394,7 @@ class HomeScreen extends GetView<HomeController> {
           items: courses
               .map((e) => GestureDetector(
                   onTap: () {
-                    Get.toNamed(ManagerRoutes.courseDetailScreen);
+                    controller.onPressCourse(e);
                   },
                   child: CardSlider(e)))
               .toList(),

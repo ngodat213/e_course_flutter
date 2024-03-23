@@ -126,7 +126,7 @@ class CourseScreen extends StatelessWidget {
                               width: Get.width * 0.6,
                               height: Get.height * 0.12,
                               fit: BoxFit.cover,
-                              courses[index].courseImage,
+                              courses[index].courseImage!,
                             ),
                           ),
                           Container(
@@ -150,7 +150,7 @@ class CourseScreen extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
-                                  courses[index].description,
+                                  courses[index].description!,
                                   style: TxtStyle.p,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
@@ -226,7 +226,7 @@ class CourseScreen extends StatelessWidget {
                       bottomLeft: Radius.circular(8),
                     ),
                     child: Image.network(
-                      e.courseImage,
+                      e.courseImage!,
                       fit: BoxFit.cover,
                       width: Get.width * 0.35,
                       height: Get.height * 0.12,
@@ -249,7 +249,7 @@ class CourseScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              e.title,
+                              e.title!,
                               style: TxtStyle.inputStyle,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -267,7 +267,7 @@ class CourseScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          e.description,
+                          e.description!,
                           maxLines: 1,
                           style: TxtStyle.p,
                           overflow: TextOverflow.ellipsis,

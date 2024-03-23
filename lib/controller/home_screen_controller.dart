@@ -1,21 +1,24 @@
 import 'package:e_course_flutter/api/base_api.dart';
 import 'package:e_course_flutter/controller/signin_controller.dart';
 import 'package:e_course_flutter/managers/manager_address.dart';
+import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/models/models.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   // ----------- Variable -----------
+  final SignInController _signInController = Get.find<SignInController>();
+
   RxInt dotIndicator = 0.obs;
   RxList<Course> courses = RxList<Course>();
 
-  final BaseAPI _baseAPI = BaseAPI();
+  Rx<Course> currentCourse = const Course().obs;
 
   User currentAccount = const User();
 
-  final RxBool _isShowLoading = false.obs;
+  final BaseAPI _baseAPI = BaseAPI();
 
-  final SignInController _signInController = Get.find<SignInController>();
+  final RxBool _isShowLoading = false.obs;
 
   bool get isShowLoading => _isShowLoading.value;
 
@@ -51,4 +54,11 @@ class HomeController extends GetxController {
   Future<void> fetchQuiz() async {}
 
   Future<void> fetchBlog() async {}
+
+  Future<void> onPressCourse(Course obj) async {
+    if (obj.uid != "") {
+      currentCourse.value = obj;
+      Get.toNamed(ManagerRoutes.courseDetailScreen);
+    }
+  }
 }

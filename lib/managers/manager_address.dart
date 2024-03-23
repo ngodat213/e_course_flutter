@@ -12,18 +12,18 @@ class ManagerAddress {
   static String domain = '';
   //?--        BASE URL       -->
   //?-- ACCOUNT -->
-  static const String baseAccount = '/user';
-  static const String accountLogin = '$baseAccount/login';
+  static const String baseAccount = 'user/';
+  static const String accountLogin = '$baseAccount/login/';
   static const String accountSignup = '$baseAccount/signup';
 
   //?-- Course -->
-  static const String baseCourse = '/course';
-  static const String baseCourseLesson = '/courseLesson';
-  static const String baseCourseVideo = '/courseVideo';
+  static const String baseCourse = 'course/';
+  static const String baseCourseLesson = 'courseLesson/';
+  static const String baseCourseVideo = 'courseVideo/';
 
   //?-- Quiz -->
-  static const String baseQuiz = '/quiz';
-  static const String baseQuizLesson = '/quizLesson';
+  static const String baseQuiz = 'quiz/';
+  static const String baseQuizLesson = 'quizLesson/';
   static const String baseQuizQuestion = '/quizQuestion';
 
   //? -- CONVERSATION --

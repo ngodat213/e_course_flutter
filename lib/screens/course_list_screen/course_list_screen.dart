@@ -118,7 +118,7 @@ class CourseListScreen extends GetView<CourseListController> {
         ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           child: Image.network(
-            courses[index].courseImage,
+            courses[index].courseImage!,
             fit: BoxFit.cover,
             width: 200,
             height: 200,
@@ -139,7 +139,7 @@ class CourseListScreen extends GetView<CourseListController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                courses[index].title,
+                courses[index].title!,
                 style: TxtStyle.text.copyWith(color: AppColors.white),
               ),
               Text('Hydra', style: TxtStyle.p),

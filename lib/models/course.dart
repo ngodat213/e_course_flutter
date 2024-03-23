@@ -1,28 +1,28 @@
 class Course {
-  final String uid;
-  final String teacherId;
-  final String courseImage;
-  final String title;
-  final String description;
-  final String time;
-  final String category;
-  final double rating;
-  final int register;
-  final List<String> feedbacks;
-  final List<String> lessons;
+  final String? uid;
+  final String? teacherId;
+  final String? courseImage;
+  final String? title;
+  final String? description;
+  final String? time;
+  final String? category;
+  final double? rating;
+  final int? register;
+  final List<String>? feedbacks;
+  final List<String>? lessons;
 
   const Course({
-    required this.uid,
-    required this.teacherId,
-    required this.courseImage,
-    required this.title,
-    required this.description,
-    required this.time,
-    required this.lessons,
-    required this.category,
-    required this.rating,
-    required this.feedbacks,
-    required this.register,
+    this.uid,
+    this.teacherId,
+    this.courseImage,
+    this.title,
+    this.description,
+    this.time,
+    this.lessons,
+    this.category,
+    this.rating,
+    this.feedbacks,
+    this.register,
   });
 
   factory Course.fromDoc(Map<String, dynamic> data) => Course(
