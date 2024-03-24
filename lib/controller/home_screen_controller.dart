@@ -11,7 +11,6 @@ class HomeController extends GetxController {
 
   RxInt dotIndicator = 0.obs;
   RxList<Course> courses = RxList<Course>();
-
   Rx<Course> currentCourse = const Course().obs;
 
   User currentAccount = const User();
@@ -55,7 +54,7 @@ class HomeController extends GetxController {
 
   Future<void> fetchBlog() async {}
 
-  Future<void> onPressCourse(Course obj) async {
+  void onPressCourse(Course obj) {
     if (obj.uid != "") {
       currentCourse.value = obj;
       Get.toNamed(ManagerRoutes.courseDetailScreen);

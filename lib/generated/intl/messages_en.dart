@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "appInfo":
             MessageLookupByLibrary.simpleMessage("Application information"),
         "app_name": MessageLookupByLibrary.simpleMessage("E-Course"),
+        "blog": MessageLookupByLibrary.simpleMessage("Blog"),
+        "blogQa": MessageLookupByLibrary.simpleMessage("Blog and QA"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "changeLanguage":
             MessageLookupByLibrary.simpleMessage("ChangeLanguage"),
@@ -59,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "enterPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter phone number"),
+        "exam": MessageLookupByLibrary.simpleMessage("Exam"),
         "facebook": MessageLookupByLibrary.simpleMessage("Facebook"),
         "fail": MessageLookupByLibrary.simpleMessage("Fail"),
         "favoriteCourse":
@@ -97,7 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "min": MessageLookupByLibrary.simpleMessage("min"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
         "myCourse": MessageLookupByLibrary.simpleMessage("My Course"),
-        "myFavorite": MessageLookupByLibrary.simpleMessage("My favorite"),
+        "myFavoriteExam": MessageLookupByLibrary.simpleMessage("Exam favorite"),
         "newEmail": MessageLookupByLibrary.simpleMessage("New email"),
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "oldEmail": MessageLookupByLibrary.simpleMessage("Old email"),

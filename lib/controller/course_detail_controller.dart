@@ -1,6 +1,7 @@
 import 'package:e_course_flutter/api/base_api.dart';
 import 'package:e_course_flutter/controller/home_screen_controller.dart';
 import 'package:e_course_flutter/managers/manager_address.dart';
+import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/models/course_lesson.dart';
 import 'package:e_course_flutter/models/models.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 class CourseDetailController extends GetxController
     with GetSingleTickerProviderStateMixin {
   Rx<Course> course = const Course().obs;
+  Rx<CourseVideo> currentCourseVideo = CourseVideo().obs;
 
   late TabController tabController;
   final HomeController _homeController = Get.find<HomeController>();
@@ -67,5 +69,12 @@ class CourseDetailController extends GetxController
       }
     }
     _isShowLoading.value = false;
+  }
+
+  void onPressVideo(CourseVideo obj) {
+    if (obj.uid != "") {
+      currentCourseVideo.value = obj;
+      Get.toNamed(ManagerRoutes.courseVideoScreen);
+    }
   }
 }

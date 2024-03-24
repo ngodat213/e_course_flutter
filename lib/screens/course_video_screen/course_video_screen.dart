@@ -1,3 +1,4 @@
+import 'package:e_course_flutter/screens/course_video_screen/widget/course_video_content.dart';
 import 'package:flutter/material.dart';
 
 class CourseVideoScreen extends StatefulWidget {
@@ -10,6 +11,6 @@ class CourseVideoScreen extends StatefulWidget {
 class _SplashScreenState extends State<CourseVideoScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(body: CourseVideoContent());
   }
 }

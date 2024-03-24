@@ -47,6 +47,10 @@ dependencies:
   flutter_dotenv: ^5.1.0
   connectivity_plus: ^5.0.2
 
+  #VIDEO PLAYER
+  video_player: ^2.7.1
+  chewie: ^1.7.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

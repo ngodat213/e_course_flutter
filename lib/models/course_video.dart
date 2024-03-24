@@ -1,5 +1,5 @@
 class CourseVideo {
-  String? sId;
+  String? uid;
   String? title;
   int? part;
   String? videoUrl;
@@ -9,7 +9,7 @@ class CourseVideo {
   List<Null>? comments;
 
   CourseVideo(
-      {this.sId,
+      {this.uid,
       this.title,
       this.part,
       this.videoUrl,
@@ -19,7 +19,7 @@ class CourseVideo {
       this.comments});
 
   CourseVideo.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
+    uid = json['_id'];
     title = json['title'];
     part = json['part'];
     videoUrl = json['videoUrl'];

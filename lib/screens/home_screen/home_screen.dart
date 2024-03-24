@@ -58,27 +58,30 @@ class HomeScreen extends GetView<HomeController> {
     ];
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _welcomeUser(context, controller.currentAccount),
-              _courseSilder(controller.courses),
-              Obx(() => _dotIndicator(controller.dotIndicator.value)),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _listCategory(),
-                  _gridviewCourse(context, controller.courses),
-                  _listViewTeacher(quizs),
-                  // _listExams(context, quizs),
-                  _listBlog(quizs),
-                ],
+          child: Obx(
+        () => controller.isShowLoading
+            ? const Center(child: CircularProgressIndicator())
+            : SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _welcomeUser(context, controller.currentAccount),
+                    _courseSilder(controller.courses),
+                    Obx(() => _dotIndicator(controller.dotIndicator.value)),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _listCategory(),
+                        _gridviewCourse(context, controller.courses),
+                        _listViewTeacher(quizs),
+                        // _listExams(context, quizs),
+                        _listBlog(quizs),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
-      ),
+      )),
     );
   }
 

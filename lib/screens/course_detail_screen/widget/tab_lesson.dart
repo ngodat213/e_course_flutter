@@ -111,7 +111,7 @@ class TabLesson extends GetView<CourseDetailController> {
       BuildContext context, CourseLesson lesson, CourseVideo video) {
     return GestureDetector(
       onTap: () {
-        // widget.onPressedLesson.call(lesson, video);
+        controller.onPressVideo(video);
       },
       child: Container(
         height: 70,

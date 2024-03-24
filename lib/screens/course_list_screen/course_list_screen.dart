@@ -104,7 +104,9 @@ class CourseListScreen extends GetView<CourseListController> {
         childrenDelegate: SliverChildBuilderDelegate(
           childCount: courses.length,
           (context, index) => GestureDetector(
-            onTap: () {},
+            onTap: () {
+              controller.onPressCourse(courses[index]);
+            },
             child: _cardCourse(courses, index),
           ),
         ),

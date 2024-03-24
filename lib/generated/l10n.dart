@@ -870,16 +870,6 @@ class S {
     );
   }
 
-  /// `My favorite`
-  String get myFavorite {
-    return Intl.message(
-      'My favorite',
-      name: 'myFavorite',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Course favorite`
   String get courseFavorite {
     return Intl.message(
@@ -945,6 +935,46 @@ class S {
     return Intl.message(
       'Sign out the account',
       name: 'logOutTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exam`
+  String get exam {
+    return Intl.message(
+      'Exam',
+      name: 'exam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exam favorite`
+  String get myFavoriteExam {
+    return Intl.message(
+      'Exam favorite',
+      name: 'myFavoriteExam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blog`
+  String get blog {
+    return Intl.message(
+      'Blog',
+      name: 'blog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blog and QA`
+  String get blogQa {
+    return Intl.message(
+      'Blog and QA',
+      name: 'blogQa',
       desc: '',
       args: [],
     );

@@ -89,6 +89,7 @@ class ManagerRoutes {
     GetPage(
       name: courseVideoScreen,
       page: () => const CourseVideoScreen(),
+      binding: CourseVideoBinding(),
     ),
     GetPage(
       name: changeLanguage,

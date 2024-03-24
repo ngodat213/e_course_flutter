@@ -31,7 +31,7 @@ class BuildUserSetting extends GetView<ProfileController> {
                   const SizedBox(height: 20),
                   BuildTextField(
                     label: S.of(context).username,
-                    hintText: controller.currentUser.username!,
+                    hintText: controller.currentAccount.username!,
                     func: (value) {
                       // context.read<ProfileCubit>().userNameChanged(value);
                     },
@@ -51,7 +51,7 @@ class BuildUserSetting extends GetView<ProfileController> {
           },
           child: ChangedProfile(
             title: S.of(context).username,
-            text: controller.currentUser.username!,
+            text: controller.currentAccount.username!,
           ),
         ),
         const Divider(),
@@ -70,7 +70,7 @@ class BuildUserSetting extends GetView<ProfileController> {
                   const SizedBox(height: 20),
                   BuildTextField(
                     label: S.of(context).oldEmail,
-                    hintText: controller.currentUser.email!,
+                    hintText: controller.currentAccount.email!,
                     func: (value) {
                       // context.read<ProfileCubit>().oldEmailChanged(value);
                     },
@@ -105,7 +105,7 @@ class BuildUserSetting extends GetView<ProfileController> {
           },
           child: ChangedProfile(
             title: S.of(context).emailAddress,
-            text: controller.currentUser.email!,
+            text: controller.currentAccount.email!,
           ),
         ),
         const Divider(),
@@ -129,7 +129,7 @@ class BuildUserSetting extends GetView<ProfileController> {
                   const SizedBox(height: 20),
                   BuildTextField(
                       label: S.of(context).email,
-                      hintText: controller.currentUser.email!),
+                      hintText: controller.currentAccount.email!),
                   const SizedBox(height: 20),
                   BuildTextField(
                       label: S.of(context).password,

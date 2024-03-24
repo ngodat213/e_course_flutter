@@ -61,7 +61,7 @@ class MenuDrawer extends StatelessWidget {
                 ),
                 MenuDrawerTile(
                   svgPath: Images.iconFavorite,
-                  title: S.of(context).myFavorite,
+                  title: S.of(context).course,
                   subtitle: S.of(context).favoriteCourse,
                   onTap: () {
                     // BaseNavigation.push(context,

@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Tất cả"),
         "appInfo": MessageLookupByLibrary.simpleMessage("Thông tin ứng dụng"),
         "app_name": MessageLookupByLibrary.simpleMessage("E-Course"),
+        "blog": MessageLookupByLibrary.simpleMessage("Blog"),
+        "blogQa": MessageLookupByLibrary.simpleMessage("Blog và hỏi đáp"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
         "changeLanguage": MessageLookupByLibrary.simpleMessage("Đổi ngôn ngữ"),
         "checkResult": MessageLookupByLibrary.simpleMessage("Kết quả"),
@@ -55,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "english": MessageLookupByLibrary.simpleMessage("Tiếng anh"),
         "enterPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Nhập số điện thoại của bạn"),
+        "exam": MessageLookupByLibrary.simpleMessage("Đề thi"),
         "facebook": MessageLookupByLibrary.simpleMessage("Facebook"),
         "fail": MessageLookupByLibrary.simpleMessage("Sai"),
         "favoriteCourse":
@@ -89,7 +92,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "min": MessageLookupByLibrary.simpleMessage("phút"),
         "minutes": MessageLookupByLibrary.simpleMessage("Phút"),
         "myCourse": MessageLookupByLibrary.simpleMessage("Khóa học của tôi"),
-        "myFavorite": MessageLookupByLibrary.simpleMessage("Yêu thích"),
+        "myFavoriteExam":
+            MessageLookupByLibrary.simpleMessage("Đề thi yêu thích"),
         "newEmail": MessageLookupByLibrary.simpleMessage("Email mới"),
         "notification": MessageLookupByLibrary.simpleMessage("Thông báo"),
         "oldEmail": MessageLookupByLibrary.simpleMessage("Email cũ"),

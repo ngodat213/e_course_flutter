@@ -15,31 +15,35 @@ class ProfileScreen extends GetView<ProfileController> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(title: TitleScreen(title: S.of(context).accountSetting)),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Stack(
-            children: [
-              Container(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 25,
+      body: SafeArea(
+        child: Obx(
+          () => controller.isShowLoading
+              ? const Center(child: CircularProgressIndicator())
+              : SingleChildScrollView(
+                  child: Stack(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 25,
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _ChangedAvatar(),
+                            const SizedBox(height: 12),
+                            Center(
+                              child: Text(controller.currentAccount.username!,
+                                  style: TxtStyle.h3),
+                            ),
+                            const SizedBox(height: 25),
+                            const BuildUserSetting(),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _ChangedAvatar(),
-                    const SizedBox(height: 12),
-                    Center(
-                      child: Text(controller.currentUser.username!,
-                          style: TxtStyle.h3),
-                    ),
-                    const SizedBox(height: 25),
-                    const BuildUserSetting(),
-                  ],
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );
@@ -54,7 +58,7 @@ class ProfileScreen extends GetView<ProfileController> {
             height: 106,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(controller.currentUser.photoUrl!),
+                image: NetworkImage(controller.currentAccount.photoUrl!),
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.circular(100),
