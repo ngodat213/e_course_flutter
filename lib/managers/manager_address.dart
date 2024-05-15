@@ -12,31 +12,23 @@ class ManagerAddress {
   static String domain = '';
   //?--        BASE URL       -->
   //?-- ACCOUNT -->
-  static const String baseAccount = 'user/';
+  static const String baseAccount = 'users';
   static const String accountLogin = '$baseAccount/login/';
-  static const String accountSignup = '$baseAccount/signup';
+  static const String accountCurrent = '$baseAccount/current/';
+  static const String accountSignup = '$baseAccount/signup/';
 
   //?-- Course -->
-  static const String baseCourse = 'course/';
-  static const String baseCourseLesson = 'courseLesson/';
-  static const String baseCourseVideo = 'courseVideo/';
+  static const String baseCourse = 'courses';
+  static const String baseCourseLesson = '$baseCourse/lessons/';
+  static const String baseVideosOfLesson = '${baseCourseLesson}videos/';
+  static const String baseCourseVideo = '$baseCourse/videos/';
 
   //?-- Quiz -->
   static const String baseQuiz = 'quiz/';
-  static const String baseQuizLesson = 'quizLesson/';
-  static const String baseQuizQuestion = '/quizQuestion';
+  static const String baseQuizLesson = '$baseQuiz/lessons/';
+  static const String baseQuizQuestion = '$baseQuiz/questions';
 
-  //? -- CONVERSATION --
-  static const String baseConversation = '/blog';
-
-  //? -- CHANNEL MESSGAE --
-  static const String baseChannelMessgae = '/channel-message';
-  static const String getAllChannelMessage = '$baseChannelMessgae/get-all';
-
-  //? -- SOCKET --
-  static String sendMessageConversationSocket() => 'message:conversation:send';
-  static String receiveMessageConversationSocket() =>
-      'message:conversation:receive';
-  static String sendMessageChannelSocket() => 'message:channel:send';
-  static String receiveMessageChannelSocket() => 'message:channel:receive';
+  //?-- CATEGORY -->
+  static const String baseCategory = 'categorys/';
+  static const String baseFeedback = 'feedbacks/';
 }

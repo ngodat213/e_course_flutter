@@ -30,8 +30,8 @@ class CourseVideoController extends GetxController
 
   @override
   void onInit() {
-    handleCourse();
     handleCourseVideo();
+    handleCourse();
     initVideoPlayer();
     super.onInit();
   }
@@ -45,7 +45,7 @@ class CourseVideoController extends GetxController
   }
 
   void handleCourseVideo() {
-    courseVideo = _courseDetailController.currentCourseVideo.value;
+    courseVideo = _courseDetailController.currentVideo.value;
   }
 
   void handleCourse() {
@@ -53,9 +53,10 @@ class CourseVideoController extends GetxController
   }
 
   void initVideoPlayer() {
+    print("course videoUrl: ${courseVideo.videoUrl}");
     _isShowLoading.value = true;
-    videoPlayerController = VideoPlayerController.networkUrl(
-        Uri.parse(_courseDetailController.currentCourseVideo.value.videoUrl!));
+    videoPlayerController =
+        VideoPlayerController.networkUrl(Uri.parse(courseVideo.videoUrl!));
     initializeVideoPlayerFuture = videoPlayerController.initialize();
     chewieController = ChewieController(
       videoPlayerController: videoPlayerController,

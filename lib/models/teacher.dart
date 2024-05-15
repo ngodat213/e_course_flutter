@@ -1,28 +1,24 @@
 class Teacher {
-  final String uid;
-  final String userId;
-  final String description;
-  final List<String> courses;
-  final List<String> blogs;
-  final List<String> quizs;
-  final List<String> qAs;
+  String? sId;
+  String? email;
+  String? username;
+  String? photoUrl;
 
-  const Teacher({
-    required this.uid,
-    required this.userId,
-    required this.description,
-    required this.courses,
-    required this.blogs,
-    required this.quizs,
-    required this.qAs,
-  });
-  factory Teacher.fromDoc(Map<String, dynamic> data) => Teacher(
-        uid: data['teacher']['_id'],
-        userId: data['teacher']['userId'],
-        description: data['teacher']['description'],
-        courses: List.from(data['teacher']['courses']),
-        blogs: List.from(data['teacher']['blogs']),
-        quizs: List.from(data['lessons']['quizs']),
-        qAs: List.from(data['lessons']['qAs']),
-      );
+  Teacher({this.sId, this.email, this.username, this.photoUrl});
+
+  Teacher.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    email = json['email'];
+    username = json['username'];
+    photoUrl = json['photoUrl'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['email'] = email;
+    data['username'] = username;
+    data['photoUrl'] = photoUrl;
+    return data;
+  }
 }

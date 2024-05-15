@@ -1,3 +1,4 @@
+import 'package:e_course_flutter/models/course_lesson.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
@@ -7,8 +8,13 @@ import 'package:e_course_flutter/themes/images.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 
 class CourseCardListView extends StatelessWidget {
-  const CourseCardListView(this.course, {super.key});
+  const CourseCardListView({
+    required this.course,
+    required this.lessons,
+    super.key,
+  });
   final Course course;
+  final List<CourseLesson> lessons;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +35,8 @@ class CourseCardListView extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.main,
               image: DecorationImage(
-                  image: NetworkImage(course.courseImage!), fit: BoxFit.cover),
+                  image: NetworkImage(course.imageIntroduce!),
+                  fit: BoxFit.cover),
               borderRadius: BorderRadius.circular(8),
             ),
           ),
@@ -48,7 +55,7 @@ class CourseCardListView extends StatelessWidget {
                       bottom: BorderSide(width: 1, color: Color(0xFFEDEDED)),
                     ),
                   ),
-                  child: _CourseInfo(course),
+                  child: _CourseInfo(course, lessons),
                 ),
                 const SizedBox(height: 8),
                 Row(
@@ -62,7 +69,7 @@ class CourseCardListView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100),
                       ),
                     ),
-                    Text('@${course.teacherId}', style: TxtStyle.labelStyle)
+                    Text('@${course.teacher}', style: TxtStyle.labelStyle)
                   ],
                 ),
               ],
@@ -75,8 +82,9 @@ class CourseCardListView extends StatelessWidget {
 }
 
 class _CourseInfo extends StatelessWidget {
-  const _CourseInfo(this.course);
+  const _CourseInfo(this.course, this.lessons);
   final Course course;
+  final List<CourseLesson> lessons;
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +95,7 @@ class _CourseInfo extends StatelessWidget {
           children: [
             SvgPicture.asset(Images.iconLesson),
             const SizedBox(width: 8),
-            Text('${course.lessons!.length} ${S.of(context).lesson}',
+            Text('${lessons.length} ${S.of(context).lesson}',
                 style: TxtStyle.time.copyWith(fontWeight: FontWeight.w500)),
           ],
         ),

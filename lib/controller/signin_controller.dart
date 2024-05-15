@@ -43,8 +43,9 @@ class SignInController extends GetxController {
           case ApiStatus.SUCCEEDED:
             {
               await BaseSharedPreferences.saveStringValue(
-                  ManagerKeyStorage.accessToken, value.object["token"] ?? '');
-              decodeToken();
+                  ManagerKeyStorage.accessToken,
+                  value.object["access_token"] ?? '');
+              getCurrentUser();
               Fluttertoast.showToast(msg: S.of(context).loginSuccessfully);
               Get.offAndToNamed(ManagerRoutes.mainScreen);
             }
@@ -62,14 +63,33 @@ class SignInController extends GetxController {
     _isShowLoading.value = false;
   }
 
-  Future<void> decodeToken() async {
+  Future<void> getCurrentUser() async {
     if (await BaseSharedPreferences.getStringValue(
             ManagerKeyStorage.accessToken) !=
         "") {
-      Map<String, dynamic> decodedJwt = JwtDecoder.decode(
-          await BaseSharedPreferences.getStringValue(
-              ManagerKeyStorage.accessToken));
-      currentAccount.value = User.fromJson(decodedJwt);
+      final String token = await BaseSharedPreferences.getStringValue(
+          ManagerKeyStorage.accessToken);
+
+      await _baseApi
+          .fetchData(
+        ManagerAddress.accountCurrent,
+        headers: {"Authorization": "Bearer $token"},
+        method: ApiMethod.GET,
+      )
+          .then((value) async {
+        switch (value.apiStatus) {
+          case ApiStatus.SUCCEEDED:
+            {
+              currentAccount.value = User.fromJson(value.object);
+              print(currentAccount.value);
+            }
+          default:
+            {
+              printLogError('FAILED');
+              Fluttertoast.showToast(msg: "Login Fail");
+            }
+        }
+      });
     }
   }
 }

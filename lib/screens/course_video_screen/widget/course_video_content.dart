@@ -65,7 +65,7 @@ class CourseVideoContent extends GetView<CourseVideoController> {
     return Row(
       children: [
         Text(
-          "@${controller.course.teacherId}",
+          "@${controller.course.teacher!.username}",
           style: TxtStyle.pBold.copyWith(color: const Color(0xFF93989A)),
         ),
         const SizedBox(width: 4),
@@ -77,34 +77,37 @@ class CourseVideoContent extends GetView<CourseVideoController> {
   Text _videoTitle() =>
       Text(controller.courseVideo.title!, style: TxtStyle.title);
 
-  FutureBuilder<void> _videoPlayer() {
-    return FutureBuilder(
-      future: controller.initializeVideoPlayerFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: AspectRatio(
-              aspectRatio: controller.videoPlayerController.value.aspectRatio,
-              child: Chewie(controller: controller.chewieController),
-            ),
-          );
-        } else {
-          return Container(
-            height: 200,
-            width: MediaQuery.of(context).size.width - 50,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(controller.course.courseImage!),
-                fit: BoxFit.cover,
-              ),
-              color: AppColors.main,
-              borderRadius: BorderRadius.circular(8),
-            ),
-          );
-        }
-      },
-    );
+  Obx _videoPlayer() {
+    return Obx(() => controller.isShowLoading
+        ? const Center(child: CircularProgressIndicator())
+        : FutureBuilder(
+            future: controller.initializeVideoPlayerFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: AspectRatio(
+                    aspectRatio:
+                        controller.videoPlayerController.value.aspectRatio,
+                    child: Chewie(controller: controller.chewieController),
+                  ),
+                );
+              } else {
+                return Container(
+                  height: 200,
+                  width: MediaQuery.of(context).size.width - 50,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(controller.course.imageIntroduce!),
+                      fit: BoxFit.cover,
+                    ),
+                    color: AppColors.main,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                );
+              }
+            },
+          ));
   }
 
 //   Widget _sendComment(BuildContext context) {

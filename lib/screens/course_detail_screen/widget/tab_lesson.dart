@@ -9,7 +9,6 @@ import 'package:e_course_flutter/themes/images.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:e_course_flutter/widgets/skeleton_widget.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class TabLesson extends GetView<CourseDetailController> {
   const TabLesson({
@@ -29,17 +28,17 @@ class TabLesson extends GetView<CourseDetailController> {
                         ? ListView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount: controller.currentCourseLesson.length,
+                            itemCount: controller.courseLessons.length,
                             itemBuilder: (context, index) {
-                              if (controller.currentCourseLesson.value[index]
-                                  .videos!.isEmpty) {
+                              if (controller
+                                  .courseLessons.value[index].videos!.isEmpty) {
                                 return _tabbarLessonSkeletonContent(context);
                               } else {
                                 return _tabbarLessonContent(
                                     context,
-                                    controller.currentCourseLesson.value[index],
-                                    controller.currentCourseLesson.value[index]
-                                        .videos!);
+                                    controller.courseLessons.value[index],
+                                    controller
+                                        .courseLessons.value[index].videos!);
                               }
                             },
                           )
@@ -64,7 +63,7 @@ class TabLesson extends GetView<CourseDetailController> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            '${S.of(context).section} ${lesson.selection} - ${lesson.title}',
+            '${S.of(context).section} ${lesson.selection! + 1} - ${lesson.title}',
             style: TxtStyle.hintStyle.copyWith(fontWeight: FontWeight.w600),
           ),
           ListView.builder(

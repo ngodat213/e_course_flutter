@@ -1,5 +1,6 @@
 import 'package:e_course_flutter/controller/course_list_controller.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
+import 'package:e_course_flutter/models/category.dart';
 import 'package:e_course_flutter/models/course.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
@@ -31,7 +32,7 @@ class CourseListScreen extends GetView<CourseListController> {
                 ),
               ),
               _searchCourse(context),
-              _listCategory(),
+              _listCategory(controller.categorys),
               _gridviewCourse(controller.courses),
               const SizedBox(height: 70),
             ],
@@ -120,7 +121,7 @@ class CourseListScreen extends GetView<CourseListController> {
         ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           child: Image.network(
-            courses[index].courseImage!,
+            courses[index].imageIntroduce!,
             fit: BoxFit.cover,
             width: 200,
             height: 200,
@@ -152,22 +153,12 @@ class CourseListScreen extends GetView<CourseListController> {
     );
   }
 
-  Container _listCategory() {
-    const listCategory = [
-      'All',
-      'C++',
-      'C#',
-      'Python',
-      'Javascript',
-      'HTML',
-      'Android',
-      'Flutter',
-    ];
+  Container _listCategory(List<Category> categorys) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 18, horizontal: 25),
       height: 30,
       child: ListView.builder(
-        itemCount: listCategory.length,
+        itemCount: categorys.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -182,7 +173,7 @@ class CourseListScreen extends GetView<CourseListController> {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                listCategory[index],
+                categorys[index].category,
                 style: TxtStyle.inputStyle.copyWith(
                   fontWeight: index == 0 ? FontWeight.w600 : FontWeight.w500,
                   color: index == 0 ? AppColors.main : AppColors.input,

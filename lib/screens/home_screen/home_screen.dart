@@ -3,6 +3,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_course_flutter/controller/home_screen_controller.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
+import 'package:e_course_flutter/models/category.dart';
 import 'package:e_course_flutter/models/models.dart';
 import 'package:e_course_flutter/screens/home_screen/widget/card_course.dart';
 import 'package:e_course_flutter/screens/home_screen/widget/card_exam.dart';
@@ -71,11 +72,11 @@ class HomeScreen extends GetView<HomeController> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _listCategory(),
+                        _listCategory(controller.categorys),
                         _gridviewCourse(context, controller.courses),
                         _listViewTeacher(quizs),
                         // _listExams(context, quizs),
-                        _listBlog(quizs),
+                        // _listBlog(quizs),
                       ],
                     ),
                   ],
@@ -85,22 +86,12 @@ class HomeScreen extends GetView<HomeController> {
     );
   }
 
-  Container _listCategory() {
-    const listCategory = [
-      'All',
-      'C++',
-      'C#',
-      'Python',
-      'Javascript',
-      'HTML',
-      'Android',
-      'Flutter',
-    ];
+  Container _listCategory(List<Category> categorys) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 18, horizontal: 25),
       height: 30,
       child: ListView.builder(
-        itemCount: listCategory.length,
+        itemCount: categorys.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -115,7 +106,7 @@ class HomeScreen extends GetView<HomeController> {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                listCategory[index],
+                categorys[index].category,
                 style: TxtStyle.inputStyle.copyWith(
                   fontWeight: index == 0 ? FontWeight.w600 : FontWeight.w500,
                   color: index == 0 ? AppColors.main : AppColors.input,
@@ -128,85 +119,85 @@ class HomeScreen extends GetView<HomeController> {
     );
   }
 
-  Container _listBlog(List<Quiz> quizs) {
-    return Container(
-      margin: const EdgeInsets.only(top: 25),
-      padding: const EdgeInsets.symmetric(horizontal: 25),
-      color: AppColors.main,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 25),
-          Text('Blog', style: TxtStyle.title.copyWith(color: AppColors.white)),
-          const SizedBox(height: 8),
-          SizedBox(
-            height: Get.height * 0.25,
-            child: ListView.builder(
-              itemCount: quizs.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    // widget.onPressedExam.call(quizs[index]);
-                  },
-                  child: Container(
-                    width: Get.width * 0.45,
-                    height: Get.height * 0.25,
-                    margin: const EdgeInsets.only(right: 10),
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: Get.height * 0.15,
-                          width: Get.width,
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(8),
-                                  topRight: Radius.circular(8)),
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      'https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-1/431748094_1579360056191638_9162859787187610457_n.jpg?stp=dst-jpg_p240x240&_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHusFhqSM3AO_EGy2lQW9EpmvWWzUXwWUGa9ZbNRfBZQRjhoa-v3mImqudPUzKO20VMH77F496rqzohYnMUCBAG&_nc_ohc=DZiA2vspbAwAX8Mj4ho&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfBvI-x-AS_EL2R4FrvDCsHcUq2CqsPEoi81ccqPutlQ1Q&oe=65FC85DE'))),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          child: RichText(
-                              text: TextSpan(
-                                  text: 'Hydra: ',
-                                  style: TxtStyle.p.copyWith(
-                                      color: AppColors.input,
-                                      fontWeight: FontWeight.w600),
-                                  children: [
-                                TextSpan(
-                                  text:
-                                      'Hello I\'m NgoDat my work is Mobile Developer',
-                                  style: TxtStyle.p,
-                                )
-                              ])),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: Text(
-                            'Readmore >',
-                            style: TxtStyle.p.copyWith(color: AppColors.main),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: 25),
-        ],
-      ),
-    );
-  }
+  // Container _listBlog(List<Quiz> quizs) {
+  //   return Container(
+  //     margin: const EdgeInsets.only(top: 25),
+  //     padding: const EdgeInsets.symmetric(horizontal: 25),
+  //     color: AppColors.main,
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         const SizedBox(height: 25),
+  //         Text('Blog', style: TxtStyle.title.copyWith(color: AppColors.white)),
+  //         const SizedBox(height: 8),
+  //         SizedBox(
+  //           height: Get.height * 0.25,
+  //           child: ListView.builder(
+  //             itemCount: quizs.length,
+  //             scrollDirection: Axis.horizontal,
+  //             itemBuilder: (context, index) {
+  //               return GestureDetector(
+  //                 onTap: () {
+  //                   // widget.onPressedExam.call(quizs[index]);
+  //                 },
+  //                 child: Container(
+  //                   width: Get.width * 0.45,
+  //                   height: Get.height * 0.25,
+  //                   margin: const EdgeInsets.only(right: 10),
+  //                   decoration: BoxDecoration(
+  //                     color: AppColors.white,
+  //                     borderRadius: BorderRadius.circular(8),
+  //                   ),
+  //                   child: Column(
+  //                     crossAxisAlignment: CrossAxisAlignment.start,
+  //                     children: [
+  //                       Container(
+  //                         height: Get.height * 0.15,
+  //                         width: Get.width,
+  //                         decoration: const BoxDecoration(
+  //                             borderRadius: BorderRadius.only(
+  //                                 topLeft: Radius.circular(8),
+  //                                 topRight: Radius.circular(8)),
+  //                             image: DecorationImage(
+  //                                 fit: BoxFit.cover,
+  //                                 image: NetworkImage(
+  //                                     'https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/405483174_1518576675603310_3079002703169478806_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeF4VXLgHSf8GqmmesEAFTffa_fjJAKUpsBr9-MkApSmwFpPKNfOunniExTmvizC7yPOsfPUI4zfLwt_sV-CQX2X&_nc_ohc=Sc4k9JHWlv8Q7kNvgHrp9NJ&_nc_ht=scontent.fsgn2-7.fna&oh=00_AYBaRq1kMfoI9xvof1zi1mFYsPEjurq3eWmq-28p4N2xwg&oe=6649324D'))),
+  //                       ),
+  //                       Container(
+  //                         padding: const EdgeInsets.all(8),
+  //                         child: RichText(
+  //                             text: TextSpan(
+  //                                 text: 'Hydra: ',
+  //                                 style: TxtStyle.p.copyWith(
+  //                                     color: AppColors.input,
+  //                                     fontWeight: FontWeight.w600),
+  //                                 children: [
+  //                               TextSpan(
+  //                                 text:
+  //                                     'Hello I\'m NgoDat my work is Mobile Developer',
+  //                                 style: TxtStyle.p,
+  //                               )
+  //                             ])),
+  //                       ),
+  //                       Container(
+  //                         padding: const EdgeInsets.only(left: 8),
+  //                         child: Text(
+  //                           'Readmore >',
+  //                           style: TxtStyle.p.copyWith(color: AppColors.main),
+  //                         ),
+  //                       )
+  //                     ],
+  //                   ),
+  //                 ),
+  //               );
+  //             },
+  //           ),
+  //         ),
+  //         const SizedBox(height: 25),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Container _listViewTeacher(List<Quiz> quizs) {
     return Container(
@@ -325,7 +316,7 @@ class HomeScreen extends GetView<HomeController> {
                     ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(8)),
                       child: Image.network(
-                        courses[index].courseImage!,
+                        courses[index].imageIntroduce!,
                         fit: BoxFit.cover,
                         width: 200,
                         height: 200,
@@ -395,11 +386,15 @@ class HomeScreen extends GetView<HomeController> {
       children: [
         CarouselSlider(
           items: courses
+              .take(4)
               .map((e) => GestureDetector(
                   onTap: () {
                     controller.onPressCourse(e);
                   },
-                  child: CardSlider(e)))
+                  child: CardSlider(
+                    course: e,
+                    lessons: const [],
+                  )))
               .toList(),
           options: CarouselOptions(
             autoPlay: true,

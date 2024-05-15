@@ -1,63 +1,62 @@
+import 'package:e_course_flutter/enums/role_type.dart';
+
 class User {
-  final String? token;
+  final String? id;
   final String? email;
   final String? username;
   final String? photoUrl;
-  final List<String>? blogs;
-  final List<String>? qAs;
+  final List<RoleType>? roles;
   final List<String>? courses;
   final List<String>? favouritesCourses;
-  final List<String>? favouritesQuizs;
-  final List<String>? favouritesTeachers;
-  final List<String>? finishedQuizs;
-  final List<String>? favouritesBlogs;
-  final List<String>? favouritesQAs;
+  final List<String>? favouritesExams;
+  final List<String>? finishedExams;
+  final String? photoPublicId;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   const User({
-    this.token,
+    this.id,
     this.email,
     this.username,
     this.photoUrl,
-    this.blogs,
-    this.qAs,
+    this.roles,
     this.courses,
     this.favouritesCourses,
-    this.favouritesQuizs,
-    this.favouritesTeachers,
-    this.finishedQuizs,
-    this.favouritesBlogs,
-    this.favouritesQAs,
+    this.favouritesExams,
+    this.finishedExams,
+    this.createdAt,
+    this.updatedAt,
+    this.photoPublicId,
   });
 
   factory User.fromJson(Map<String, dynamic> data) => User(
-        token: data['token'],
-        email: data['email'],
-        username: data['username'],
-        photoUrl: data['photoUrl'],
-        blogs: List<String>.from(data['blogs'] ?? []),
-        qAs: List<String>.from(data['qAs'] ?? []),
+        id: data['_id'] ?? "",
+        email: data['email'] ?? "",
+        username: data['username'] ?? "",
+        photoUrl: data['photoUrl'] ?? "",
+        roles: List<RoleType>.from(
+            data['roles']?.map((e) => RoleType.values.byName(e)) ?? []),
         courses: List<String>.from(data['courses'] ?? []),
         favouritesCourses: List<String>.from(data['favouritesCourses'] ?? []),
-        favouritesQuizs: List<String>.from(data['favouritesQuizs'] ?? []),
-        favouritesTeachers: List<String>.from(data['favouritesTeachers'] ?? []),
-        finishedQuizs: List<String>.from(data['finishedQuizs'] ?? []),
-        favouritesBlogs: List<String>.from(data['favouritesBlogs'] ?? []),
-        favouritesQAs: List<String>.from(data['favouritesQAs'] ?? []),
+        favouritesExams: List<String>.from(data['favouritesExams'] ?? []),
+        finishedExams: List<String>.from(data['finishedExams'] ?? []),
+        createdAt: DateTime.parse(data['createdAt']),
+        updatedAt: DateTime.parse(data['updatedAt']),
+        photoPublicId: data['photoPublicId'] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
-        'token': token,
+        '_id': id,
         'email': email,
         'username': username,
         'photoUrl': photoUrl,
-        'blogs': blogs,
-        'qAs': qAs,
+        'roles': roles?.map((e) => e.name).toList(),
         'courses': courses,
         'favouritesCourses': favouritesCourses,
-        'favouritesQuizs': favouritesQuizs,
-        'favouritesTeachers': favouritesTeachers,
-        'finishedQuizs': finishedQuizs,
-        'favouritesBlogs': favouritesBlogs,
-        'favouritesQAs': favouritesQAs,
+        'favouritesExams': favouritesExams,
+        'finishedExams': finishedExams,
+        'createdAt': createdAt?.toIso8601String(),
+        'updatedAt': updatedAt?.toIso8601String(),
+        'photoPublicId': photoPublicId,
       };
 }

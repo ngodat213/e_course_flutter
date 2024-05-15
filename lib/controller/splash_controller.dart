@@ -10,7 +10,7 @@ class SplashController extends GetxController {
 
   @override
   void onInit() async {
-    await _signInController.decodeToken();
+    await _signInController.getCurrentUser();
     await delayScreen();
     super.onInit();
   }

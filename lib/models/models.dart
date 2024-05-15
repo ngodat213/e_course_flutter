@@ -6,3 +6,4 @@ export 'quiz_lesson.dart';
 export 'teacher.dart';
 export 'user.dart';
 export 'course_video.dart';
+export 'category.dart';

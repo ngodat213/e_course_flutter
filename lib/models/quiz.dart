@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 class Quiz {
   final String uid;
   final String title;
@@ -17,7 +15,7 @@ class Quiz {
     required this.lessons,
   });
 
-  factory Quiz.fromDoc(Map<String, dynamic> data) => Quiz(
+  factory Quiz.fromJson(Map<String, dynamic> data) => Quiz(
         uid: data['quiz']['_id'],
         title: data['quiz']['title'],
         image: data['quiz']['image'],
@@ -25,4 +23,15 @@ class Quiz {
         type: data['quiz']['type'],
         lessons: List.from(data['lessons']),
       );
+
+  Map<String, dynamic> toJson() => {
+        'quiz': {
+          '_id': uid,
+          'title': title,
+          'image': image,
+          'description': description,
+          'type': type,
+        },
+        'lessons': lessons,
+      };
 }

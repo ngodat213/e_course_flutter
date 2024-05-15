@@ -27,7 +27,7 @@ class BuildBottomNavBar extends GetView<MainController> {
         tabs: const [
           GButton(iconSize: 24, icon: Icons.home, text: 'Home'),
           GButton(iconSize: 24, icon: Icons.play_arrow, text: 'Course'),
-          GButton(iconSize: 24, icon: Icons.chat_bubble, text: 'Blog'),
+          // GButton(iconSize: 24, icon: Icons.chat_bubble, text: 'Blog'),
           GButton(iconSize: 24, icon: Icons.person, text: 'Setting')
         ],
       ),
