@@ -1,4 +1,4 @@
-class QuizLesson {
+class ExamLesson {
   final String uid;
   final String lesson;
   final String title;
@@ -6,7 +6,7 @@ class QuizLesson {
   final int minute;
   final int second;
   final List<String> questions;
-  const QuizLesson({
+  const ExamLesson({
     required this.uid,
     required this.lesson,
     required this.title,
@@ -16,7 +16,7 @@ class QuizLesson {
     required this.second,
   });
 
-  factory QuizLesson.fromDoc(Map<String, dynamic> data) => QuizLesson(
+  factory ExamLesson.fromDoc(Map<String, dynamic> data) => ExamLesson(
         uid: data['quizLesson']['_id'],
         lesson: data['quizLesson']['lesson'],
         title: data['quizLesson']['title'],

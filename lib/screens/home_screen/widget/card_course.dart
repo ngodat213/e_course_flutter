@@ -58,7 +58,7 @@ class CardSlider extends StatelessWidget {
                     style: TxtStyle.p),
                 const SizedBox(height: 5),
                 Text(
-                  'Hydra',
+                  course.teacher!.username!,
                   style: TxtStyle.p,
                 )
               ],

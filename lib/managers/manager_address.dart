@@ -18,15 +18,26 @@ class ManagerAddress {
   static const String accountSignup = '$baseAccount/signup/';
 
   //?-- Course -->
-  static const String baseCourse = 'courses';
+  static const String baseCourse = 'course';
+  static const String baseCourseLessonOf = '$baseCourse/lessonsOf/';
+
+  //?-- Course Lesson -->
   static const String baseCourseLesson = '$baseCourse/lessons/';
   static const String baseVideosOfLesson = '${baseCourseLesson}videos/';
+
+  //?-- Course Video -->
   static const String baseCourseVideo = '$baseCourse/videos/';
 
   //?-- Quiz -->
-  static const String baseQuiz = 'quiz/';
-  static const String baseQuizLesson = '$baseQuiz/lessons/';
-  static const String baseQuizQuestion = '$baseQuiz/questions';
+  static const String baseExam = 'exam';
+  static const String baseQuizLessonOf = '$baseExam/lessonsOf/';
+
+  //?-- Quiz Lesson -->
+  static const String baseExamLesson = '$baseExam/lessons/';
+  static const String baseExamQuestionOf = '${baseExamLesson}questionsOf/';
+
+  //?-- Quiz Question -->
+  static const String baseExamQuestion = '${baseExam}questions';
 
   //?-- CATEGORY -->
   static const String baseCategory = 'categorys/';

@@ -3,7 +3,6 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_course_flutter/controller/home_screen_controller.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
-import 'package:e_course_flutter/models/category.dart';
 import 'package:e_course_flutter/models/models.dart';
 import 'package:e_course_flutter/screens/home_screen/widget/card_course.dart';
 import 'package:e_course_flutter/screens/home_screen/widget/card_exam.dart';
@@ -18,45 +17,6 @@ class HomeScreen extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    List<Quiz> quizs = [
-      const Quiz(
-        uid: '1',
-        title: 'Introduction to ',
-        image: 'intro_programming.jpg',
-        description: 'Learn the basics ',
-        type: 'Beginner',
-        lessons: ['Lesson 1', 'Lesson 2', 'Lesson 3'],
-      ),
-      const Quiz(
-        uid: '2',
-        title: 'Data Structures ',
-        image: 'data_structures.jpg',
-        description: 'Explore fundamental ',
-        type: 'Intermediate',
-        lessons: ['Lesson 1', 'Lesson 2', 'Lesson 3', 'Lesson 4'],
-      ),
-      const Quiz(
-        uid: '3',
-        title: 'Web Development',
-        image: 'web_development.jpg',
-        description: 'Learn to build ',
-        type: 'Intermediate',
-        lessons: ['HTML Basics', 'CSS Styling', 'JavaScript Fundamentals'],
-      ),
-      const Quiz(
-        uid: '4',
-        title: 'Machine Learning',
-        image: 'machine_learning.jpg',
-        description: 'Explore the world ',
-        type: 'Advanced',
-        lessons: [
-          'Introduction to ML',
-          'Supervised Learning',
-          'Unsupervised Learning',
-          'Deep Learning'
-        ],
-      ),
-    ];
     return Scaffold(
       body: SafeArea(
           child: Obx(
@@ -74,9 +34,8 @@ class HomeScreen extends GetView<HomeController> {
                       children: [
                         _listCategory(controller.categorys),
                         _gridviewCourse(context, controller.courses),
-                        _listViewTeacher(quizs),
-                        // _listExams(context, quizs),
-                        // _listBlog(quizs),
+                        _listViewTeacher(controller.exams),
+                        _listExams(context, controller.exams),
                       ],
                     ),
                   ],
@@ -199,7 +158,7 @@ class HomeScreen extends GetView<HomeController> {
   //   );
   // }
 
-  Container _listViewTeacher(List<Quiz> quizs) {
+  Container _listViewTeacher(List<Exam> quizs) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Column(
@@ -255,7 +214,7 @@ class HomeScreen extends GetView<HomeController> {
     );
   }
 
-  Widget _listExams(BuildContext context, List<Quiz> quizs) {
+  Widget _listExams(BuildContext context, List<Exam> quizs) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 25),
       child: Column(
@@ -342,7 +301,8 @@ class HomeScreen extends GetView<HomeController> {
                             style:
                                 TxtStyle.text.copyWith(color: AppColors.white),
                           ),
-                          Text('Hydra', style: TxtStyle.p),
+                          Text(courses[index].teacher!.username!,
+                              style: TxtStyle.p),
                         ],
                       ),
                     ),

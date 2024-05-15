@@ -1,11 +1,11 @@
-class QuizQuestion {
+class ExamQuestion {
   final String uid;
   final String question;
   final List<String> options;
   final int answer;
   String? imagePath;
 
-  QuizQuestion({
+  ExamQuestion({
     required this.uid,
     required this.question,
     required this.options,
@@ -13,7 +13,7 @@ class QuizQuestion {
     this.imagePath,
   });
 
-  factory QuizQuestion.fromDoc(Map<String, dynamic> data) => QuizQuestion(
+  factory ExamQuestion.fromDoc(Map<String, dynamic> data) => ExamQuestion(
         uid: data['question']['_id'],
         question: data['question']['question'],
         options: List.from(data['question']['options']),

@@ -2,7 +2,6 @@ import 'package:e_course_flutter/api/base_api.dart';
 import 'package:e_course_flutter/controller/signin_controller.dart';
 import 'package:e_course_flutter/managers/manager_address.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
-import 'package:e_course_flutter/models/category.dart';
 import 'package:e_course_flutter/models/models.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +11,7 @@ class HomeController extends GetxController {
 
   RxInt dotIndicator = 0.obs;
   RxList<Course> courses = RxList<Course>();
+  RxList<Exam> exams = RxList<Exam>();
   RxList<Category> categorys = RxList<Category>();
   Rx<Course> currentCourse = Course().obs;
 
@@ -29,10 +29,15 @@ class HomeController extends GetxController {
 
   @override
   void onInit() async {
-    currentAccount = _signInController.currentAccount.value;
+    setCurrentAccount();
     await handleCourse();
     await handleCategory();
+    await handleQuiz();
     super.onInit();
+  }
+
+  void setCurrentAccount() {
+    currentAccount = _signInController.currentAccount.value;
   }
 
   Future<void> handleCourse() async {
@@ -46,7 +51,6 @@ class HomeController extends GetxController {
             {
               courses.value = List<Course>.from(
                   value.object.map((x) => Course.fromJson(x)));
-              print(courses.value.toString());
             }
         }
       },
@@ -65,7 +69,6 @@ class HomeController extends GetxController {
             {
               categorys.value = List<Category>.from(
                   value.object.map((x) => Category.fromDoc(x)));
-              print(courses.value.toString());
             }
         }
       },
@@ -73,7 +76,23 @@ class HomeController extends GetxController {
     _isShowLoading.value = false;
   }
 
-  Future<void> fetchQuiz() async {}
+  Future<void> handleQuiz() async {
+    _isShowLoading.value = true;
+    await _baseAPI
+        .fetchData(ManagerAddress.baseExam, method: ApiMethod.GET)
+        .then(
+      (value) async {
+        switch (value.apiStatus) {
+          case ApiStatus.SUCCEEDED:
+            {
+              exams.value =
+                  List<Exam>.from(value.object.map((x) => Exam.fromJson(x)));
+            }
+        }
+      },
+    );
+    _isShowLoading.value = false;
+  }
 
   void onPressCourse(Course obj) {
     if (obj.id != "") {

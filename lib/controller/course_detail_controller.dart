@@ -74,7 +74,7 @@ class CourseDetailController extends GetxController
   Future<void> handleCourseLesson() async {
     _isShowLoading.value = true;
     await _baseAPI
-        .fetchData(ManagerAddress.baseCourseLesson + course.value.id!,
+        .fetchData(ManagerAddress.baseCourseLessonOf + course.value.id!,
             method: ApiMethod.GET)
         .then((value) async {
       switch (value.apiStatus) {

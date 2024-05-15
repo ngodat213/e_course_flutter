@@ -118,7 +118,7 @@ class CourseDetailScreen extends GetView<CourseDetailController> {
     return Row(
       children: [
         Text(
-          "@${controller.course.value.teacher}",
+          "@${controller.course.value.teacher!.username}",
           style: TxtStyle.pBold.copyWith(color: const Color(0xFF93989A)),
         ),
         const SizedBox(width: 4),

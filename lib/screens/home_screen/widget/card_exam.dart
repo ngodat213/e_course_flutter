@@ -12,7 +12,7 @@ class CardExam extends StatelessWidget {
     required this.quiz,
     required this.image,
   });
-  final Quiz quiz;
+  final Exam quiz;
   final String image;
 
   @override
