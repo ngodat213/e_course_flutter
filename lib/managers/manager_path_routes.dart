@@ -8,6 +8,9 @@ import 'package:e_course_flutter/screens/course_list_screen/course_list_binding.
 import 'package:e_course_flutter/screens/course_list_screen/course_list_screen.dart';
 import 'package:e_course_flutter/screens/course_video_screen/course_video_binding.dart';
 import 'package:e_course_flutter/screens/course_video_screen/course_video_screen.dart';
+import 'package:e_course_flutter/screens/exam_detail_screen/exam_detail_screen.dart';
+import 'package:e_course_flutter/screens/exam_detail_screen/exam_detail_screen_binding.dart';
+import 'package:e_course_flutter/screens/exam_play_screen/exam_play_binding.dart';
 import 'package:e_course_flutter/screens/favorite_screen/favorite_screen.dart';
 import 'package:e_course_flutter/screens/forgot_pw_screen/forgot_pw_binding.dart';
 import 'package:e_course_flutter/screens/forgot_pw_screen/forgot_pw_screen.dart';
@@ -19,7 +22,7 @@ import 'package:e_course_flutter/screens/onboarding_screen/onboarding_binding.da
 import 'package:e_course_flutter/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:e_course_flutter/screens/profile_screen/profile_binding.dart';
 import 'package:e_course_flutter/screens/profile_screen/profile_screen.dart';
-import 'package:e_course_flutter/screens/quiz_play_screen/quiz_play_screen.dart';
+import 'package:e_course_flutter/screens/exam_play_screen/exam_play_screen.dart';
 import 'package:e_course_flutter/screens/quiz_screen/quiz_screen.dart';
 import 'package:e_course_flutter/screens/setting_screen/setting_binding.dart';
 import 'package:e_course_flutter/screens/setting_screen/setting_screen.dart';

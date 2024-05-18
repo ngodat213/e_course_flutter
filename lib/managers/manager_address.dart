@@ -22,8 +22,8 @@ class ManagerAddress {
   static const String baseCourseLessonOf = '$baseCourse/lessonsOf/';
 
   //?-- Course Lesson -->
-  static const String baseCourseLesson = '$baseCourse/lessons/';
-  static const String baseVideosOfLesson = '${baseCourseLesson}videos/';
+  static const String baseCourseLesson = 'course_lessons/';
+  static const String baseVideosOfLesson = '${baseCourseLesson}videosOf/';
 
   //?-- Course Video -->
   static const String baseCourseVideo = '$baseCourse/videos/';
@@ -33,8 +33,8 @@ class ManagerAddress {
   static const String baseQuizLessonOf = '$baseExam/lessonsOf/';
 
   //?-- Quiz Lesson -->
-  static const String baseExamLesson = '$baseExam/lessons/';
-  static const String baseExamQuestionOf = '${baseExamLesson}questionsOf/';
+  static const String baseExamLesson = 'exam_lessons/';
+  static const String baseExamOfQuestion = '${baseExamLesson}questionsOf/';
 
   //?-- Quiz Question -->
   static const String baseExamQuestion = '${baseExam}questions';

@@ -4,7 +4,7 @@ class Category {
 
   Category({required this.id, required this.category});
 
-  factory Category.fromDoc(Map<String, dynamic> json) {
+  factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
       id: json["_id"],
       category: json["category"],

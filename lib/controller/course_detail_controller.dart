@@ -41,10 +41,12 @@ class CourseDetailController extends GetxController
 
   @override
   void onInit() {
+    _isShowLoading.value = true;
     tabController = TabController(length: 2, vsync: this);
     course.value = _homeController.currentCourse.value;
     handleCourseLesson();
     initVideoPlayer(course.value.videoIntroduce!);
+    _isShowLoading.value = false;
     super.onInit();
   }
 
@@ -72,7 +74,6 @@ class CourseDetailController extends GetxController
   }
 
   Future<void> handleCourseLesson() async {
-    _isShowLoading.value = true;
     await _baseAPI
         .fetchData(ManagerAddress.baseCourseLessonOf + course.value.id!,
             method: ApiMethod.GET)
@@ -111,7 +112,6 @@ class CourseDetailController extends GetxController
           }
       }
     });
-    _isShowLoading.value = false;
   }
 
   void onPressVideo(CourseVideo obj) {

@@ -1,47 +1,47 @@
+import 'package:e_course_flutter/models/models.dart';
+
 class Exam {
-  final String uid;
-  final String title;
-  final String imageUrl;
-  final String description;
-  final String category;
-  final String imagePublicId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final List<String> lessons;
+  final String? id;
+  final String? title;
+  final String? imageUrl;
+  final String? imagePublicId;
+  final String? description;
+  final Category? category;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   const Exam({
-    required this.uid,
-    required this.title,
-    required this.imageUrl,
-    required this.description,
-    required this.category,
-    required this.imagePublicId,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.lessons,
+    this.id,
+    this.title,
+    this.imageUrl,
+    this.description,
+    this.category,
+    this.imagePublicId,
+    this.createdAt,
+    this.updatedAt,
   });
 
-  factory Exam.fromJson(Map<String, dynamic> data) => Exam(
-        uid: data['_id'],
-        title: data['title'],
-        imageUrl: data['imageUrl'],
-        description: data['description'],
-        category: data['category'],
-        imagePublicId: data['imagePublicId'],
-        createdAt: DateTime.parse(data['createdAt']),
-        updatedAt: DateTime.parse(data['updatedAt']),
-        lessons: List<String>.from(data['lessons'] ?? []),
+  factory Exam.fromJson(Map<String, dynamic> json) => Exam(
+        id: json['_id'],
+        title: json['title'],
+        imageUrl: json['imageUrl'],
+        description: json['description'],
+        category: json['category'] != null
+            ? Category.fromJson(json['category'])
+            : null,
+        imagePublicId: json['imagePublicId'],
+        createdAt: DateTime.parse(json['createdAt']),
+        updatedAt: DateTime.parse(json['updatedAt']),
       );
 
   Map<String, dynamic> toJson() => {
-        '_id': uid,
+        '_id': id,
         'title': title,
         'imageUrl': imageUrl,
         'description': description,
         'category': category,
         'imagePublicId': imagePublicId,
-        'createdAt': createdAt.toIso8601String(),
-        'updatedAt': updatedAt.toIso8601String(),
-        'lessons': lessons,
+        'createdAt': createdAt!.toIso8601String(),
+        'updatedAt': updatedAt!.toIso8601String(),
       };
 }

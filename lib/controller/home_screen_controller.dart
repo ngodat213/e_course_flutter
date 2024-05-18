@@ -13,7 +13,9 @@ class HomeController extends GetxController {
   RxList<Course> courses = RxList<Course>();
   RxList<Exam> exams = RxList<Exam>();
   RxList<Category> categorys = RxList<Category>();
+
   Rx<Course> currentCourse = Course().obs;
+  Rx<Exam> currentExam = const Exam().obs;
 
   User currentAccount = const User();
 
@@ -68,7 +70,7 @@ class HomeController extends GetxController {
           case ApiStatus.SUCCEEDED:
             {
               categorys.value = List<Category>.from(
-                  value.object.map((x) => Category.fromDoc(x)));
+                  value.object.map((x) => Category.fromJson(x)));
             }
         }
       },
@@ -98,6 +100,13 @@ class HomeController extends GetxController {
     if (obj.id != "") {
       currentCourse.value = obj;
       Get.toNamed(ManagerRoutes.courseDetailScreen);
+    }
+  }
+
+  void onPressExam(Exam obj) {
+    if (obj.id != "") {
+      currentExam.value = obj;
+      Get.toNamed(ManagerRoutes.examDetailScreen);
     }
   }
 }

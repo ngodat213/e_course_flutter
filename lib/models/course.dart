@@ -52,7 +52,7 @@ class Course {
     teacher =
         json['teacher'] != null ? Teacher.fromJson(json['teacher']) : null;
     category =
-        json['category'] != null ? Category.fromDoc(json['category']) : null;
+        json['category'] != null ? Category.fromJson(json['category']) : null;
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
   }

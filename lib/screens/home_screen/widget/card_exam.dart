@@ -56,7 +56,7 @@ class CardExam extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      quiz.title,
+                      quiz.title!,
                       style: TxtStyle.label.copyWith(color: AppColors.white),
                     ),
                     Expanded(child: Container()),
@@ -67,10 +67,10 @@ class CardExam extends StatelessWidget {
                           color: AppColors.white,
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                          '${quiz.lessons.length} ${S.of(context).lesson}',
-                          style: TxtStyle.p,
-                        )
+                        // Text(
+                        //   '${quiz.lessons!.length} ${S.of(context).lesson}',
+                        //   style: TxtStyle.p,
+                        // )
                       ],
                     )
                   ],

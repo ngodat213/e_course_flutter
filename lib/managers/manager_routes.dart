@@ -14,8 +14,9 @@ class ManagerRoutes {
   static String communityScreen = '/community_screen';
   static String courseVideoScreen = '/course_video_screen';
   static String courseDetailScreen = '/course_detail';
-  static String quizScreen = '/detail_screen';
-  static String quizPlayScreen = '/quiz_play_screen';
+  static String examScreen = '/exam_screen';
+  static String examDetailScreen = '/exam_detail_screen';
+  static String examPlayScreen = '/quiz_play_screen';
   static String favoriteScreen = '/favorite_screen';
   static String settingScreen = '/setting_screen';
   static String editProfileScreen = '/edit_profile_screen';
@@ -70,12 +71,18 @@ class ManagerRoutes {
       binding: CourseDetailBinding(),
     ),
     GetPage(
-      name: quizScreen,
+      name: examScreen,
       page: () => const QuizScreen(),
     ),
     GetPage(
-      name: quizPlayScreen,
-      page: () => const QuizPlayScreen(),
+      name: examDetailScreen,
+      page: () => const ExamDetailScreen(),
+      binding: ExamDetailBinding(),
+    ),
+    GetPage(
+      name: examPlayScreen,
+      page: () => const ExamPlayScreen(),
+      binding: ExamPlayBinding(),
     ),
     GetPage(
       name: commoInfoScreen,

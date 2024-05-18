@@ -214,7 +214,7 @@ class HomeScreen extends GetView<HomeController> {
     );
   }
 
-  Widget _listExams(BuildContext context, List<Exam> quizs) {
+  Widget _listExams(BuildContext context, List<Exam> exams) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 25),
       child: Column(
@@ -228,15 +228,15 @@ class HomeScreen extends GetView<HomeController> {
           SizedBox(
             height: 200,
             child: ListView.builder(
-              itemCount: quizs.length,
+              itemCount: exams.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    // widget.onPressedExam.call(quizs[index]);
+                    controller.onPressExam(exams[index]);
                   },
                   child: CardExam(
-                    quiz: quizs[index],
+                    quiz: exams[index],
                     image: 'lib/res/images/read_image$index.svg',
                   ),
                 );

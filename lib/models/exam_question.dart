@@ -1,12 +1,12 @@
 class ExamQuestion {
-  final String uid;
+  final String id;
   final String question;
   final List<String> options;
   final int answer;
   String? imagePath;
 
   ExamQuestion({
-    required this.uid,
+    required this.id,
     required this.question,
     required this.options,
     required this.answer,
@@ -14,10 +14,10 @@ class ExamQuestion {
   });
 
   factory ExamQuestion.fromDoc(Map<String, dynamic> data) => ExamQuestion(
-        uid: data['question']['_id'],
-        question: data['question']['question'],
-        options: List.from(data['question']['options']),
-        answer: data['question']['answer'],
-        imagePath: data['question']['image'],
+        id: data['_id'],
+        question: data['question'],
+        options: List.from(data['options']),
+        answer: data['answer'],
+        imagePath: data['image'],
       );
 }

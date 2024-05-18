@@ -1,28 +1,31 @@
+import 'package:e_course_flutter/models/exam_question.dart';
+
 class ExamLesson {
-  final String uid;
-  final String lesson;
-  final String title;
-  final int hour;
-  final int minute;
-  final int second;
-  final List<String> questions;
-  const ExamLesson({
-    required this.uid,
-    required this.lesson,
-    required this.title,
-    required this.questions,
-    required this.hour,
-    required this.minute,
-    required this.second,
+  String? id;
+  String? lesson;
+  String? title;
+  int? hour;
+  int? minute;
+  int? second;
+  int? point;
+  List<ExamQuestion>? questions;
+  ExamLesson({
+    this.id,
+    this.lesson,
+    this.title,
+    this.hour,
+    this.minute,
+    this.second,
+    this.point,
   });
 
   factory ExamLesson.fromDoc(Map<String, dynamic> data) => ExamLesson(
-        uid: data['quizLesson']['_id'],
-        lesson: data['quizLesson']['lesson'],
-        title: data['quizLesson']['title'],
-        questions: List.from(data['quizLesson']['questions']),
-        hour: data['quizLesson']['hour'],
-        minute: data['quizLesson']['minute'],
-        second: data['quizLesson']['second'],
+        id: data['_id'],
+        lesson: data['lesson'],
+        title: data['title'],
+        hour: data['hour'],
+        minute: data['minute'],
+        second: data['second'],
+        point: data['point'],
       );
 }
