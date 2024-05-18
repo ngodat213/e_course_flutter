@@ -1,6 +1,5 @@
 import 'package:e_course_flutter/controller/exam_play_controller.dart';
 import 'package:e_course_flutter/enums/state_play.dart';
-import 'package:e_course_flutter/models/exam_question.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -26,34 +25,33 @@ class OptionWidget extends GetView<ExamPlayController> {
             },
           );
         } else if (controller.state == StatePlay.RESULT) {
-          var userChooises = controller.userChooise.value;
+          var userChooises = controller.userChooise;
           var questions = controller.currentLesson.questions!;
           var currentIndex = controller.currentIndex.value;
           return ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: questions.length,
+            itemCount: controller.currentLesson
+                .questions![controller.currentIndex.value].options.length,
             itemBuilder: (context, index) {
-              print("userChooises ${userChooises[currentIndex]}");
-              print("question : ${questions[currentIndex].answer}");
-              // int chooice = 0;
-              // if (userChooises[currentIndex] != -1) {
-              //   if (userChooises[currentIndex] == 5 &&
-              //       questions[currentIndex].answer == index) {
-              //     chooice = 1;
-              //   } else if (userChooises[currentIndex] != 5) {
-              //     if (questions[currentIndex].answer == index) {
-              //       chooice = 1;
-              //     } else if (userChooises[currentIndex] == index) {
-              //       chooice = 2;
-              //     }
-              //   }
-              // } else if (questions[currentIndex].answer == index) {
-              //   chooice = -1;
-              // }
+              int chooice = 0;
+              if (userChooises[currentIndex] != -1) {
+                if (userChooises[currentIndex] == 5 &&
+                    questions[currentIndex].answer == index) {
+                  chooice = 1;
+                } else if (userChooises[currentIndex] != 5) {
+                  if (questions[currentIndex].answer == index) {
+                    chooice = 1;
+                  } else if (userChooises[currentIndex] == index) {
+                    chooice = 2;
+                  }
+                }
+              } else if (questions[currentIndex].answer == index) {
+                chooice = -1;
+              }
               return _OptionResult(
                 option: questions[currentIndex].options[index],
-                chooice: 1,
+                chooice: chooice,
               );
             },
           );
@@ -170,7 +168,7 @@ class _OptionResult extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(width: 3, color: AppColors.white),
               color: color,
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(100),
             ),
           ),
           Container(

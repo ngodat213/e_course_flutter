@@ -25,23 +25,23 @@ class CommunityScreen extends GetView<CommunityController> {
       'Flutter',
     ];
 
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
-        child: Obx(
-          () => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _header(),
-              _tabbarCommunity(),
-              _communityCategory(listCategory),
-              _listViewCommunity(user),
-              _listViewCommunity(user),
-              _listViewCommunity(user),
-            ],
-          ),
-        ),
-      )),
+              // child: Obx(
+              //   () => Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       _header(),
+              //       _tabbarCommunity(),
+              //       _communityCategory(listCategory),
+              //       _listViewCommunity(user),
+              //       _listViewCommunity(user),
+              //       _listViewCommunity(user),
+              //     ],
+              //   ),
+              // ),
+              )),
     );
   }
 

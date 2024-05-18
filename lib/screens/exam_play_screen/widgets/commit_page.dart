@@ -1,6 +1,5 @@
 import 'package:e_course_flutter/controller/exam_play_controller.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
-import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/images.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
@@ -57,7 +56,7 @@ class CommitPage extends GetView<ExamPlayController> {
                   children: [
                     _buildButton(
                       onTap: () {
-                        Get.offAndToNamed(ManagerRoutes.examDetailScreen);
+                        Get.back();
                       },
                       text: S.of(context).goHome,
                       bgColor: AppColors.grey,

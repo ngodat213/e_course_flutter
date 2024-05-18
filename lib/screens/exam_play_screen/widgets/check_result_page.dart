@@ -38,11 +38,7 @@ class CheckResultPage extends GetView<ExamPlayController> {
                   ],
                 ),
               ),
-              _HomeButton(
-                onTap: () {
-                  Get.offAndToNamed(ManagerRoutes.homeScreen);
-                },
-              ),
+              const _HomeButton(),
             ],
           ),
         ),
@@ -52,10 +48,7 @@ class CheckResultPage extends GetView<ExamPlayController> {
 }
 
 class _HomeButton extends StatelessWidget {
-  const _HomeButton({
-    required this.onTap,
-  });
-  final VoidCallback onTap;
+  const _HomeButton();
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +56,9 @@ class _HomeButton extends StatelessWidget {
       top: 10,
       right: 10,
       child: GestureDetector(
-        onTap: onTap,
+        onTap: () {
+          Get.back();
+        },
         child: Container(
           width: 32,
           height: 32,

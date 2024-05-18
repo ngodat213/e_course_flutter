@@ -19,7 +19,7 @@ class CurrentQuestion extends GetView<ExamPlayController> {
       child: Center(
         child: Text(
             '${S.of(context).question} ${controller.currentIndex}/${controller.currentLesson.questions!.length}',
-            style: TxtStyle.p),
+            style: TxtStyle.p.copyWith(color: AppColors.white)),
       ),
     );
   }

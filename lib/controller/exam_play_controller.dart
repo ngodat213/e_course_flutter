@@ -8,10 +8,10 @@ import 'package:get/get.dart';
 
 class ExamPlayController extends GetxController {
   late ExamLesson currentLesson;
-  late RxList<int> userChooise;
+  late List<int> userChooise;
   late Timer timer;
-  late RxString min, sec;
-  late RxInt hour = 0.obs;
+  late String min, sec;
+  late int hour = 0;
   late int userCorrect;
   late double point;
   late int fail;
@@ -45,9 +45,9 @@ class ExamPlayController extends GetxController {
 
   void initData() {
     userChooise = RxList.filled(currentLesson.questions!.length, -1);
-    hour = 0.obs;
-    min = "".obs;
-    sec = "".obs;
+    hour = 0;
+    min = "";
+    sec = "";
   }
 
   void initLesson() {
@@ -56,9 +56,9 @@ class ExamPlayController extends GetxController {
 
   void formatTime() {
     String twoDigits(int n) => n.toString().padLeft(2, '0');
-    hour.value = duration.value.inHours.remainder(60);
-    min.value = twoDigits(duration.value.inMinutes.remainder(60));
-    sec.value = twoDigits(duration.value.inSeconds.remainder(60));
+    hour = duration.value.inHours.remainder(60);
+    min = twoDigits(duration.value.inMinutes.remainder(60));
+    sec = twoDigits(duration.value.inSeconds.remainder(60));
   }
 
   void setDuration() {
@@ -111,10 +111,12 @@ class ExamPlayController extends GetxController {
       }
     }
 
-    userChooise.value = res;
+    userChooise = res;
     currentIndex.value = 0;
     point =
-        currentLesson.point! / currentLesson.questions!.length * userCorrect;
+        (currentLesson.point! / currentLesson.questions!.length) * userCorrect;
+    print(
+        "point $point ${currentLesson.point} ${currentLesson.questions!.length}");
     Get.back();
   }
 
@@ -124,22 +126,20 @@ class ExamPlayController extends GetxController {
 
   int getColorResult(int index) {
     final indexQuesiton = currentIndex.value;
-    // if (userChooise[indexQuesiton] != -1) {
-    //   if (userChooise[indexQuesiton] == 5 &&
-    //       currentLesson.questions![indexQuesiton].answer == index) {
-    //     return 1;
-    //   } else if (userChooise[currentIndex.value] != 5) {
-    //     if (currentLesson.questions![indexQuesiton].answer == index) {
-    //       return 1;
-    //     } else if (userChooise[indexQuesiton] == index) {
-    //       return 2;
-    //     }
-    //   }
-    // } else if (currentLesson.questions![indexQuesiton].answer == index) {
-    //   return -1;
-    // }
-    print(currentLesson.questions![index].answer);
-
+    if (userChooise[indexQuesiton] != -1) {
+      if (userChooise[indexQuesiton] == 5 &&
+          currentLesson.questions![indexQuesiton].answer == index) {
+        return 1;
+      } else if (userChooise[currentIndex.value] != 5) {
+        if (currentLesson.questions![indexQuesiton].answer == index) {
+          return 1;
+        } else if (userChooise[indexQuesiton] == index) {
+          return 2;
+        }
+      }
+    } else if (currentLesson.questions![indexQuesiton].answer == index) {
+      return -1;
+    }
     return -1;
   }
 }

@@ -83,6 +83,6 @@ class ExamDetailController extends GetxController
 
   void onPressLesson(ExamLesson obj) {
     currentLesson.value = obj;
-    Get.toNamed(ManagerRoutes.examPlayScreen);
+    Get.offNamed(ManagerRoutes.examPlayScreen);
   }
 }
