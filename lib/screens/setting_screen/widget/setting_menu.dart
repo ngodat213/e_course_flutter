@@ -1,7 +1,6 @@
 import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/themes/colors.dart';
-import 'package:e_course_flutter/themes/images.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

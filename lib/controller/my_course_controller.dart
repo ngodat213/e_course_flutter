@@ -45,5 +45,6 @@ class MyCourseController extends GetxController {
 
   void handleCourse() {
     courses = _homeController.courses;
+    courses.removeWhere((course) => myCourses.contains(course));
   }
 }

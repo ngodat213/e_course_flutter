@@ -20,7 +20,7 @@ class HomeController extends GetxController {
   late List<Category> categorys;
   late List<Exam> exams;
 
-  User currentAccount = const User();
+  Rx<User> currentAccount = const User().obs;
 
   final RxBool _isShowLoading = false.obs;
 
@@ -44,7 +44,7 @@ class HomeController extends GetxController {
   }
 
   void setCurrentAccount() {
-    currentAccount = _signInController.currentAccount.value;
+    currentAccount.value = _signInController.currentAccount.value;
   }
 
   void onPressCourse(Course obj) {

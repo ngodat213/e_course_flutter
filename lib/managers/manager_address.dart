@@ -18,7 +18,7 @@ class ManagerAddress {
   static const String accountSignup = '$baseAccount/signup/';
 
   //?-- Course -->
-  static const String baseCourse = 'course';
+  static const String baseCourse = 'course/';
   static const String baseCourseLessonOf = '$baseCourse/lessonsOf/';
 
   //?-- Course Lesson -->
