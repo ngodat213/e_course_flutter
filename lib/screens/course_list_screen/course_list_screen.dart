@@ -1,7 +1,7 @@
 import 'package:e_course_flutter/controller/course_list_controller.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
-import 'package:e_course_flutter/models/category.dart';
 import 'package:e_course_flutter/models/course.dart';
+import 'package:e_course_flutter/screens/my_course_screen/widgets/search_course_widget.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:e_course_flutter/widgets/base_text.dart';
@@ -31,9 +31,11 @@ class CourseListScreen extends GetView<CourseListController> {
                   ],
                 ),
               ),
-              _searchCourse(context),
-              _listCategory(controller.categorys),
-              _gridviewCourse(controller.courses),
+              const SearchCourseWidget(),
+              _listCategory(),
+              Obx(() {
+                return _gridviewCourse(controller.courseSearch);
+              }),
               const SizedBox(height: 70),
             ],
           ),
@@ -63,29 +65,6 @@ class CourseListScreen extends GetView<CourseListController> {
             curve: Curves.easeInOut,
           )
         ],
-      ),
-    );
-  }
-
-  Container _searchCourse(BuildContext context) {
-    return Container(
-      height: 50,
-      width: MediaQuery.of(context).size.width,
-      margin: const EdgeInsets.symmetric(horizontal: 25),
-      decoration: BoxDecoration(
-        boxShadow: AppColors.shadow,
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: TextFormField(
-        // onChanged: (value) => _runFilter(value),
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 17),
-          prefixIcon: const Icon(Icons.search),
-          hintText: S.of(context).searchTitle,
-          hintStyle: TxtStyle.description,
-          border: InputBorder.none,
-        ),
       ),
     );
   }
@@ -153,17 +132,18 @@ class CourseListScreen extends GetView<CourseListController> {
     );
   }
 
-  Container _listCategory(List<Category> categorys) {
+  Container _listCategory() {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 18, horizontal: 25),
       height: 30,
       child: ListView.builder(
-        itemCount: categorys.length,
+        itemCount: controller.categorys.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              // widget.onPressedExam.call(quizs[index]);
+              controller.onChangedCategory(
+                  controller.categorys[index].id, index);
             },
             child: Container(
               margin: const EdgeInsets.only(right: 10),
@@ -172,12 +152,20 @@ class CourseListScreen extends GetView<CourseListController> {
                 color: AppColors.grey,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Text(
-                categorys[index].category,
-                style: TxtStyle.inputStyle.copyWith(
-                  fontWeight: index == 0 ? FontWeight.w600 : FontWeight.w500,
-                  color: index == 0 ? AppColors.main : AppColors.input,
-                ),
+              child: Obx(
+                () {
+                  return Text(
+                    controller.categorys[index].category,
+                    style: TxtStyle.inputStyle.copyWith(
+                      fontWeight: index == controller.currentCategory.value
+                          ? FontWeight.w600
+                          : FontWeight.w500,
+                      color: index == controller.currentCategory.value
+                          ? AppColors.main
+                          : AppColors.input,
+                    ),
+                  );
+                },
               ),
             ),
           );

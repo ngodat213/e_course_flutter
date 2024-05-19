@@ -50,6 +50,7 @@ dependencies:
   #VIDEO PLAYER
   video_player: ^2.7.1
   chewie: ^1.7.1
+  rxdart: ^0.27.7
 
 dev_dependencies:
   flutter_test:

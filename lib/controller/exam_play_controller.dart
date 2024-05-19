@@ -115,8 +115,6 @@ class ExamPlayController extends GetxController {
     currentIndex.value = 0;
     point =
         (currentLesson.point! / currentLesson.questions!.length) * userCorrect;
-    print(
-        "point $point ${currentLesson.point} ${currentLesson.questions!.length}");
     Get.back();
   }
 

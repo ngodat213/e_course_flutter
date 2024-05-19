@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:e_course_flutter/managers/manager_key_storage.dart';
 import 'package:e_course_flutter/models/models.dart';
 import 'package:e_course_flutter/utils/base_shared_preferences.dart';
@@ -19,7 +17,6 @@ class ProfileController extends GetxController {
   }
 
   late TabController _tabController;
-  Uint8List? _image;
   @override
   void onInit() async {
     await decodeToken();
@@ -40,7 +37,6 @@ class ProfileController extends GetxController {
       Map<String, dynamic> decodedJwt = JwtDecoder.decode(
           await BaseSharedPreferences.getStringValue(
               ManagerKeyStorage.accessToken));
-      print(decodedJwt);
       currentAccount = User.fromJson(decodedJwt);
     }
     _isShowLoading.value = false;

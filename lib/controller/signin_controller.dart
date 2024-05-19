@@ -8,7 +8,6 @@ import 'package:e_course_flutter/utils/base_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 
 class SignInController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -59,7 +58,6 @@ class SignInController extends GetxController {
     } else {
       Fluttertoast.showToast(msg: S.of(context).loginFail);
     }
-    print(currentAccount.value.toString());
     _isShowLoading.value = false;
   }
 
@@ -81,7 +79,6 @@ class SignInController extends GetxController {
           case ApiStatus.SUCCEEDED:
             {
               currentAccount.value = User.fromJson(value.object);
-              print(currentAccount.value);
             }
           default:
             {

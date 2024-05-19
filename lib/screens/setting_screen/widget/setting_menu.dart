@@ -52,16 +52,6 @@ class SettingMenu extends StatelessWidget {
           ),
           const _CustomDivider(),
           SettingTile(
-            icons: Icons.message_rounded,
-            text: S.of(context).blog,
-            subtitle: S.of(context).blogQa,
-            iconColor: AppColors.label,
-            onTap: () {
-              Get.toNamed(ManagerRoutes.favoriteScreen);
-            },
-          ),
-          const _CustomDivider(),
-          SettingTile(
             icons: Icons.language_outlined,
             text: S.of(context).language,
             subtitle: "English",

@@ -34,7 +34,7 @@ class HomeScreen extends GetView<HomeController> {
                       children: [
                         _listCategory(controller.categorys),
                         _gridviewCourse(context, controller.courses),
-                        _listViewTeacher(controller.exams),
+                        // _listViewTeacher(controller.exams),
                         _listExams(context, controller.exams),
                       ],
                     ),
@@ -55,7 +55,7 @@ class HomeScreen extends GetView<HomeController> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              // widget.onPressedExam.call(quizs[index]);
+              controller.onPressCategory(categorys[index].id, index);
             },
             child: Container(
               margin: const EdgeInsets.only(right: 10),
@@ -77,86 +77,6 @@ class HomeScreen extends GetView<HomeController> {
       ),
     );
   }
-
-  // Container _listBlog(List<Quiz> quizs) {
-  //   return Container(
-  //     margin: const EdgeInsets.only(top: 25),
-  //     padding: const EdgeInsets.symmetric(horizontal: 25),
-  //     color: AppColors.main,
-  //     child: Column(
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: [
-  //         const SizedBox(height: 25),
-  //         Text('Blog', style: TxtStyle.title.copyWith(color: AppColors.white)),
-  //         const SizedBox(height: 8),
-  //         SizedBox(
-  //           height: Get.height * 0.25,
-  //           child: ListView.builder(
-  //             itemCount: quizs.length,
-  //             scrollDirection: Axis.horizontal,
-  //             itemBuilder: (context, index) {
-  //               return GestureDetector(
-  //                 onTap: () {
-  //                   // widget.onPressedExam.call(quizs[index]);
-  //                 },
-  //                 child: Container(
-  //                   width: Get.width * 0.45,
-  //                   height: Get.height * 0.25,
-  //                   margin: const EdgeInsets.only(right: 10),
-  //                   decoration: BoxDecoration(
-  //                     color: AppColors.white,
-  //                     borderRadius: BorderRadius.circular(8),
-  //                   ),
-  //                   child: Column(
-  //                     crossAxisAlignment: CrossAxisAlignment.start,
-  //                     children: [
-  //                       Container(
-  //                         height: Get.height * 0.15,
-  //                         width: Get.width,
-  //                         decoration: const BoxDecoration(
-  //                             borderRadius: BorderRadius.only(
-  //                                 topLeft: Radius.circular(8),
-  //                                 topRight: Radius.circular(8)),
-  //                             image: DecorationImage(
-  //                                 fit: BoxFit.cover,
-  //                                 image: NetworkImage(
-  //                                     'https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/405483174_1518576675603310_3079002703169478806_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeF4VXLgHSf8GqmmesEAFTffa_fjJAKUpsBr9-MkApSmwFpPKNfOunniExTmvizC7yPOsfPUI4zfLwt_sV-CQX2X&_nc_ohc=Sc4k9JHWlv8Q7kNvgHrp9NJ&_nc_ht=scontent.fsgn2-7.fna&oh=00_AYBaRq1kMfoI9xvof1zi1mFYsPEjurq3eWmq-28p4N2xwg&oe=6649324D'))),
-  //                       ),
-  //                       Container(
-  //                         padding: const EdgeInsets.all(8),
-  //                         child: RichText(
-  //                             text: TextSpan(
-  //                                 text: 'Hydra: ',
-  //                                 style: TxtStyle.p.copyWith(
-  //                                     color: AppColors.input,
-  //                                     fontWeight: FontWeight.w600),
-  //                                 children: [
-  //                               TextSpan(
-  //                                 text:
-  //                                     'Hello I\'m NgoDat my work is Mobile Developer',
-  //                                 style: TxtStyle.p,
-  //                               )
-  //                             ])),
-  //                       ),
-  //                       Container(
-  //                         padding: const EdgeInsets.only(left: 8),
-  //                         child: Text(
-  //                           'Readmore >',
-  //                           style: TxtStyle.p.copyWith(color: AppColors.main),
-  //                         ),
-  //                       )
-  //                     ],
-  //                   ),
-  //                 ),
-  //               );
-  //             },
-  //           ),
-  //         ),
-  //         const SizedBox(height: 25),
-  //       ],
-  //     ),
-  //   );
-  // }
 
   Container _listViewTeacher(List<Exam> quizs) {
     return Container(
