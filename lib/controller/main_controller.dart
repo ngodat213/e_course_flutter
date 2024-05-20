@@ -26,7 +26,7 @@ class MainController extends GetxController {
   }
 
   @override
-  void onInit() async {
+  Future<void> onInit() async {
     await handleCourse();
     await handleCategory();
     await handleQuiz();

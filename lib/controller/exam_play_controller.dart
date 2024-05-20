@@ -7,6 +7,9 @@ import 'package:e_course_flutter/models/models.dart';
 import 'package:get/get.dart';
 
 class ExamPlayController extends GetxController {
+  final ExamDetailController examDetailController =
+      Get.find<ExamDetailController>();
+
   late ExamLesson currentLesson;
   late List<int> userChooise;
   late Timer timer;
@@ -20,8 +23,6 @@ class ExamPlayController extends GetxController {
   Rx<Duration> duration = const Duration().obs;
   RxInt currentIndex = 0.obs;
 
-  final ExamDetailController examDetailController =
-      Get.find<ExamDetailController>();
   final BaseAPI _baseAPI = BaseAPI();
 
   final RxBool _isShowLoading = false.obs;

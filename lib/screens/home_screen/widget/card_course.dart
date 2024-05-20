@@ -32,6 +32,7 @@ class CardSlider extends StatelessWidget {
             child: Image.network(
               course.imageIntroduce!,
               fit: BoxFit.cover,
+              width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               loadingBuilder: (BuildContext context, Widget child,
                   ImageChunkEvent? loadingProgress) {

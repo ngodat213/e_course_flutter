@@ -7,11 +7,12 @@ import 'package:get/get.dart';
 
 class MainBinding extends Bindings {
   @override
-  void dependencies() {
+  void dependencies() async {
     Get.put(MainController());
-    Get.put(CourseListController());
-    Get.put(MyCourseController());
-    Get.put(SettingController());
-    Get.put(HomeController());
+    Get.lazyPut(() => CourseListController());
+    Get.lazyPut(() => MyCourseController());
+    Get.lazyPut(() => SettingController());
+    Get.lazyPut(() => HomeController());
+    Get.lazyPut(() => SettingController());
   }
 }

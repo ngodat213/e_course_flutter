@@ -12,10 +12,13 @@ class TitleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(Get.width * 0.18),
-      child:
-          Text(title, style: TxtStyle.button.copyWith(color: AppColors.input)),
+    return Align(
+      alignment: Alignment.center,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 30),
+        child: Text(title,
+            style: TxtStyle.button.copyWith(color: AppColors.input)),
+      ),
     );
   }
 }

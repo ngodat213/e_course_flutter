@@ -13,35 +13,34 @@ class MyCourseScreen extends GetView<MyCourseController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Stack(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 18, horizontal: 25),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Let\'s start learning', style: TxtStyle.p),
-                        Text('My course', style: TxtStyle.title),
-                      ],
+          child: Obx(
+        () => controller.isShowLoading
+            ? const Center(child: CircularProgressIndicator())
+            : SafeArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 18, horizontal: 25),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Let\'s start learning', style: TxtStyle.p),
+                          Text('My course', style: TxtStyle.title),
+                        ],
+                      ),
                     ),
-                  ),
-                  const SearchCourseWidget(),
-                  const SizedBox(height: 10),
-                  const MyCourseWidget(),
-                  const SizedBox(height: 15),
-                  const RecommentWidget(),
-                  const SizedBox(height: 70),
-                ],
+                    const SearchCourseWidget(),
+                    const SizedBox(height: 10),
+                    const MyCourseWidget(),
+                    const SizedBox(height: 15),
+                    const RecommentWidget(),
+                    const SizedBox(height: 70),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
-      ),
+      )),
     );
   }
 }

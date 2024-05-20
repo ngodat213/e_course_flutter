@@ -1,3 +1,4 @@
+import 'package:e_course_flutter/screens/change_language_screen/change_language_binding.dart';
 import 'package:e_course_flutter/screens/change_language_screen/change_language_screen.dart';
 import 'package:e_course_flutter/screens/common_info_screen/common_info_screen.dart';
 import 'package:e_course_flutter/screens/course_detail_screen/course_detail_binding.dart';

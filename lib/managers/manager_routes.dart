@@ -95,10 +95,6 @@ class ManagerRoutes {
       binding: CourseVideoBinding(),
     ),
     GetPage(
-      name: changeLanguage,
-      page: () => const ChangeLanguageScreen(),
-    ),
-    GetPage(
       name: favoriteScreen,
       page: () => const FavoriteScreen(),
     ),
@@ -107,11 +103,11 @@ class ManagerRoutes {
       page: () => const CourseListScreen(),
       binding: CourseListBinding(),
     ),
-    // GetPage(
-    //   name: communityScreen,
-    //   page: () => const CommunityScreen(),
-    //   binding: CommunityBinding(),
-    // ),
+    GetPage(
+      name: changeLanguage,
+      page: () => const ChangeLanguageScreen(),
+      binding: ChangeLanguageBinding(),
+    ),
     GetPage(
       name: myCourseScreen,
       page: () => const MyCourseScreen(),

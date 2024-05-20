@@ -9,7 +9,7 @@ class MyCourseController extends GetxController {
 
   late List<Course> courses;
 
-  List<Course> myCourses = [];
+  RxList<Course> myCourses = RxList<Course>();
 
   final BaseAPI _baseAPI = BaseAPI();
 
@@ -24,13 +24,14 @@ class MyCourseController extends GetxController {
   @override
   void onInit() async {
     _isShowLoading.value = true;
-    // await handleMyCourse();
+    handleMyCourse();
     handleCourse();
     _isShowLoading.value = false;
     super.onInit();
   }
 
   Future<void> handleMyCourse() async {
+    _isShowLoading.value = true;
     for (var e in _mainController.currentAccount.value.courses!) {
       _baseAPI.fetchData(ManagerAddress.baseCourse + e).then((value) async {
         switch (value.apiStatus) {
@@ -41,6 +42,7 @@ class MyCourseController extends GetxController {
         }
       });
     }
+    _isShowLoading.value = false;
   }
 
   void handleCourse() {
