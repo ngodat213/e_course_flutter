@@ -81,9 +81,11 @@
     "changeLanguage": "ChangeLanguage",
 
     "username": "User name",
+    "yourPassword": "Your password",
+    "changedPassworDescription": "Your password must have a minimum of 6 characters and include numbers, letters and special characters (!$@%).",
     "emailAddress": "Email Address",
-    "resetPassword": "Reset password",
-    "resetPasswordTitle": "Send your email to reset your password",
+    "changePassword": "Change password",
+    "changePasswordTitle": "Change your password",
     "profileDetail": "Profile Details",
     "accountSetting": "Account setting",
     "account": "Account",

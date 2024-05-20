@@ -26,31 +26,34 @@ class CourseDetailScreen extends GetView<CourseDetailController> {
       ),
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Stack(
-            children: [
-              Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            child: Obx(
+          () => controller.isShowLoading
+              ? const Center(child: CircularProgressIndicator())
+              : Stack(
                   children: [
-                    const SizedBox(height: 60),
-                    _videoPlayer(),
-                    const SizedBox(height: 32),
-                    _titleCourse(),
-                    _teacherInfo(),
-                    const SizedBox(height: 16),
-                    _courseDescription(context),
-                    const SizedBox(height: 32),
-                    _tabbarCourseDetail(context),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 25, vertical: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 60),
+                          _videoPlayer(),
+                          const SizedBox(height: 32),
+                          _titleCourse(),
+                          _teacherInfo(),
+                          const SizedBox(height: 16),
+                          _courseDescription(context),
+                          const SizedBox(height: 32),
+                          _tabbarCourseDetail(context),
+                        ],
+                      ),
+                    ),
+                    _favoriteButton(context),
+                    BuildBackButton(top: 24),
                   ],
                 ),
-              ),
-              _favoriteButton(context),
-              BuildBackButton(top: 24),
-            ],
-          ),
-        ),
+        )),
       ),
     );
   }

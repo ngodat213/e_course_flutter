@@ -40,11 +40,11 @@ class CourseDetailController extends GetxController
   }
 
   @override
-  void onInit() {
+  void onInit() async {
     _isShowLoading.value = true;
     tabController = TabController(length: 2, vsync: this);
     course.value = _homeController.currentCourse.value;
-    handleCourseLesson();
+    await handleCourseLesson();
     initVideoPlayer(course.value.videoIntroduce!);
     _isShowLoading.value = false;
     super.onInit();

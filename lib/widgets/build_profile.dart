@@ -21,12 +21,22 @@ class BuildProfile extends GetView<SettingController> {
       child: ListTile(
         contentPadding: const EdgeInsets.all(0),
         leading: CircleAvatar(
-            backgroundImage: NetworkImage(controller.currentUser.photoUrl!)),
-        title: Text(controller.currentUser.username!,
-            style: TxtStyle.h3.copyWith(color: color ?? AppColors.white)),
-        subtitle: Text(controller.currentUser.email ?? "",
-            style:
-                TxtStyle.labelStyle.copyWith(color: color ?? AppColors.white)),
+          backgroundImage: NetworkImage(
+            controller.currentAccount.value.photoUrl!,
+          ),
+        ),
+        title: Text(
+          controller.currentAccount.value.username!,
+          style: TxtStyle.h3.copyWith(
+            color: color ?? AppColors.white,
+          ),
+        ),
+        subtitle: Text(
+          controller.currentAccount.value.email ?? "",
+          style: TxtStyle.labelStyle.copyWith(
+            color: color ?? AppColors.white,
+          ),
+        ),
       ),
     );
   }

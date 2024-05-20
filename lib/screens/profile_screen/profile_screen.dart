@@ -32,12 +32,13 @@ class ProfileScreen extends GetView<ProfileController> {
                           children: [
                             _ChangedAvatar(),
                             const SizedBox(height: 12),
-                            // Center(
-                            //   child: Text(controller.currentAccount.username!,
-                            //       style: TxtStyle.h3),
-                            // ),
-                            // const SizedBox(height: 25),
-                            // const BuildUserSetting(),
+                            Center(
+                              child: Text(
+                                  controller.currentAccount.value.username!,
+                                  style: TxtStyle.h3),
+                            ),
+                            const SizedBox(height: 25),
+                            const BuildUserSetting(),
                           ],
                         ),
                       ),
@@ -58,7 +59,7 @@ class ProfileScreen extends GetView<ProfileController> {
             height: 106,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(controller.currentAccount.photoUrl!),
+                image: NetworkImage(controller.currentAccount.value.photoUrl!),
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.circular(100),

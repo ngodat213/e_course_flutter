@@ -20,35 +20,22 @@ class TabLesson extends GetView<CourseDetailController> {
     return Column(
       children: [
         Obx(
-          () {
-            return controller.isShowLoading == false
-                ? SizedBox(
-                    height: Get.height * 0.9,
-                    child: controller.isShowLoading == false
-                        ? ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: controller.courseLessons.length,
-                            itemBuilder: (context, index) {
-                              if (controller
-                                  .courseLessons.value[index].videos!.isEmpty) {
-                                return _tabbarLessonSkeletonContent(context);
-                              } else {
-                                return _tabbarLessonContent(
-                                    context,
-                                    controller.courseLessons.value[index],
-                                    controller
-                                        .courseLessons.value[index].videos!);
-                              }
-                            },
-                          )
-                        : const Center(child: CircularProgressIndicator()),
-                  )
-                : const Padding(
-                    padding: EdgeInsets.only(top: 25.0),
-                    child: CircularProgressIndicator(),
-                  );
-          },
+          () => controller.isShowLoading
+              ? const Center(child: CircularProgressIndicator())
+              : SizedBox(
+                  height: Get.height * 0.9,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: controller.courseLessons.length,
+                    itemBuilder: (context, index) {
+                      return _tabbarLessonContent(
+                          context,
+                          controller.courseLessons.value[index],
+                          controller.courseLessons.value[index].videos!);
+                    },
+                  ),
+                ),
         ),
       ],
     );

@@ -10,26 +10,30 @@ class WelcomeUserWidget extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 25),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                  '${S.of(context).hi}, ${controller.currentAccount.value.username}',
-                  style: TxtStyle.title),
-              const SizedBox(height: 2),
-              Text(S.of(context).progressTitle, style: TxtStyle.hintStyle),
-            ],
-          ),
-          CircleAvatar(
-            backgroundImage:
-                NetworkImage(controller.currentAccount.value.photoUrl!),
-          )
-        ],
-      ),
-    );
+        margin: const EdgeInsets.symmetric(horizontal: 25),
+        child: Obx(
+          () => controller.isShowLoading
+              ? Container()
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            '${S.of(context).hi}, ${controller.currentAccount.value.username}',
+                            style: TxtStyle.title),
+                        const SizedBox(height: 2),
+                        Text(S.of(context).progressTitle,
+                            style: TxtStyle.hintStyle),
+                      ],
+                    ),
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          controller.currentAccount.value.photoUrl!),
+                    )
+                  ],
+                ),
+        ));
   }
 }

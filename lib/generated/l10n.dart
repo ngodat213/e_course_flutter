@@ -810,6 +810,26 @@ class S {
     );
   }
 
+  /// `Your password`
+  String get yourPassword {
+    return Intl.message(
+      'Your password',
+      name: 'yourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your password must have a minimum of 6 characters and include numbers, letters and special characters (!$@%).`
+  String get changedPassworDescription {
+    return Intl.message(
+      'Your password must have a minimum of 6 characters and include numbers, letters and special characters (!\$@%).',
+      name: 'changedPassworDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Email Address`
   String get emailAddress {
     return Intl.message(
@@ -820,21 +840,21 @@ class S {
     );
   }
 
-  /// `Reset password`
-  String get resetPassword {
+  /// `Change password`
+  String get changePassword {
     return Intl.message(
-      'Reset password',
-      name: 'resetPassword',
+      'Change password',
+      name: 'changePassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `Send your email to reset your password`
-  String get resetPasswordTitle {
+  /// `Change your password`
+  String get changePasswordTitle {
     return Intl.message(
-      'Send your email to reset your password',
-      name: 'resetPasswordTitle',
+      'Change your password',
+      name: 'changePasswordTitle',
       desc: '',
       args: [],
     );

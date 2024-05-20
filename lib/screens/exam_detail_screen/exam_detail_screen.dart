@@ -1,6 +1,5 @@
 import 'package:e_course_flutter/controller/exam_detail_controller.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
-import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/models/exam_lesson.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
@@ -79,11 +78,13 @@ class BuildContent extends GetView<ExamDetailController> {
             const SizedBox(height: 32),
             Text(S.of(context).lesson, style: TxtStyle.title),
             const SizedBox(height: 12),
-            Column(
-              children: controller.examLessons
-                  .map((e) => _lessonQuiz(lesson: e))
-                  .toList(),
-            ),
+            Obx(() => controller.isShowLoading
+                ? const Center(child: CircularProgressIndicator())
+                : Column(
+                    children: controller.examLessons
+                        .map((e) => _lessonQuiz(lesson: e))
+                        .toList(),
+                  )),
             const SizedBox(height: 50)
           ],
         ),

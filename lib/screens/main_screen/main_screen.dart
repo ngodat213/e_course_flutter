@@ -18,7 +18,9 @@ class MainScreen extends GetView<MainController> {
     ];
     return Scaffold(
       bottomNavigationBar: const BuildBottomNavBar(),
-      body: Obx(() => pages[controller.page.value]),
+      body: Obx(() => controller.isShowLoading
+          ? const Center(child: CircularProgressIndicator())
+          : pages[controller.page.value]),
     );
   }
 }

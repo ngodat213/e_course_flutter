@@ -11,7 +11,7 @@ class ExamDetailController extends GetxController
     with GetSingleTickerProviderStateMixin {
   late Exam exam;
 
-  RxList<ExamLesson> examLessons = RxList<ExamLesson>();
+  RxList<ExamLesson> examLessons = <ExamLesson>[].obs;
   RxList<ExamQuestion> currentQuestions = RxList<ExamQuestion>();
 
   Rx<ExamLesson> currentLesson = ExamLesson().obs;
@@ -34,7 +34,7 @@ class ExamDetailController extends GetxController
     _isShowLoading.value = true;
     tabController = TabController(length: 2, vsync: this);
     exam = _homeController.currentExam.value;
-    await handleExamLesson();
+    handleExamLesson();
     _isShowLoading.value = false;
     super.onInit();
   }

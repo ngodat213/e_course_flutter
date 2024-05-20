@@ -59,4 +59,34 @@ class User {
         'updatedAt': updatedAt?.toIso8601String(),
         'photoPublicId': photoPublicId,
       };
+
+  User copyWith({
+    String? id,
+    String? email,
+    String? username,
+    String? photoUrl,
+    List<RoleType>? roles,
+    List<String>? courses,
+    List<String>? favouritesCourses,
+    List<String>? favouritesExams,
+    List<String>? finishedExams,
+    String? photoPublicId,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) {
+    return User(
+      id: id ?? this.id,
+      email: email ?? this.email,
+      username: username ?? this.username,
+      photoUrl: photoUrl ?? this.photoUrl,
+      roles: roles ?? this.roles,
+      courses: courses ?? this.courses,
+      favouritesCourses: favouritesCourses ?? this.favouritesCourses,
+      favouritesExams: favouritesExams ?? this.favouritesExams,
+      finishedExams: finishedExams ?? this.finishedExams,
+      photoPublicId: photoPublicId ?? this.photoPublicId,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
 }

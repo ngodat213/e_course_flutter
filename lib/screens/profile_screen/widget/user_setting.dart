@@ -29,18 +29,18 @@ class BuildUserSetting extends GetView<ProfileController> {
                     style: TxtStyle.h3,
                   ),
                   const SizedBox(height: 20),
-                  BuildTextField(
-                    label: S.of(context).username,
-                    hintText: controller.currentAccount.username!,
-                    func: (value) {
-                      // context.read<ProfileCubit>().userNameChanged(value);
-                    },
+                  Obx(
+                    () => BuildTextField(
+                      label: S.of(context).username,
+                      hintText: controller.currentAccount.value.username!,
+                      controller: controller.usernameController,
+                    ),
                   ),
                   const SizedBox(height: 20),
                   BuildButton(
                     text: S.of(context).save,
                     onTap: () {
-                      Get.back();
+                      controller.onPressChangedUsername();
                     },
                     duration: const Duration(seconds: 2),
                     curve: Curves.easeInOut,
@@ -51,7 +51,7 @@ class BuildUserSetting extends GetView<ProfileController> {
           },
           child: ChangedProfile(
             title: S.of(context).username,
-            text: controller.currentAccount.username!,
+            text: controller.currentAccount.value.username!,
           ),
         ),
         const Divider(),
@@ -59,7 +59,6 @@ class BuildUserSetting extends GetView<ProfileController> {
           onTap: () {
             _displayBottomSheet(
               context,
-              height: 440,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -68,34 +67,17 @@ class BuildUserSetting extends GetView<ProfileController> {
                     style: TxtStyle.h3,
                   ),
                   const SizedBox(height: 20),
-                  BuildTextField(
-                    label: S.of(context).oldEmail,
-                    hintText: controller.currentAccount.email!,
-                    func: (value) {
-                      // context.read<ProfileCubit>().oldEmailChanged(value);
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  BuildTextField(
-                    label: S.of(context).newEmail,
-                    hintText: S.of(context).emailExample,
-                    func: (value) {
-                      // context.read<ProfileCubit>().emailChanged(value);
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  BuildTextField(
-                    label: S.of(context).password,
-                    isPassword: true,
-                    hintText: S.of(context).passwordExample,
-                    func: (value) {
-                      // context.read<ProfileCubit>().passwordChanged(value);
-                    },
-                  ),
+                  Obx(() => BuildTextField(
+                        label: S.of(context).newEmail,
+                        hintText: controller.currentAccount.value.email!,
+                        controller: controller.emailController,
+                      )),
                   const SizedBox(height: 20),
                   BuildButton(
                     text: S.of(context).save,
-                    onTap: () {},
+                    onTap: () {
+                      controller.onPressChangedEmail();
+                    },
                     duration: const Duration(seconds: 2),
                     curve: Curves.easeInOut,
                   ),
@@ -105,7 +87,7 @@ class BuildUserSetting extends GetView<ProfileController> {
           },
           child: ChangedProfile(
             title: S.of(context).emailAddress,
-            text: controller.currentAccount.email!,
+            text: controller.currentAccount.value.email!,
           ),
         ),
         const Divider(),
@@ -113,41 +95,56 @@ class BuildUserSetting extends GetView<ProfileController> {
           onTap: () {
             _displayBottomSheet(
               context,
-              height: 440,
+              height: 540,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    S.of(context).resetPassword,
+                    S.of(context).changePassword,
                     style: TxtStyle.h3,
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    S.of(context).resetPasswordDescription,
+                    S.of(context).changedPassworDescription,
                     style: TxtStyle.text,
                   ),
                   const SizedBox(height: 20),
                   BuildTextField(
-                      label: S.of(context).email,
-                      hintText: controller.currentAccount.email!),
+                    label: S.of(context).yourPassword,
+                    isPassword: true,
+                    hintText: S.of(context).passwordExample,
+                    controller: controller.oldPasswordController,
+                  ),
                   const SizedBox(height: 20),
                   BuildTextField(
-                      label: S.of(context).password,
-                      isPassword: true,
-                      hintText: S.of(context).passwordExample),
+                    label: S.of(context).password,
+                    isPassword: true,
+                    hintText: S.of(context).passwordExample,
+                    controller: controller.newpasswordController,
+                  ),
+                  const SizedBox(height: 20),
+                  BuildTextField(
+                    label: S.of(context).confirmPassword,
+                    isPassword: true,
+                    hintText: S.of(context).passwordExample,
+                    controller: controller.confimpasswordController,
+                  ),
                   const SizedBox(height: 20),
                   BuildButton(
                     text: S.of(context).send,
                     duration: const Duration(seconds: 2),
                     curve: Curves.easeInOut,
+                    onTap: () {
+                      controller.onPressChangedPassword();
+                    },
                   ),
                 ],
               ),
             );
           },
           child: ChangedProfile(
-            title: S.of(context).resetPassword,
-            text: S.of(context).resetPasswordTitle,
+            title: S.of(context).changePassword,
+            text: S.of(context).changePasswordTitle,
           ),
         ),
       ],

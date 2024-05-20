@@ -1,8 +1,9 @@
 import 'package:e_course_flutter/api/base_api.dart';
 import 'package:e_course_flutter/managers/manager_address.dart';
-import 'package:e_course_flutter/models/category.dart';
-import 'package:e_course_flutter/models/course.dart';
-import 'package:e_course_flutter/models/exam.dart';
+import 'package:e_course_flutter/managers/manager_key_storage.dart';
+import 'package:e_course_flutter/models/models.dart';
+import 'package:e_course_flutter/utils/base_shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class MainController extends GetxController {
@@ -12,7 +13,9 @@ class MainController extends GetxController {
   RxList<Exam> exams = RxList<Exam>();
   RxList<Category> categorys = RxList<Category>();
 
-  final BaseAPI _baseAPI = BaseAPI();
+  Rx<User> currentAccount = const User().obs;
+
+  final BaseAPI _baseApi = BaseAPI();
 
   final RxBool _isShowLoading = false.obs;
 
@@ -27,12 +30,44 @@ class MainController extends GetxController {
     await handleCourse();
     await handleCategory();
     await handleQuiz();
+    await getCurrentUser();
     super.onInit();
+  }
+
+  Future<void> getCurrentUser() async {
+    _isShowLoading.value = true;
+    if (await BaseSharedPreferences.getStringValue(
+            ManagerKeyStorage.accessToken) !=
+        "") {
+      final String token = await BaseSharedPreferences.getStringValue(
+          ManagerKeyStorage.accessToken);
+
+      await _baseApi
+          .fetchData(
+        ManagerAddress.accountCurrent,
+        headers: {"Authorization": "Bearer $token"},
+        method: ApiMethod.GET,
+      )
+          .then((value) async {
+        switch (value.apiStatus) {
+          case ApiStatus.SUCCEEDED:
+            {
+              currentAccount.value = User.fromJson(value.object);
+            }
+          default:
+            {
+              printLogError('FAILED');
+              Fluttertoast.showToast(msg: "Login Fail");
+            }
+        }
+      });
+      _isShowLoading.value = false;
+    }
   }
 
   Future<void> handleCourse() async {
     _isShowLoading.value = true;
-    await _baseAPI
+    await _baseApi
         .fetchData(ManagerAddress.baseCourse, method: ApiMethod.GET)
         .then(
       (value) async {
@@ -50,7 +85,7 @@ class MainController extends GetxController {
 
   Future<void> handleCategory() async {
     _isShowLoading.value = true;
-    await _baseAPI
+    await _baseApi
         .fetchData(ManagerAddress.baseCategory, method: ApiMethod.GET)
         .then(
       (value) async {
@@ -68,7 +103,7 @@ class MainController extends GetxController {
 
   Future<void> handleQuiz() async {
     _isShowLoading.value = true;
-    await _baseAPI
+    await _baseApi
         .fetchData(ManagerAddress.baseExam, method: ApiMethod.GET)
         .then(
       (value) async {

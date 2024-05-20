@@ -1,4 +1,3 @@
-import 'package:e_course_flutter/controller/signin_controller.dart';
 import 'package:e_course_flutter/managers/manager_key_storage.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/utils/base_shared_preferences.dart';
@@ -6,11 +5,9 @@ import 'package:get/get.dart';
 
 class SplashController extends GetxController {
   var screenDelay = 3;
-  final SignInController _signInController = Get.find<SignInController>();
 
   @override
   void onInit() async {
-    await _signInController.getCurrentUser();
     await delayScreen();
     super.onInit();
   }

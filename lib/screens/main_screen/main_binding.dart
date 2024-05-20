@@ -10,8 +10,8 @@ class MainBinding extends Bindings {
   void dependencies() {
     Get.put(MainController());
     Get.put(CourseListController());
-    Get.put(HomeController());
     Get.put(MyCourseController());
     Get.put(SettingController());
+    Get.put(HomeController());
   }
 }

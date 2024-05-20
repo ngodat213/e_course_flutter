@@ -36,6 +36,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "changeLanguage":
             MessageLookupByLibrary.simpleMessage("ChangeLanguage"),
+        "changePassword":
+            MessageLookupByLibrary.simpleMessage("Change password"),
+        "changePasswordTitle":
+            MessageLookupByLibrary.simpleMessage("Change your password"),
+        "changedPassworDescription": MessageLookupByLibrary.simpleMessage(
+            "Your password must have a minimum of 6 characters and include numbers, letters and special characters (!\$@%)."),
         "checkResult": MessageLookupByLibrary.simpleMessage("Check result"),
         "comment": MessageLookupByLibrary.simpleMessage("Commnet"),
         "commentTitle":
@@ -121,11 +127,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "remaining": MessageLookupByLibrary.simpleMessage("Remaining"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
-        "resetPassword": MessageLookupByLibrary.simpleMessage("Reset password"),
         "resetPasswordDescription": MessageLookupByLibrary.simpleMessage(
             "Enter the email associated with your account and well send and email with instructions to reset your password"),
-        "resetPasswordTitle": MessageLookupByLibrary.simpleMessage(
-            "Send your email to reset your password"),
         "review": MessageLookupByLibrary.simpleMessage("Review"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
@@ -160,6 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "writeComment":
             MessageLookupByLibrary.simpleMessage("Write a comment...."),
         "yourCourse": MessageLookupByLibrary.simpleMessage("Your course"),
+        "yourPassword": MessageLookupByLibrary.simpleMessage("Your password"),
         "yourResult": MessageLookupByLibrary.simpleMessage("Your result")
       };
 }

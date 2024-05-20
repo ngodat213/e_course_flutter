@@ -9,61 +9,63 @@ class MyCourseWidget extends GetView<MyCourseController> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: controller.myCourses
-          .map(
-            (e) => Container(
-              margin: const EdgeInsets.fromLTRB(25, 10, 25, 0),
-              child: Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      bottomLeft: Radius.circular(8),
-                    ),
-                    child: Image.network(
-                      e.imageIntroduce!,
-                      fit: BoxFit.cover,
-                      width: Get.width * 0.35,
-                      height: Get.height * 0.12,
-                    ),
-                  ),
-                  Container(
-                    width: Get.width * 0.52,
-                    height: Get.height * 0.12,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    decoration: BoxDecoration(
-                      boxShadow: AppColors.shadow,
-                      color: AppColors.white,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+    return Obx(() => controller.isShowLoading
+        ? const Center(child: CircularProgressIndicator())
+        : Column(
+            children: controller.myCourses
+                .map(
+                  (e) => Container(
+                    margin: const EdgeInsets.fromLTRB(25, 10, 25, 0),
+                    child: Row(
                       children: [
-                        Text(
-                          e.title!,
-                          style: TxtStyle.inputStyle,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                        ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            bottomLeft: Radius.circular(8),
+                          ),
+                          child: Image.network(
+                            e.imageIntroduce!,
+                            fit: BoxFit.cover,
+                            width: Get.width * 0.35,
+                            height: Get.height * 0.12,
+                          ),
                         ),
-                        const SizedBox(height: 2),
-                        Text(
-                          e.description!,
-                          maxLines: 1,
-                          style: TxtStyle.p,
-                          overflow: TextOverflow.ellipsis,
+                        Container(
+                          width: Get.width * 0.52,
+                          height: Get.height * 0.12,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 8),
+                          decoration: BoxDecoration(
+                            boxShadow: AppColors.shadow,
+                            color: AppColors.white,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                e.title!,
+                                style: TxtStyle.inputStyle,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                e.description!,
+                                maxLines: 1,
+                                style: TxtStyle.p,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text('Lesson 1: How to install Flutter',
+                                  style: TxtStyle.text),
+                            ],
+                          ),
                         ),
-                        Text('Lesson 1: How to install Flutter',
-                            style: TxtStyle.text),
                       ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          )
-          .toList(),
-    );
+                )
+                .toList(),
+          ));
   }
 }

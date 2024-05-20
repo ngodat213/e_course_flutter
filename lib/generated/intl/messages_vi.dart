@@ -112,11 +112,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "register": MessageLookupByLibrary.simpleMessage("Đăng kí"),
         "remaining": MessageLookupByLibrary.simpleMessage("Thời gian còn lại"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Lưu thông tin"),
-        "resetPassword": MessageLookupByLibrary.simpleMessage("Đổi mật khẩu"),
         "resetPasswordDescription": MessageLookupByLibrary.simpleMessage(
             "Nhập email được liên kết với tài khoản của bạn và chúng tôi sẽ gửi và gửi email kèm theo hướng dẫn để đặt lại mật khẩu của bạn"),
-        "resetPasswordTitle":
-            MessageLookupByLibrary.simpleMessage("Nhập email để đổi mật khẩu"),
         "review": MessageLookupByLibrary.simpleMessage("Nhận xét"),
         "save": MessageLookupByLibrary.simpleMessage("Lưu"),
         "search": MessageLookupByLibrary.simpleMessage("Tìm kiếm"),
