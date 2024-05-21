@@ -67,7 +67,7 @@ class SettingMenu extends StatelessWidget {
             iconColor: AppColors.label,
             onTap: () {
               // context.read<CommoInfoCubit>().indexChanged(0);
-              Get.toNamed(ManagerRoutes.commoInfoScreen);
+              Get.toNamed(ManagerRoutes.aboutUsScreen);
             },
           ),
           const _CustomDivider(),
@@ -77,8 +77,7 @@ class SettingMenu extends StatelessWidget {
             subtitle: S.of(context).contactUs,
             iconColor: AppColors.label,
             onTap: () {
-              // context.read<CommoInfoCubit>().indexChanged(1);
-              Get.toNamed(ManagerRoutes.commoInfoScreen);
+              Get.toNamed(ManagerRoutes.contactScreen);
             },
           ),
         ],

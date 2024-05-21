@@ -42,4 +42,5 @@ class ManagerAddress {
   //?-- CATEGORY -->
   static const String baseCategory = 'categorys/';
   static const String baseFeedback = 'feedbacks/';
+  static const String baseContact = 'contacts/';
 }

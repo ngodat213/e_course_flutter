@@ -200,6 +200,26 @@ class S {
     );
   }
 
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't hesitate to contact us whether you have a suggestion on our improvement, a complain to discuss or an issue to solve.`
+  String get contactUsTitle {
+    return Intl.message(
+      'Don\'t hesitate to contact us whether you have a suggestion on our improvement, a complain to discuss or an issue to solve.',
+      name: 'contactUsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Don’t have an account? `
   String get dontHaveAccount {
     return Intl.message(

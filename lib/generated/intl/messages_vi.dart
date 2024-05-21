@@ -42,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Nhập lại mật khẩu"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Liên hệ chúng tôi"),
+        "contactUsTitle": MessageLookupByLibrary.simpleMessage(
+            "Đừng ngần ngại liên hệ với chúng tôi nếu bạn có đề xuất về cải tiến của chúng tôi, khiếu nại cần thảo luận hoặc vấn đề cần giải quyết."),
         "continueText": MessageLookupByLibrary.simpleMessage("Tiếp tục"),
         "correct": MessageLookupByLibrary.simpleMessage("Đúng"),
         "course": MessageLookupByLibrary.simpleMessage("Khóa học"),
@@ -94,6 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "myCourse": MessageLookupByLibrary.simpleMessage("Khóa học của tôi"),
         "myFavoriteExam":
             MessageLookupByLibrary.simpleMessage("Đề thi yêu thích"),
+        "name": MessageLookupByLibrary.simpleMessage("Tên"),
         "newEmail": MessageLookupByLibrary.simpleMessage("Email mới"),
         "notification": MessageLookupByLibrary.simpleMessage("Thông báo"),
         "oldEmail": MessageLookupByLibrary.simpleMessage("Email cũ"),

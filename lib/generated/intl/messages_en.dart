@@ -50,6 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
+        "contactUsTitle": MessageLookupByLibrary.simpleMessage(
+            "Don\'t hesitate to contact us whether you have a suggestion on our improvement, a complain to discuss or an issue to solve."),
         "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
         "correct": MessageLookupByLibrary.simpleMessage("Correct"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
@@ -107,6 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
         "myCourse": MessageLookupByLibrary.simpleMessage("My Course"),
         "myFavoriteExam": MessageLookupByLibrary.simpleMessage("Exam favorite"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newEmail": MessageLookupByLibrary.simpleMessage("New email"),
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "oldEmail": MessageLookupByLibrary.simpleMessage("Old email"),

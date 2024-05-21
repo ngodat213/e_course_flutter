@@ -14,6 +14,8 @@
     "loginWith": "or log in with",
     "google": "Google",
     "facebook": "Facebook",
+    "name": "Name",
+    "contactUsTitle": "Don't hesitate to contact us whether you have a suggestion on our improvement, a complain to discuss or an issue to solve.",
     "dontHaveAccount": "Don’t have an account? ",
     "signUp": "Sign Up",
     "emailExample": "xyz@example.com",

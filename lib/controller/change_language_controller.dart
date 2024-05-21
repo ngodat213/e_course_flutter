@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ChangeLanguageController extends GetxController {
+  // final MainAppController _mainAppController = Get.find<MainAppController>();
   final _localizationManager = LocalizationManager();
   Rx<Locale> locale = Rx<Locale>(const Locale('en'));
   RxInt index = 0.obs;
@@ -32,6 +33,7 @@ class ChangeLanguageController extends GetxController {
         index.value = indexLag;
         break;
     }
+    // _mainAppController.stateAppLang.value = locale.value;
   }
 
   Future<void> getLang() async {

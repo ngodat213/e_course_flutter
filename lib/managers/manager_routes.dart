@@ -20,7 +20,8 @@ class ManagerRoutes {
   static String favoriteScreen = '/favorite_screen';
   static String settingScreen = '/setting_screen';
   static String editProfileScreen = '/edit_profile_screen';
-  static String commoInfoScreen = '/commo_info_screen';
+  static String aboutUsScreen = '/about_us_screen';
+  static String contactScreen = '/contact_creen';
   static String profileScreen = '/profile_screen';
   static String changeLanguage = '/change_language';
 
@@ -81,8 +82,13 @@ class ManagerRoutes {
       binding: ExamPlayBinding(),
     ),
     GetPage(
-      name: commoInfoScreen,
-      page: () => const CommoInfoScreen(),
+      name: contactScreen,
+      page: () => const ContactScreen(),
+      binding: ContactBinding(),
+    ),
+    GetPage(
+      name: aboutUsScreen,
+      page: () => const AboutUsScreen(),
     ),
     GetPage(
       name: profileScreen,
