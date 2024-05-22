@@ -20,7 +20,7 @@ class FavoriteExamScreen extends GetView<FavoriteExamController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 90),
-                  _gridviewCourse(),
+                  _gridviewExamFav(),
                   const SizedBox(height: 70),
                 ],
               ),
@@ -33,14 +33,14 @@ class FavoriteExamScreen extends GetView<FavoriteExamController> {
     );
   }
 
-  Obx _gridviewCourse() {
+  Obx _gridviewExamFav() {
     return Obx(
       () => Column(
         children: controller.myFavExam
             .map(
               (e) => GestureDetector(
                 onTap: () {
-                  // controller.(e);
+                  controller.onPressExam(e);
                 },
                 child: MyExamWidget(exam: e),
               ),

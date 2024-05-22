@@ -33,7 +33,8 @@ class ExamDetailScreen extends GetView<ExamDetailController> {
                             width: MediaQuery.of(context).size.width - 50,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: NetworkImage(controller.exam.imageUrl!),
+                                image: NetworkImage(
+                                    controller.exam.value.imageUrl!),
                                 fit: BoxFit.cover,
                               ),
                               borderRadius: BorderRadius.circular(8),
@@ -43,10 +44,46 @@ class ExamDetailScreen extends GetView<ExamDetailController> {
                         ],
                       ),
                     ),
+                    _favoriteButton(context),
                     BuildBackButton(top: 24),
                   ],
                 ),
               )),
+      ),
+    );
+  }
+
+  Widget _favoriteButton(BuildContext context) {
+    return Positioned(
+      top: 24,
+      right: 25,
+      child: GestureDetector(
+        onTap: () {
+          controller.onPressFav();
+        },
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          width: 32,
+          height: 32,
+          decoration: BoxDecoration(
+            boxShadow: AppColors.shadow,
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Obx(
+            () => controller.isFav.value
+                ? const Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                    size: 16,
+                  )
+                : const Icon(
+                    Icons.favorite,
+                    color: Colors.grey,
+                    size: 16,
+                  ),
+          ),
+        ),
       ),
     );
   }
@@ -65,11 +102,11 @@ class BuildContent extends GetView<ExamDetailController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 8),
-            Text(controller.exam.title!, style: TxtStyle.h2),
+            Text(controller.exam.value.title!, style: TxtStyle.h2),
             const SizedBox(height: 6),
             const SizedBox(height: 16),
             ReadMoreText(
-              controller.exam.description!,
+              controller.exam.value.description!,
               trimLines: 2,
               trimCollapsedText: S.of(context).readmore,
               trimExpandedText: S.of(context).showless,

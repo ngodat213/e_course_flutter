@@ -29,15 +29,12 @@ class ManagerAddress {
   static const String baseCourseVideo = '$baseCourse/videos/';
 
   //?-- Quiz -->
-  static const String baseExam = 'exam';
-  static const String baseQuizLessonOf = '$baseExam/lessonsOf/';
+  static const String baseExam = 'exam/';
+  static const String baseQuizLessonOf = '${baseExam}lessonsOf/';
 
   //?-- Quiz Lesson -->
   static const String baseExamLesson = 'exam_lessons/';
   static const String baseExamOfQuestion = '${baseExamLesson}questionsOf/';
-
-  //?-- Quiz Question -->
-  static const String baseExamQuestion = '${baseExam}questions';
 
   //?-- CATEGORY -->
   static const String baseCategory = 'categorys/';
