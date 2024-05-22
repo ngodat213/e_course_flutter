@@ -36,7 +36,7 @@ class SettingMenu extends StatelessWidget {
             subtitle: S.of(context).courseFavorite,
             iconColor: AppColors.label,
             onTap: () {
-              Get.toNamed(ManagerRoutes.favoriteScreen);
+              Get.toNamed(ManagerRoutes.favoriteCourseScreen);
             },
           ),
           const _CustomDivider(),
@@ -46,7 +46,7 @@ class SettingMenu extends StatelessWidget {
             subtitle: S.of(context).myFavoriteExam,
             iconColor: AppColors.label,
             onTap: () {
-              Get.toNamed(ManagerRoutes.favoriteScreen);
+              Get.toNamed(ManagerRoutes.favoriteExamScreen);
             },
           ),
           const _CustomDivider(),

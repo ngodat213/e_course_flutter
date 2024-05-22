@@ -26,7 +26,7 @@ class RecommentWidget extends GetView<MyCourseController> {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  // widget.onPressedExam.call(quizs[index]);
+                  controller.onPressCourse(controller.courses[index]);
                 },
                 child: Container(
                   margin: const EdgeInsets.only(right: 10),
@@ -57,7 +57,7 @@ class RecommentWidget extends GetView<MyCourseController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '1h30m',
+                                  controller.courses[index].teacher!.username!,
                                   style: TxtStyle.text.copyWith(
                                     color: AppColors.label,
                                   ),
@@ -65,7 +65,7 @@ class RecommentWidget extends GetView<MyCourseController> {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
-                                  'Flutter for beginer',
+                                  controller.courses[index].title!,
                                   style: TxtStyle.button,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,

@@ -17,7 +17,8 @@ class ManagerRoutes {
   static String courseDetailScreen = '/course_detail';
   static String examDetailScreen = '/exam_detail_screen';
   static String examPlayScreen = '/quiz_play_screen';
-  static String favoriteScreen = '/favorite_screen';
+  static String favoriteCourseScreen = '/favorite_course_screen';
+  static String favoriteExamScreen = '/favorite_exam_screen';
   static String settingScreen = '/setting_screen';
   static String editProfileScreen = '/edit_profile_screen';
   static String aboutUsScreen = '/about_us_screen';
@@ -101,10 +102,6 @@ class ManagerRoutes {
       binding: CourseVideoBinding(),
     ),
     GetPage(
-      name: favoriteScreen,
-      page: () => const FavoriteScreen(),
-    ),
-    GetPage(
       name: courseListScreen,
       page: () => const CourseListScreen(),
       binding: CourseListBinding(),
@@ -119,5 +116,15 @@ class ManagerRoutes {
       page: () => const MyCourseScreen(),
       binding: MyCourseBinding(),
     ),
+    GetPage(
+      name: favoriteCourseScreen,
+      page: () => const FavoriteCourseScreen(),
+      binding: FavoriteCourseBinding(),
+    ),
+    GetPage(
+      name: favoriteExamScreen,
+      page: () => const FavoriteExamScreen(),
+      binding: FavoriteExamBinding(),
+    )
   ];
 }

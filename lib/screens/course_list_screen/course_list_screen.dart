@@ -4,8 +4,10 @@ import 'package:e_course_flutter/models/course.dart';
 import 'package:e_course_flutter/screens/my_course_screen/widgets/search_course_widget.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
+import 'package:e_course_flutter/widgets/back_button.dart';
 import 'package:e_course_flutter/widgets/base_text.dart';
 import 'package:e_course_flutter/widgets/skeleton_widget.dart';
+import 'package:e_course_flutter/widgets/title_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,26 +19,22 @@ class CourseListScreen extends GetView<CourseListController> {
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
             children: [
-              Container(
-                margin:
-                    const EdgeInsets.symmetric(vertical: 18, horizontal: 25),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Course for you!', style: TxtStyle.p),
-                    Text('List course', style: TxtStyle.title),
-                  ],
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 90),
+                  const SearchCourseWidget(),
+                  _listCategory(),
+                  Obx(() {
+                    return _gridviewCourse(controller.courseSearch);
+                  }),
+                  const SizedBox(height: 70),
+                ],
               ),
-              const SearchCourseWidget(),
-              _listCategory(),
-              Obx(() {
-                return _gridviewCourse(controller.courseSearch);
-              }),
-              const SizedBox(height: 70),
+              TitleScreen(title: S.of(context).yourCourse),
+              BuildBackButton(top: 24),
             ],
           ),
         ),

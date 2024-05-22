@@ -1,7 +1,8 @@
-import 'package:chewie/chewie.dart';
 import 'package:e_course_flutter/controller/course_detail_controller.dart';
+import 'package:e_course_flutter/screens/course_detail_screen/widget/register_button.dart';
 import 'package:e_course_flutter/screens/course_detail_screen/widget/tab_lesson.dart';
 import 'package:e_course_flutter/screens/course_detail_screen/widget/tab_review.dart';
+import 'package:e_course_flutter/screens/course_detail_screen/widget/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
@@ -9,7 +10,6 @@ import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/images.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:e_course_flutter/widgets/back_button.dart';
-import 'package:e_course_flutter/widgets/build_button.dart';
 import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 
@@ -19,10 +19,15 @@ class CourseDetailScreen extends GetView<CourseDetailController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
-        color: Colors.white.withOpacity(0.1),
-        margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-        child: _registerButton(context),
+      bottomNavigationBar: Obx(
+        () => controller.isOrder.value
+            ? const SizedBox()
+            : Container(
+                color: Colors.white.withOpacity(0.1),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+                child: const RegisterButton(),
+              ),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -38,7 +43,7 @@ class CourseDetailScreen extends GetView<CourseDetailController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 60),
-                          _videoPlayer(),
+                          const VideoPlayWidget(),
                           const SizedBox(height: 32),
                           _titleCourse(),
                           _teacherInfo(),
@@ -55,45 +60,6 @@ class CourseDetailScreen extends GetView<CourseDetailController> {
                 ),
         )),
       ),
-    );
-  }
-
-  FutureBuilder<void> _videoPlayer() {
-    return FutureBuilder(
-      future: controller.initializeVideoPlayerFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: AspectRatio(
-              aspectRatio: controller.videoPlayerController.value.aspectRatio,
-              child: Chewie(controller: controller.chewieController),
-            ),
-          );
-        } else {
-          return Container(
-            height: 200,
-            width: MediaQuery.of(context).size.width - 50,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(controller.course.value.imageIntroduce!),
-                fit: BoxFit.cover,
-              ),
-              color: AppColors.main,
-              borderRadius: BorderRadius.circular(8),
-            ),
-          );
-        }
-      },
-    );
-  }
-
-  Widget _registerButton(BuildContext context) {
-    return BuildButton(
-      text: S.of(context).register,
-      onTap: () {},
-      duration: const Duration(seconds: 2),
-      curve: Curves.easeInOut,
     );
   }
 
@@ -146,30 +112,31 @@ class CourseDetailScreen extends GetView<CourseDetailController> {
       right: 25,
       child: GestureDetector(
         onTap: () {
-          // context.read<CourseDetailCubit>().updateFavorite();
+          controller.onPressFav();
         },
         child: Container(
-            padding: const EdgeInsets.all(8),
-            width: 32,
-            height: 32,
-            decoration: BoxDecoration(
-              boxShadow: AppColors.shadow,
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child:
-                // state.favorite == false
-                const Icon(
-              Icons.favorite,
-              color: Colors.grey,
-              size: 16,
-            )
-            // : const Icon(
-            //     Icons.favorite,
-            //     color: Colors.red,
-            //     size: 16,
-            //   ),
-            ),
+          padding: const EdgeInsets.all(8),
+          width: 32,
+          height: 32,
+          decoration: BoxDecoration(
+            boxShadow: AppColors.shadow,
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Obx(
+            () => controller.isFav.value
+                ? const Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                    size: 16,
+                  )
+                : const Icon(
+                    Icons.favorite,
+                    color: Colors.grey,
+                    size: 16,
+                  ),
+          ),
+        ),
       ),
     );
   }
