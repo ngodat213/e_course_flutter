@@ -1,38 +1,24 @@
+import 'package:e_course_flutter/models/models.dart';
+
 class CourseFeedback {
-  final String uid;
-  final String userId;
-  final String time;
-  final double rating;
-  final String feedback;
-  const CourseFeedback({
-    required this.uid,
-    required this.userId,
-    required this.time,
-    required this.rating,
-    required this.feedback,
+  String? uid;
+  Teacher? userId;
+  String? courseId;
+  String? time;
+  double? rating;
+  CourseFeedback({
+    this.uid,
+    this.userId,
+    this.courseId,
+    this.time,
+    this.rating,
   });
 
-  CourseFeedback copyWith({
-    String? uid,
-    String? userId,
-    String? time,
-    double? rating,
-    String? feedback,
-  }) {
-    return CourseFeedback(
-      uid: uid ?? this.uid,
-      userId: userId ?? this.userId,
-      time: time ?? this.time,
-      rating: rating ?? this.rating,
-      feedback: feedback ?? this.feedback,
-    );
+  CourseFeedback.fromJson(Map<String, dynamic> json) {
+    uid = json['_id'];
+    userId = json['userId'] != null ? Teacher.fromJson(json['userId']) : null;
+    courseId = json['courseId'];
+    time = json['title'];
+    rating = json['rating'];
   }
-
-  factory CourseFeedback.fromDoc(Map<String, dynamic> data) => CourseFeedback(
-        uid: data['courseFeedback']['_id'],
-        userId: data['courseFeedback']['teacher_id'],
-        time: data['courseFeedback']['time'],
-        rating: data['courseFeedback']['rating'],
-        feedback: data['courseFeedback']['feedback'],
-      );
 }

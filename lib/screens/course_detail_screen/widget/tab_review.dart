@@ -1,38 +1,44 @@
+import 'package:e_course_flutter/controller/course_detail_controller.dart';
+import 'package:e_course_flutter/models/course_feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:e_course_flutter/themes/images.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
+import 'package:get/get.dart';
 
-class TabReview extends StatefulWidget {
+class TabReview extends GetView<CourseDetailController> {
   const TabReview({super.key});
 
-  @override
-  State<TabReview> createState() => _TabReviewState();
-}
-
-class _TabReviewState extends State<TabReview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 28),
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FeedBack(),
-            FeedBack(),
-            FeedBack(),
-          ],
+        child: Obx(
+          () => Column(
+            children: controller.feedbacks
+                .map(
+                  (e) => GestureDetector(
+                    onTap: () {
+                      // controller.onPressCourse(e);
+                    },
+                    child: FeedbackCard(feedback: e),
+                  ),
+                )
+                .toList(),
+          ),
         ),
       ),
     );
   }
 }
 
-class FeedBack extends StatelessWidget {
-  const FeedBack({
+class FeedbackCard extends StatelessWidget {
+  const FeedbackCard({
+    required this.feedback,
     super.key,
   });
+  final CourseFeedback feedback;
 
   @override
   Widget build(BuildContext context) {
@@ -40,15 +46,13 @@ class FeedBack extends StatelessWidget {
       children: [
         Row(
           children: [
-            CircleAvatar(
-                child: Image.network(
-                    'https://scontent.fsgn1-1.fna.fbcdn.net/v/t39.30808-1/431748094_1579360056191638_9162859787187610457_n.jpg?stp=dst-jpg_p240x240&_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHusFhqSM3AO_EGy2lQW9EpmvWWzUXwWUGa9ZbNRfBZQRjhoa-v3mImqudPUzKO20VMH77F496rqzohYnMUCBAG&_nc_ohc=QWiVaDipxmEAX-TQLew&_nc_ht=scontent.fsgn1-1.fna&oh=00_AfCmwQJYbOwJzT-X9JHXVsbGziMmySE4Q3EBMVTPXw_8VA&oe=65F6971E')),
+            CircleAvatar(child: Image.network(feedback.userId!.photoUrl!)),
             const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hydra Coder',
+                  feedback.userId!.username!,
                   style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
                 ),
                 Row(
@@ -68,7 +72,7 @@ class FeedBack extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          'The explanation is very easy to understand, really cool, understandable and.',
+          "feedback.title",
           style: TxtStyle.labelStyle,
         ),
         const SizedBox(height: 28),

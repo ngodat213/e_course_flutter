@@ -6,6 +6,7 @@ import 'package:e_course_flutter/enums/payment.dart';
 import 'package:e_course_flutter/enums/payment_status.dart';
 import 'package:e_course_flutter/managers/manager_address.dart';
 import 'package:e_course_flutter/managers/manager_key_storage.dart';
+import 'package:e_course_flutter/models/course_feedback.dart';
 import 'package:e_course_flutter/models/course_lesson.dart';
 import 'package:e_course_flutter/models/models.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
@@ -25,12 +26,13 @@ class CourseDetailController extends GetxController
   late ChewieController chewieController;
   late RxBool isFav;
   late RxBool isOrder;
+  late RxBool isFeedback;
   late TabController tabController;
-  late User currentAccount;
 
   Rx<Course> course = Course().obs;
   Rx<CourseVideo> currentVideo = const CourseVideo().obs;
   RxList<CourseLesson> courseLessons = RxList<CourseLesson>();
+  RxList<CourseFeedback> feedbacks = RxList<CourseFeedback>();
 
   final BaseAPI _baseAPI = BaseAPI();
 
@@ -47,8 +49,10 @@ class CourseDetailController extends GetxController
     _isShowLoading.value = true;
     tabController = TabController(length: 2, vsync: this);
     handleCurrentCourse();
-    handleFav();
-    handleOrder();
+    handleIsFav();
+    handleIsOrder();
+    handleIsFeedback();
+    handleFeedback();
     await handleCourseLesson();
     initVideoPlayer(course.value.videoIntroduce!);
     _isShowLoading.value = false;
@@ -78,7 +82,56 @@ class CourseDetailController extends GetxController
     );
   }
 
-  void handleFav() {
+  void handleFeedback() {
+    _baseAPI
+        .fetchData(ManagerAddress.baseFeedback, method: ApiMethod.GET)
+        .then((value) async {
+      switch (value.apiStatus) {
+        case ApiStatus.SUCCEEDED:
+          {
+            feedbacks.value = List<CourseFeedback>.from(
+                value.object.map((x) => CourseFeedback.fromJson(x)));
+          }
+        default:
+          {
+            printLogError('FAILED');
+            Fluttertoast.showToast(msg: "Get data fail");
+          }
+      }
+    });
+  }
+
+  void handleIsFeedback() {
+    final User user = _mainController.currentAccount.value;
+    Map<String, dynamic> params = {
+      "qUser": user.id,
+      "qCourse": course.value.id,
+    };
+    _baseAPI
+        .fetchData(ManagerAddress.baseFeedback,
+            method: ApiMethod.GET, params: params)
+        .then((value) async {
+      final feedbacks = List<CourseFeedback>.from(
+          value.object.map((x) => CourseFeedback.fromJson(x)));
+      switch (value.apiStatus) {
+        case ApiStatus.SUCCEEDED:
+          {
+            if (feedbacks.isNotEmpty) {
+              isFeedback.value = true;
+            } else {
+              isFeedback.value = false;
+            }
+          }
+        default:
+          {
+            printLogError('FAILED');
+            Fluttertoast.showToast(msg: "Get data fail");
+          }
+      }
+    });
+  }
+
+  void handleIsFav() {
     final User user = _mainController.currentAccount.value;
     if (user.favouritesCourses!.contains(course.value.id)) {
       isFav = true.obs;
@@ -87,7 +140,7 @@ class CourseDetailController extends GetxController
     }
   }
 
-  void handleOrder() {
+  void handleIsOrder() {
     final User user = _mainController.currentAccount.value;
     if (user.courses!.contains(course.value.id)) {
       isOrder = true.obs;
@@ -167,7 +220,7 @@ class CourseDetailController extends GetxController
         case ApiStatus.SUCCEEDED:
           {
             _mainController.getCurrentUser();
-            handleOrder();
+            handleIsOrder();
             break;
           }
         default:
@@ -196,7 +249,7 @@ class CourseDetailController extends GetxController
         case ApiStatus.SUCCEEDED:
           {
             _mainController.getCurrentUser();
-            handleOrder();
+            handleIsOrder();
             break;
           }
         default:
@@ -232,7 +285,7 @@ class CourseDetailController extends GetxController
         case ApiStatus.SUCCEEDED:
           {
             _mainController.getCurrentUser();
-            handleFav();
+            handleIsFav();
             break;
           }
         default:

@@ -46,7 +46,6 @@ class SignUpController extends GetxController {
         switch (value.apiStatus) {
           case ApiStatus.SUCCEEDED:
             {
-              currentAccount = User.fromJson(value.object);
               Fluttertoast.showToast(msg: S.of(context).signupSucessfully);
               Get.offAllNamed(ManagerRoutes.signInScreen);
             }
