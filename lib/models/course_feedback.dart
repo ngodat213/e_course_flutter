@@ -1,24 +1,45 @@
 import 'package:e_course_flutter/models/models.dart';
+import 'package:e_course_flutter/models/teacher.dart';
 
 class CourseFeedback {
-  String? uid;
-  Teacher? userId;
-  String? courseId;
-  String? time;
-  double? rating;
-  CourseFeedback({
-    this.uid,
-    this.userId,
-    this.courseId,
-    this.time,
-    this.rating,
-  });
+  String? sId;
+  Teacher? user;
+  String? course;
+  String? title;
+  int? rating;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+
+  CourseFeedback(
+      {this.sId,
+      this.user,
+      this.course,
+      this.title,
+      this.rating,
+      this.createdAt,
+      this.updatedAt});
 
   CourseFeedback.fromJson(Map<String, dynamic> json) {
-    uid = json['_id'];
-    userId = json['userId'] != null ? Teacher.fromJson(json['userId']) : null;
-    courseId = json['courseId'];
-    time = json['title'];
+    sId = json['_id'];
+    user = json['user'] != null ? Teacher.fromJson(json['user']) : null;
+    course = json['course'];
+    title = json['title'];
     rating = json['rating'];
+    createdAt = DateTime.parse(json['createdAt'].toString());
+    updatedAt = DateTime.parse(json['updatedAt'].toString());
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    if (user != null) {
+      data['user'] = user!.toJson();
+    }
+    data['course'] = course;
+    data['title'] = title;
+    data['rating'] = rating;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    return data;
   }
 }

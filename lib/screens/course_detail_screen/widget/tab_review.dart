@@ -2,9 +2,11 @@ import 'package:e_course_flutter/controller/course_detail_controller.dart';
 import 'package:e_course_flutter/models/course_feedback.dart';
 import 'package:e_course_flutter/widgets/build_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:e_course_flutter/themes/images.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
+import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
 class TabReview extends GetView<CourseDetailController> {
@@ -21,27 +23,48 @@ class TabReview extends GetView<CourseDetailController> {
               () => controller.isFeedback.value ||
                       controller.isOrder.value == false
                   ? Container()
-                  : Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                  : Column(
                       children: [
-                        CircleAvatar(
-                          backgroundImage:
-                              NetworkImage(controller.currentUser.photoUrl!),
-                        ),
-                        const SizedBox(width: 10),
-                        BuildTextField(
-                          hintText: 'Your feedback',
-                          width: Get.width * 0.65,
-                          controller: controller.feedbackEditingController,
-                        ),
-                        const SizedBox(width: 10),
-                        GestureDetector(
-                          onTap: () {
-                            controller.onPressFeedback();
+                        RatingBar.builder(
+                          initialRating: 5,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemSize: 30,
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          onRatingUpdate: (rating) {
+                            controller.onRatingUpdate(rating);
                           },
-                          child: const Icon(Icons.send_rounded),
-                        )
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  controller.currentUser.photoUrl!),
+                            ),
+                            const SizedBox(width: 10),
+                            BuildTextField(
+                              hintText: 'Your feedback',
+                              width: Get.width * 0.65,
+                              controller: controller.feedbackEditingController,
+                            ),
+                            const SizedBox(width: 10),
+                            GestureDetector(
+                              onTap: () {
+                                controller.onPressFeedback();
+                              },
+                              child: const Icon(Icons.send_rounded),
+                            )
+                          ],
+                        ),
                       ],
                     ),
             ),
@@ -75,28 +98,31 @@ class FeedbackCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String formattedDate =
+        DateFormat('dd MMMM yyyy').format(feedback.createdAt!);
     return Column(
       children: [
         Row(
           children: [
-            CircleAvatar(child: Image.network(feedback.userId!.photoUrl!)),
+            CircleAvatar(child: Image.network(feedback.user!.photoUrl!)),
             const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  feedback.userId!.username!,
+                  feedback.user!.username!,
                   style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
                 ),
                 Row(
                   children: [
-                    SvgPicture.asset(Images.iconStar, width: 12),
-                    SvgPicture.asset(Images.iconStar, width: 12),
-                    SvgPicture.asset(Images.iconStar, width: 12),
-                    SvgPicture.asset(Images.iconStar, width: 12),
-                    SvgPicture.asset(Images.iconStar, width: 12),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: List.generate(feedback.rating!, (index) {
+                        return SvgPicture.asset(Images.iconStar, width: 12);
+                      }),
+                    ),
                     const SizedBox(width: 8),
-                    Text('• 12 Feb 2022', style: TxtStyle.time),
+                    Text('• $formattedDate', style: TxtStyle.time),
                   ],
                 )
               ],
@@ -105,7 +131,7 @@ class FeedbackCard extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          "feedback.title",
+          feedback.title!,
           style: TxtStyle.labelStyle,
         ),
         const SizedBox(height: 28),

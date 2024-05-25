@@ -31,7 +31,7 @@ class CourseDetailController extends GetxController
   late RxBool isFeedback = false.obs;
   late TabController tabController;
   late User currentUser;
-  late int rating;
+  late RxDouble rating = 5.0.obs;
 
   Rx<Course> course = Course().obs;
   Rx<CourseVideo> currentVideo = const CourseVideo().obs;
@@ -220,7 +220,7 @@ class CourseDetailController extends GetxController
       "user": user.id,
       "course": course.value.id,
       "title": feedbackEditingController.text,
-      "rating": rating,
+      "rating": rating.value,
     };
 
     final headers = {"Authorization": "Bearer $token"};
@@ -344,6 +344,10 @@ class CourseDetailController extends GetxController
           }
       }
     });
+  }
+
+  void onRatingUpdate(double value) {
+    rating.value = value;
   }
 
   void onPressVideo(CourseVideo obj) {
