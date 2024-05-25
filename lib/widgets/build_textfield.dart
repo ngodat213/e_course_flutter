@@ -12,9 +12,11 @@ class BuildTextField extends StatelessWidget {
     this.func,
     this.label,
     this.controller,
+    this.width,
     required this.hintText,
   });
   final String hintText;
+  double? width;
   String? label;
   bool? isPassword = false;
   bool? isNumber = false;
@@ -25,7 +27,7 @@ class BuildTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        label != ""
+        label != null
             ? Container(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: BaseText(
@@ -36,7 +38,7 @@ class BuildTextField extends StatelessWidget {
             : Container(),
         Container(
           height: 40,
-          width: Get.width * 0.85,
+          width: width ?? Get.width * 0.85,
           decoration: BoxDecoration(
               color: AppColors.white,
               borderRadius: BorderRadius.circular(8),

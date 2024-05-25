@@ -51,6 +51,7 @@ dependencies:
   video_player: ^2.7.1
   chewie: ^1.7.1
   rxdart: ^0.27.7
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:

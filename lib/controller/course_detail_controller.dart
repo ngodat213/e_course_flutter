@@ -20,14 +20,18 @@ class CourseDetailController extends GetxController
     with GetSingleTickerProviderStateMixin {
   final HomeController _homeController = Get.find<HomeController>();
   final MainController _mainController = Get.find<MainController>();
+  final TextEditingController feedbackEditingController =
+      TextEditingController();
 
   late VideoPlayerController videoPlayerController;
   late Future<void> initializeVideoPlayerFuture;
   late ChewieController chewieController;
   late RxBool isFav;
   late RxBool isOrder;
-  late RxBool isFeedback;
+  late RxBool isFeedback = false.obs;
   late TabController tabController;
+  late User currentUser;
+  late int rating;
 
   Rx<Course> course = Course().obs;
   Rx<CourseVideo> currentVideo = const CourseVideo().obs;
@@ -49,9 +53,10 @@ class CourseDetailController extends GetxController
     _isShowLoading.value = true;
     tabController = TabController(length: 2, vsync: this);
     handleCurrentCourse();
+    handleUser();
     handleIsFav();
     handleIsOrder();
-    handleIsFeedback();
+    await handleIsFeedback();
     handleFeedback();
     await handleCourseLesson();
     initVideoPlayer(course.value.videoIntroduce!);
@@ -65,6 +70,10 @@ class CourseDetailController extends GetxController
     videoPlayerController.dispose();
     chewieController.dispose();
     super.onClose();
+  }
+
+  void handleUser() {
+    currentUser = _mainController.currentAccount.value;
   }
 
   void initVideoPlayer(String videoUrl) {
@@ -83,8 +92,12 @@ class CourseDetailController extends GetxController
   }
 
   void handleFeedback() {
+    Map<String, dynamic> params = {
+      "qCourse": course.value.id,
+    };
     _baseAPI
-        .fetchData(ManagerAddress.baseFeedback, method: ApiMethod.GET)
+        .fetchData(ManagerAddress.baseFeedback,
+            method: ApiMethod.GET, params: params)
         .then((value) async {
       switch (value.apiStatus) {
         case ApiStatus.SUCCEEDED:
@@ -101,7 +114,7 @@ class CourseDetailController extends GetxController
     });
   }
 
-  void handleIsFeedback() {
+  Future<void> handleIsFeedback() async {
     final User user = _mainController.currentAccount.value;
     Map<String, dynamic> params = {
       "qUser": user.id,
@@ -111,15 +124,18 @@ class CourseDetailController extends GetxController
         .fetchData(ManagerAddress.baseFeedback,
             method: ApiMethod.GET, params: params)
         .then((value) async {
-      final feedbacks = List<CourseFeedback>.from(
-          value.object.map((x) => CourseFeedback.fromJson(x)));
       switch (value.apiStatus) {
         case ApiStatus.SUCCEEDED:
           {
+            final feedbacks = List<CourseFeedback>.from(
+                value.object.map((x) => CourseFeedback.fromJson(x)));
+            print("feedback $feedbacks");
             if (feedbacks.isNotEmpty) {
               isFeedback.value = true;
+              print("feedback1 ${isFeedback.value}");
             } else {
               isFeedback.value = false;
+              print("feedback2 ${isFeedback.value}");
             }
           }
         default:
@@ -147,6 +163,8 @@ class CourseDetailController extends GetxController
     } else {
       isOrder = false.obs;
     }
+    print("courses: ${user.courses}");
+    print("Is order ${isOrder.value}");
   }
 
   void handleCurrentCourse() {
@@ -194,6 +212,38 @@ class CourseDetailController extends GetxController
     });
   }
 
+  void onPressFeedback() async {
+    final User user = _mainController.currentAccount.value;
+    final String token = await BaseSharedPreferences.getStringValue(
+        ManagerKeyStorage.accessToken);
+    Map<String, dynamic> body = {
+      "user": user.id,
+      "course": course.value.id,
+      "title": feedbackEditingController.text,
+      "rating": rating,
+    };
+
+    final headers = {"Authorization": "Bearer $token"};
+    _baseAPI
+        .fetchData(ManagerAddress.baseFeedback,
+            headers: headers, body: body, method: ApiMethod.POST)
+        .then((value) async {
+      switch (value.apiStatus) {
+        case ApiStatus.SUCCEEDED:
+          {
+            handleFeedback();
+            isFeedback.value = false;
+            Fluttertoast.showToast(msg: "Thank you your feedback");
+            break;
+          }
+        default:
+          {
+            Fluttertoast.showToast(msg: "Error");
+          }
+      }
+    });
+  }
+
   void onPressRegister() async {
     final String token = await BaseSharedPreferences.getStringValue(
         ManagerKeyStorage.accessToken);
@@ -207,13 +257,13 @@ class CourseDetailController extends GetxController
       "user": currentUser.id,
       "course": course.value.id,
       "totalPrice": course.value.price,
-      "payment": Payment.MOMO,
-      "paymentStatus": PaymentStatus.SUCCESS,
+      "payment": Payment.MOMO.toString().split('.').last,
+      "paymentStatus": PaymentStatus.SUCCESS.toString().split('.').last,
     };
 
     final headers = {"Authorization": "Bearer $token"};
     _baseAPI
-        .fetchData(ManagerAddress.baseOrder + currentUser.id!,
+        .fetchData(ManagerAddress.baseOrder,
             headers: headers, body: body, method: ApiMethod.POST)
         .then((value) async {
       switch (value.apiStatus) {
@@ -243,7 +293,7 @@ class CourseDetailController extends GetxController
     final headers = {"Authorization": "Bearer $token"};
     _baseAPI
         .fetchData(ManagerAddress.baseAccount + currentUser.id!,
-            headers: headers, body: body, method: ApiMethod.POST)
+            headers: headers, body: body, method: ApiMethod.PUT)
         .then((value) async {
       switch (value.apiStatus) {
         case ApiStatus.SUCCEEDED:

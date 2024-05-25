@@ -1,5 +1,6 @@
 import 'package:e_course_flutter/controller/course_detail_controller.dart';
 import 'package:e_course_flutter/models/course_feedback.dart';
+import 'package:e_course_flutter/widgets/build_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:e_course_flutter/themes/images.dart';
@@ -14,19 +15,51 @@ class TabReview extends GetView<CourseDetailController> {
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 28),
-        child: Obx(
-          () => Column(
-            children: controller.feedbacks
-                .map(
-                  (e) => GestureDetector(
-                    onTap: () {
-                      // controller.onPressCourse(e);
-                    },
-                    child: FeedbackCard(feedback: e),
-                  ),
-                )
-                .toList(),
-          ),
+        child: Column(
+          children: [
+            Obx(
+              () => controller.isFeedback.value ||
+                      controller.isOrder.value == false
+                  ? Container()
+                  : Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage:
+                              NetworkImage(controller.currentUser.photoUrl!),
+                        ),
+                        const SizedBox(width: 10),
+                        BuildTextField(
+                          hintText: 'Your feedback',
+                          width: Get.width * 0.65,
+                          controller: controller.feedbackEditingController,
+                        ),
+                        const SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: () {
+                            controller.onPressFeedback();
+                          },
+                          child: const Icon(Icons.send_rounded),
+                        )
+                      ],
+                    ),
+            ),
+            Obx(
+              () => Column(
+                children: controller.feedbacks
+                    .map(
+                      (e) => GestureDetector(
+                        onTap: () {
+                          // controller.onPressCourse(e);
+                        },
+                        child: FeedbackCard(feedback: e),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+          ],
         ),
       ),
     );
