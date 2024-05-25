@@ -25,47 +25,22 @@ class CardSlider extends StatelessWidget {
         color: AppColors.main,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              course.imageIntroduce!,
-              fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              loadingBuilder: (BuildContext context, Widget child,
-                  ImageChunkEvent? loadingProgress) {
-                if (loadingProgress == null) return child;
-                return const Skeleton(radius: 8);
-              },
-              errorBuilder: (context, error, stackTrace) {
-                return const Skeleton(radius: 8);
-              },
-            ),
-          ),
-          Positioned(
-            bottom: 15,
-            left: 20,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: 200,
-                  child: Text(course.title!,
-                      style: TxtStyle.title.copyWith(color: AppColors.white)),
-                ),
-                Text('${lessons.length} ${S.of(context).lesson}',
-                    style: TxtStyle.p),
-                const SizedBox(height: 5),
-                Text(
-                  course.teacher!.username!,
-                  style: TxtStyle.p,
-                )
-              ],
-            ),
-          )
-        ],
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Image.network(
+          course.imageIntroduce!,
+          fit: BoxFit.cover,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          loadingBuilder: (BuildContext context, Widget child,
+              ImageChunkEvent? loadingProgress) {
+            if (loadingProgress == null) return child;
+            return const Skeleton(radius: 8);
+          },
+          errorBuilder: (context, error, stackTrace) {
+            return const Skeleton(radius: 8);
+          },
+        ),
       ),
     );
   }

@@ -14,6 +14,7 @@
     "google": "Google",
     "facebook": "Facebook",
     "dontHaveAccount": "Không có tài khoản? ",
+    "enterCodeSend":  "Nhập mã xác nhận đã gửi đến",
     "signUp": "Đăng kí",
     "emailExample": "xyz@example.com",
     "passwordExample": "********",

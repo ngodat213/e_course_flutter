@@ -53,23 +53,6 @@ class GridViewCourseWidget extends GetView<HomeController> {
                         },
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 8),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            courses[index].title!,
-                            style:
-                                TxtStyle.text.copyWith(color: AppColors.white),
-                          ),
-                          Text(courses[index].teacher!.username!,
-                              style: TxtStyle.p),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),

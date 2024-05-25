@@ -67,6 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
         "emailExample": MessageLookupByLibrary.simpleMessage("xyz@example.com"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
+        "enterCodeSend": MessageLookupByLibrary.simpleMessage(
+            "Enter the confirmation code sent"),
         "enterPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter phone number"),
         "exam": MessageLookupByLibrary.simpleMessage("Exam"),

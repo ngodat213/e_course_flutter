@@ -3,6 +3,7 @@ import 'package:e_course_flutter/controller/home_screen_controller.dart';
 import 'package:e_course_flutter/controller/main_controller.dart';
 import 'package:e_course_flutter/managers/manager_address.dart';
 import 'package:e_course_flutter/models/course.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class FavoriteCourseController extends GetxController {
@@ -40,6 +41,10 @@ class FavoriteCourseController extends GetxController {
           case ApiStatus.SUCCEEDED:
             {
               myFavCourse.add(Course.fromJson(value.object));
+            }
+          default:
+            {
+              Fluttertoast.showToast(msg: "Error");
             }
         }
       });

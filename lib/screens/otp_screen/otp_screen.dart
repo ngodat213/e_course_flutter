@@ -8,9 +8,10 @@ import 'package:e_course_flutter/widgets/build_button.dart';
 import 'package:e_course_flutter/widgets/build_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
-class ForgotPwScreen extends GetView<ForgotPwController> {
-  const ForgotPwScreen({super.key});
+class OTPScreen extends GetView<ForgotPwController> {
+  const OTPScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class ForgotPwScreen extends GetView<ForgotPwController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               BaseText(
-                text: S.of(context).login,
+                text: S.of(context).forgotPassword,
                 textAlign: TextAlign.center,
                 style: TxtStyle.h3.copyWith(color: AppColors.input),
                 duration: const Duration(milliseconds: 1500),
@@ -62,22 +63,51 @@ class ForgotPwScreen extends GetView<ForgotPwController> {
             ),
             const SizedBox(height: 20),
             BaseText(
-              text: S.of(context).email,
+              text: S.of(context).enterCodeSend,
               style: TxtStyle.text.copyWith(fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 8),
-            BuildTextField(
-              hintText: S.of(context).emailExample,
-              controller: controller.emailTextEditController,
+            PinCodeTextField(
+              appContext: context,
+              length: 7,
+              keyboardType: TextInputType.number,
+              pinTheme: PinTheme(
+                shape: PinCodeFieldShape.box,
+                borderRadius: BorderRadius.circular(4),
+                fieldHeight: 50,
+                fieldWidth: 50,
+                inactiveColor: AppColors.label,
+                selectedColor: AppColors.label,
+                activeColor: AppColors.main,
+              ),
+              cursorColor: AppColors.input,
+              controller: controller.otpTextEditController,
+              autoDisposeControllers: false,
             ),
             const SizedBox(height: 20),
-            BuildButton(
-              text: S.of(context).send,
-              duration: const Duration(seconds: 2),
-              curve: Curves.easeInOut,
-              onTap: () {
-                controller.onPressSendOTP();
-              },
+            BuildTextField(
+              label: S.of(context).password,
+              isPassword: true,
+              hintText: S.of(context).passwordExample,
+              controller: controller.passwordTextEditController,
+            ),
+            const SizedBox(height: 20),
+            BuildTextField(
+              label: S.of(context).confirmPassword,
+              isPassword: true,
+              hintText: S.of(context).passwordExample,
+              controller: controller.newPasswordTextEditController,
+            ),
+            const SizedBox(height: 20),
+            Center(
+              child: BuildButton(
+                text: S.of(context).changePassword,
+                duration: const Duration(seconds: 2),
+                curve: Curves.easeInOut,
+                onTap: () {
+                  controller.onPressChangePassword();
+                },
+              ),
             ),
           ],
         ),

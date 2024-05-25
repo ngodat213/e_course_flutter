@@ -8,6 +8,8 @@ class ManagerRoutes {
   static String signInScreen = '/sign_in';
   static String signUpScreen = '/sign_up';
   static String forgotPwScreen = '/forgot_password';
+  static String otpScreen = '/otp_screen';
+  static String resetPasswordScreen = '/reset_password_screen';
   static String mainScreen = '/main_screen';
   static String homeScreen = '/home_screen';
   static String courseListScreen = '/course_list_screen';
@@ -125,6 +127,14 @@ class ManagerRoutes {
       name: favoriteExamScreen,
       page: () => const FavoriteExamScreen(),
       binding: FavoriteExamBinding(),
+    ),
+    GetPage(
+      name: otpScreen,
+      page: () => const OTPScreen(),
+    ),
+    GetPage(
+      name: resetPasswordScreen,
+      page: () => const ResetPasswordScreen(),
     )
   ];
 }

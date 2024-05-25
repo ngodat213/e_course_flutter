@@ -26,9 +26,11 @@ import 'package:e_course_flutter/screens/my_course_screen/my_course_binding.dart
 import 'package:e_course_flutter/screens/my_course_screen/my_course_screen.dart';
 import 'package:e_course_flutter/screens/onboarding_screen/onboarding_binding.dart';
 import 'package:e_course_flutter/screens/onboarding_screen/onboarding_screen.dart';
+import 'package:e_course_flutter/screens/otp_screen/otp_screen.dart';
 import 'package:e_course_flutter/screens/profile_screen/profile_binding.dart';
 import 'package:e_course_flutter/screens/profile_screen/profile_screen.dart';
 import 'package:e_course_flutter/screens/exam_play_screen/exam_play_screen.dart';
+import 'package:e_course_flutter/screens/reset_password_screen/reset_password_screen.dart';
 import 'package:e_course_flutter/screens/setting_screen/setting_binding.dart';
 import 'package:e_course_flutter/screens/setting_screen/setting_screen.dart';
 import 'package:e_course_flutter/screens/signin_screen/signin_binding.dart';

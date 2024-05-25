@@ -210,6 +210,16 @@ class S {
     );
   }
 
+  /// `Enter the confirmation code sent`
+  String get enterCodeSend {
+    return Intl.message(
+      'Enter the confirmation code sent',
+      name: 'enterCodeSend',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Don't hesitate to contact us whether you have a suggestion on our improvement, a complain to discuss or an issue to solve.`
   String get contactUsTitle {
     return Intl.message(

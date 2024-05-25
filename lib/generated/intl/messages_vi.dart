@@ -57,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailAddress": MessageLookupByLibrary.simpleMessage("Địa chỉ email"),
         "emailExample": MessageLookupByLibrary.simpleMessage("xyz@example.com"),
         "english": MessageLookupByLibrary.simpleMessage("Tiếng anh"),
+        "enterCodeSend":
+            MessageLookupByLibrary.simpleMessage("Nhập mã xác nhận đã gửi đến"),
         "enterPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Nhập số điện thoại của bạn"),
         "exam": MessageLookupByLibrary.simpleMessage("Đề thi"),

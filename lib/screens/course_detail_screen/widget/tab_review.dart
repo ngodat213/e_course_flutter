@@ -68,17 +68,11 @@ class TabReview extends GetView<CourseDetailController> {
                       ],
                     ),
             ),
+            const SizedBox(height: 30),
             Obx(
               () => Column(
                 children: controller.feedbacks
-                    .map(
-                      (e) => GestureDetector(
-                        onTap: () {
-                          // controller.onPressCourse(e);
-                        },
-                        child: FeedbackCard(feedback: e),
-                      ),
-                    )
+                    .map((e) => FeedbackCard(feedback: e))
                     .toList(),
               ),
             ),
