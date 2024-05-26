@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:e_course_flutter/api/base_api.dart';
 import 'package:e_course_flutter/controller/home_screen_controller.dart';
 import 'package:e_course_flutter/managers/manager_address.dart';
@@ -8,6 +10,7 @@ import 'package:e_course_flutter/utils/base_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends GetxController {
   final HomeController _homeController = Get.find<HomeController>();
@@ -19,6 +22,8 @@ class ProfileController extends GetxController {
   TextEditingController oldPasswordController = TextEditingController();
   TextEditingController newpasswordController = TextEditingController();
   TextEditingController confimpasswordController = TextEditingController();
+
+  static XFile? image;
 
   Rx<User> currentAccount = const User().obs;
 
@@ -49,7 +54,18 @@ class ProfileController extends GetxController {
     currentAccount.value = _homeController.currentAccount.value;
   }
 
-  void changedAvatar() {}
+  static pickImage(ImageSource source) async {
+    final ImagePicker imagePicker = ImagePicker();
+    XFile? file = await imagePicker.pickImage(source: source);
+    if (file != null) {
+      image = file;
+      return await file.readAsBytes();
+    }
+  }
+
+  void changedAvatar() async {
+    Uint8List img = await pickImage(ImageSource.gallery);
+  }
 
   void onPressChangedPassword() async {
     if (newpasswordController.text == confimpasswordController.text &&

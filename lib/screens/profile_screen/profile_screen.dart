@@ -70,7 +70,7 @@ class ProfileScreen extends GetView<ProfileController> {
             right: 0,
             child: GestureDetector(
               onTap: () {
-                // selectImage();
+                controller.changedAvatar();
               },
               child: Container(
                 width: 32,
