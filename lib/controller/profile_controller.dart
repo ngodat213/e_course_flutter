@@ -49,6 +49,8 @@ class ProfileController extends GetxController {
     currentAccount.value = _homeController.currentAccount.value;
   }
 
+  void changedAvatar() {}
+
   void onPressChangedPassword() async {
     if (newpasswordController.text == confimpasswordController.text &&
         newpasswordController != "") {
