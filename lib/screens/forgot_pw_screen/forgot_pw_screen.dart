@@ -20,10 +20,10 @@ class ForgotPwScreen extends GetView<ForgotPwController> {
         title: Padding(
           padding: const EdgeInsets.all(23),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               BaseText(
-                text: S.of(context).login,
+                text: S.of(context).forgotPassword,
                 textAlign: TextAlign.center,
                 style: TxtStyle.h3.copyWith(color: AppColors.input),
                 duration: const Duration(milliseconds: 1500),

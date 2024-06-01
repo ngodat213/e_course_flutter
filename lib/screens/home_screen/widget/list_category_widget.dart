@@ -18,7 +18,8 @@ class ListCategoryWidget extends GetView<HomeController> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              controller.onPressCategory(controller.categorys[index].id, index);
+              controller.onPressCategory(
+                  controller.categorys[index].id!, index);
             },
             child: Container(
               margin: const EdgeInsets.only(right: 10),
@@ -28,7 +29,7 @@ class ListCategoryWidget extends GetView<HomeController> {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                controller.categorys[index].category,
+                controller.categorys[index].category!,
                 style: TxtStyle.inputStyle.copyWith(
                   fontWeight: index == 0 ? FontWeight.w600 : FontWeight.w500,
                   color: index == 0 ? AppColors.main : AppColors.input,

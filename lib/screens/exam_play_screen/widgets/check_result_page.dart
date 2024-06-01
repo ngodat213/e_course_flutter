@@ -1,5 +1,5 @@
 import 'package:e_course_flutter/controller/exam_play_controller.dart';
-import 'package:e_course_flutter/managers/manager_path_routes.dart';
+import 'package:e_course_flutter/screens/exam_play_screen/widgets/bottom_button_widget.dart';
 import 'package:e_course_flutter/screens/exam_play_screen/widgets/current_question.dart';
 import 'package:e_course_flutter/screens/exam_play_screen/widgets/option_widget.dart';
 import 'package:e_course_flutter/screens/exam_play_screen/widgets/question_title.dart';
@@ -16,7 +16,7 @@ class CheckResultPage extends GetView<ExamPlayController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: const BottomButtonWidget(),
+      bottomNavigationBar: const BottomButtonWidget(),
       backgroundColor: AppColors.white,
       body: SingleChildScrollView(
         child: SafeArea(

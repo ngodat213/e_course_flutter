@@ -17,7 +17,7 @@ class ExamPlayPage extends GetView<ExamPlayController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: const BottomButtonWidget(),
+      bottomNavigationBar: const BottomButtonWidget(),
       backgroundColor: AppColors.white,
       body: SingleChildScrollView(
         child: SafeArea(

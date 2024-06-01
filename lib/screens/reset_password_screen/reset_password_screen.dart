@@ -4,8 +4,6 @@ import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/images.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:e_course_flutter/widgets/base_text.dart';
-import 'package:e_course_flutter/widgets/build_button.dart';
-import 'package:e_course_flutter/widgets/build_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

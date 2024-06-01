@@ -10,30 +10,30 @@ class QuestionTitle extends GetView<ExamPlayController> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.all(25),
-          child: Text(
-            controller.currentLesson.questions![controller.currentIndex.value]
-                .question,
-            style: TxtStyle.text,
-          ),
-        ),
-        if (controller.currentLesson.questions![controller.currentIndex.value]
-                .imagePath !=
-            null)
-          Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: 8,
-              horizontal: 25,
+    return Obx(() => Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.all(25),
+              child: Text(
+                controller.currentLesson
+                    .questions![controller.currentIndex.value].question!,
+                style: TxtStyle.text,
+              ),
             ),
-            child: Image.network(
-              controller.currentLesson.questions![controller.currentIndex.value]
-                  .imagePath!,
-            ),
-          ),
-      ],
-    );
+            if (controller.currentLesson
+                    .questions![controller.currentIndex.value].imageUrl !=
+                null)
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 25,
+                ),
+                child: Image.network(
+                  controller.currentLesson
+                      .questions![controller.currentIndex.value].imageUrl!,
+                ),
+              ),
+          ],
+        ));
   }
 }

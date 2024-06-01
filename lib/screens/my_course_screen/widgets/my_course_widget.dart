@@ -3,6 +3,7 @@ import 'package:e_course_flutter/models/course.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 
 class MyCourseWidget extends GetView<MyCourseController> {
@@ -40,6 +41,9 @@ class MyCourseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.fromLTRB(25, 10, 25, 0),
+      decoration: const BoxDecoration(
+        color: AppColors.white,
+      ),
       child: Row(
         children: [
           ClipRRect(
@@ -58,8 +62,7 @@ class MyCourseCard extends StatelessWidget {
             width: Get.width * 0.52,
             height: Get.height * 0.12,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              boxShadow: AppColors.shadow,
+            decoration: const BoxDecoration(
               color: AppColors.white,
             ),
             child: Column(
@@ -72,14 +75,22 @@ class MyCourseCard extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 2),
                 Text(
-                  course.description!,
-                  maxLines: 1,
+                  course.teacher!.username!,
                   style: TxtStyle.p,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                Text('Lesson 1: How to install Flutter', style: TxtStyle.text),
+                Html(
+                  data: course.description,
+                  style: {
+                    "p": Style(
+                      margin: Margins.zero,
+                      textOverflow: TextOverflow.ellipsis,
+                      fontSize: FontSize(12.0),
+                    ),
+                  },
+                ),
               ],
             ),
           ),

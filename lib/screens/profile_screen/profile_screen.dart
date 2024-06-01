@@ -14,7 +14,6 @@ class ProfileScreen extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: AppBar(title: TitleScreen(title: S.of(context).accountSetting)),
       body: SafeArea(
         child: Obx(
           () => controller.isShowLoading
@@ -22,26 +21,32 @@ class ProfileScreen extends GetView<ProfileController> {
               : SingleChildScrollView(
                   child: Stack(
                     children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 25,
-                        ),
-                        width: MediaQuery.of(context).size.width,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _ChangedAvatar(),
-                            const SizedBox(height: 12),
-                            Center(
-                              child: Text(
-                                  controller.currentAccount.value.username!,
-                                  style: TxtStyle.h3),
+                      Column(
+                        children: [
+                          const SizedBox(height: 100),
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 25,
                             ),
-                            const SizedBox(height: 25),
-                            const BuildUserSetting(),
-                          ],
-                        ),
+                            width: MediaQuery.of(context).size.width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _ChangedAvatar(),
+                                const SizedBox(height: 12),
+                                Center(
+                                  child: Text(
+                                      controller.currentAccount.value.username!,
+                                      style: TxtStyle.h3),
+                                ),
+                                const SizedBox(height: 25),
+                                const BuildUserSetting(),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
+                      TitleScreen(title: S.of(context).accountSetting),
                     ],
                   ),
                 ),

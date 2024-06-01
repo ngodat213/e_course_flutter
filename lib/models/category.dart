@@ -1,18 +1,21 @@
 class Category {
-  final String id;
-  final String category;
+  String? id;
+  String? category;
+  String? deleteAt;
 
-  Category({required this.id, required this.category});
+  Category({this.id, this.category, this.deleteAt});
 
-  factory Category.fromJson(Map<String, dynamic> json) {
-    return Category(
-      id: json["_id"],
-      category: json["category"],
-    );
+  Category.fromJson(Map<String, dynamic> json) {
+    id = json['_id'];
+    category = json['category'];
+    deleteAt = json['deleteAt'];
   }
 
-  Map<String, dynamic> toJson() => {
-        '_id': id,
-        'category': category,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = id;
+    data['category'] = category;
+    data['deleteAt'] = deleteAt;
+    return data;
+  }
 }

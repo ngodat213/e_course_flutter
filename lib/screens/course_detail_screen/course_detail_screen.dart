@@ -3,7 +3,9 @@ import 'package:e_course_flutter/screens/course_detail_screen/widget/register_bu
 import 'package:e_course_flutter/screens/course_detail_screen/widget/tab_lesson.dart';
 import 'package:e_course_flutter/screens/course_detail_screen/widget/tab_review.dart';
 import 'package:e_course_flutter/screens/course_detail_screen/widget/video_player.dart';
+import 'package:e_course_flutter/widgets/readmore_html.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/themes/colors.dart';
@@ -97,11 +99,11 @@ class CourseDetailScreen extends GetView<CourseDetailController> {
   }
 
   Widget _courseDescription(BuildContext context) {
-    return ReadMoreText(
-      controller.course.value.description!,
+    return ReadMoreHtml(
+      htmlContent: controller.course.value.description!,
       trimLines: 2,
-      trimCollapsedText: S.of(context).readmore,
-      trimExpandedText: S.of(context).showless,
+      trimCollapsedText: 'Read more',
+      trimExpandedText: 'Show less',
       style: TxtStyle.text.copyWith(color: const Color(0xFF93989A)),
     );
   }

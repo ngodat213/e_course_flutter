@@ -1,35 +1,64 @@
 class CourseVideo {
-  final String? id;
-  final String? title;
-  final int? part;
-  final String? videoUrl;
-  final String? videoPublicId;
-  final String? description;
-  final int? hour;
-  final int? minute;
-  final String? lesson;
+  String? id;
+  int? part;
+  String? title;
+  int? hour;
+  int? minute;
+  String? videoUrl;
+  String? videoPublicId;
+  String? lesson;
+  String? createdAt;
+  String? updatedAt;
+  int? iV;
+  String? description;
+  String? deleteAt;
 
-  const CourseVideo({
-    this.id,
-    this.title,
-    this.part,
-    this.videoUrl,
-    this.videoPublicId,
-    this.description,
-    this.hour,
-    this.minute,
-    this.lesson,
-  });
+  CourseVideo(
+      {this.id,
+      this.part,
+      this.title,
+      this.hour,
+      this.minute,
+      this.videoUrl,
+      this.videoPublicId,
+      this.lesson,
+      this.createdAt,
+      this.updatedAt,
+      this.iV,
+      this.description,
+      this.deleteAt});
 
-  factory CourseVideo.fromDoc(Map<String, dynamic> json) => CourseVideo(
-        id: json['_id'],
-        title: json['title'],
-        part: json['part'],
-        videoUrl: json['videoUrl'],
-        videoPublicId: json['videoPublicId'],
-        description: json['description'],
-        hour: json['hour'],
-        lesson: json['lesson'],
-        minute: json['minute'],
-      );
+  CourseVideo.fromJson(Map<String, dynamic> json) {
+    id = json['_id'];
+    part = json['part'];
+    title = json['title'];
+    hour = json['hour'];
+    minute = json['minute'];
+    videoUrl = json['videoUrl'];
+    videoPublicId = json['videoPublicId'];
+    lesson = json['lesson'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    iV = json['__v'];
+    description = json['description'];
+    deleteAt = json['deleteAt'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = id;
+    data['part'] = part;
+    data['title'] = title;
+    data['hour'] = hour;
+    data['minute'] = minute;
+    data['videoUrl'] = videoUrl;
+    data['videoPublicId'] = videoPublicId;
+    data['lesson'] = lesson;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['__v'] = iV;
+    data['description'] = description;
+    data['deleteAt'] = deleteAt;
+    return data;
+  }
 }

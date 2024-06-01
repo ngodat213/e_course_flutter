@@ -11,6 +11,9 @@ class CourseVideoScreen extends StatefulWidget {
 class _SplashScreenState extends State<CourseVideoScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: CourseVideoContent());
+    return const Scaffold(
+      backgroundColor: Colors.white,
+      body: CourseVideoContent(),
+    );
   }
 }

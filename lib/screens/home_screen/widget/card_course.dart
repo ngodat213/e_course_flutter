@@ -1,8 +1,6 @@
-import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/models/course.dart';
 import 'package:e_course_flutter/models/course_lesson.dart';
 import 'package:e_course_flutter/themes/colors.dart';
-import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:e_course_flutter/widgets/skeleton_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -19,10 +17,10 @@ class CardSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 150,
-      margin: const EdgeInsets.only(top: 18, left: 25, right: 25),
+      height: 168,
+      margin: const EdgeInsets.only(top: 18, bottom: 18, left: 25, right: 25),
       decoration: BoxDecoration(
-        color: AppColors.main,
+        boxShadow: AppColors.shadow,
         borderRadius: BorderRadius.circular(16),
       ),
       child: ClipRRect(

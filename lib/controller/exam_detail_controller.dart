@@ -67,27 +67,7 @@ class ExamDetailController extends GetxController
         case ApiStatus.SUCCEEDED:
           {
             examLessons.value = List<ExamLesson>.from(
-                value.object.map((x) => ExamLesson.fromDoc(x)));
-            for (ExamLesson lesson in examLessons) {
-              await _baseAPI
-                  .fetchData(ManagerAddress.baseExamOfQuestion + lesson.id!,
-                      method: ApiMethod.GET)
-                  .then((value) {
-                switch (value.apiStatus) {
-                  case ApiStatus.SUCCEEDED:
-                    {
-                      lesson.questions = List<ExamQuestion>.from(
-                          value.object.map((x) => ExamQuestion.fromDoc(x)));
-                    }
-                  default:
-                    {
-                      printLogError('FAILED');
-                      Fluttertoast.showToast(msg: "Get data fail");
-                    }
-                }
-                return null;
-              });
-            }
+                value.object.map((x) => ExamLesson.fromJson(x)));
           }
         default:
           {

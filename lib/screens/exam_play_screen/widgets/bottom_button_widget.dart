@@ -9,9 +9,17 @@ class BottomButtonWidget extends GetView<ExamPlayController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: const Text('BottomButtonPage')),
-        body: const SafeArea(child: Text('BottomButtonController')));
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+      width: MediaQuery.of(context).size.width - 50,
+      child: const Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _BackButton(),
+          _NextButton(),
+        ],
+      ),
+    );
   }
 }
 

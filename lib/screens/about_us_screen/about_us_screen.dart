@@ -12,12 +12,13 @@ class AboutUsScreen extends GetView<ContactUsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Stack(
             children: [
               const AboutUsWidget(),
-              TitleScreen(title: S.of(context).commonInfo),
+              TitleScreen(title: S.of(context).aboutUs),
               BuildBackButton(top: 24),
             ],
           ),

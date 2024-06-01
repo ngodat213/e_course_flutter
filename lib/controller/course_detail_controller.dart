@@ -34,7 +34,7 @@ class CourseDetailController extends GetxController
   late RxDouble rating = 5.0.obs;
 
   Rx<Course> course = Course().obs;
-  Rx<CourseVideo> currentVideo = const CourseVideo().obs;
+  Rx<CourseVideo> currentVideo = CourseVideo().obs;
   RxList<CourseLesson> courseLessons = RxList<CourseLesson>();
   RxList<CourseFeedback> feedbacks = RxList<CourseFeedback>();
 
@@ -180,29 +180,8 @@ class CourseDetailController extends GetxController
         case ApiStatus.SUCCEEDED:
           {
             courseLessons.value = List<CourseLesson>.from(
-                value.object.map((x) => CourseLesson.fromDoc(x)));
-            for (CourseLesson lesson in courseLessons) {
-              await _baseAPI
-                  .fetchData(ManagerAddress.baseVideosOfLesson + lesson.id!,
-                      method: ApiMethod.GET)
-                  .then((value) {
-                switch (value.apiStatus) {
-                  case ApiStatus.SUCCEEDED:
-                    {
-                      lesson.videos = List<CourseVideo>.from(
-                          value.object.map((x) => CourseVideo.fromDoc(x)));
-                    }
-                  default:
-                    {
-                      printLogError('FAILED');
-                      Fluttertoast.showToast(msg: "Get data fail");
-                    }
-                }
-                return null;
-              });
-            }
+                value.object.map((x) => CourseLesson.fromJson(x)));
           }
-
         default:
           {
             printLogError('FAILED');

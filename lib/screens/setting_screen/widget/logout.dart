@@ -33,6 +33,7 @@ class LogoutTile extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: AppColors.white,
           title: Row(
             children: [
               const Padding(
@@ -67,7 +68,8 @@ class LogoutTile extends StatelessWidget {
                 backgroundColor:
                     MaterialStatePropertyAll<Color>(AppColors.main),
               ),
-              child: Text(S.of(context).logout, style: TxtStyle.p),
+              child: Text(S.of(context).logout,
+                  style: TxtStyle.p.copyWith(color: AppColors.white)),
             )
           ],
         );

@@ -4,6 +4,7 @@ import 'package:e_course_flutter/models/exam_lesson.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:e_course_flutter/widgets/back_button.dart';
+import 'package:e_course_flutter/widgets/readmore_html.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
@@ -105,11 +106,11 @@ class BuildContent extends GetView<ExamDetailController> {
             Text(controller.exam.value.title!, style: TxtStyle.h2),
             const SizedBox(height: 6),
             const SizedBox(height: 16),
-            ReadMoreText(
-              controller.exam.value.description!,
+            ReadMoreHtml(
+              htmlContent: controller.exam.value.description!,
               trimLines: 2,
-              trimCollapsedText: S.of(context).readmore,
-              trimExpandedText: S.of(context).showless,
+              trimCollapsedText: 'Read more',
+              trimExpandedText: 'Show less',
               style: TxtStyle.text.copyWith(color: const Color(0xFF93989A)),
             ),
             const SizedBox(height: 32),

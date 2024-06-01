@@ -12,15 +12,18 @@ class CurrentQuestion extends GetView<ExamPlayController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 50,
-      decoration: const BoxDecoration(color: AppColors.main),
-      child: Center(
-        child: Text(
-            '${S.of(context).question} ${controller.currentIndex}/${controller.currentLesson.questions!.length}',
-            style: TxtStyle.p.copyWith(color: AppColors.white)),
-      ),
-    );
+    return Obx(() {
+      var currentIndex = controller.currentIndex.value + 1;
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        height: 50,
+        decoration: const BoxDecoration(color: AppColors.main),
+        child: Center(
+          child: Text(
+              '${S.of(context).question} $currentIndex/${controller.currentLesson.questions!.length}',
+              style: TxtStyle.p.copyWith(color: AppColors.white)),
+        ),
+      );
+    });
   }
 }

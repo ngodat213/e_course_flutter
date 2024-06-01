@@ -19,7 +19,7 @@ class OptionWidget extends GetView<ExamPlayController> {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: controller.currentLesson
-                .questions![controller.currentIndex.value].options.length,
+                .questions![controller.currentIndex.value].options!.length,
             itemBuilder: (context, index) {
               return OptionChooice(index: index);
             },
@@ -32,7 +32,7 @@ class OptionWidget extends GetView<ExamPlayController> {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: controller.currentLesson
-                .questions![controller.currentIndex.value].options.length,
+                .questions![controller.currentIndex.value].options!.length,
             itemBuilder: (context, index) {
               int chooice = 0;
               if (userChooises[currentIndex] != -1) {
@@ -50,7 +50,7 @@ class OptionWidget extends GetView<ExamPlayController> {
                 chooice = -1;
               }
               return _OptionResult(
-                option: questions[currentIndex].options[index],
+                option: questions[currentIndex].options![index],
                 chooice: chooice,
               );
             },
@@ -76,7 +76,7 @@ class OptionChooice extends GetView<ExamPlayController> {
       final int currentIndex = controller.currentIndex.value;
       final isSelected = index == controller.userChooise[currentIndex];
       final String option =
-          controller.currentLesson.questions![currentIndex].options[index];
+          controller.currentLesson.questions![currentIndex].options![index];
       return GestureDetector(
         onTap: () {
           controller.userChooise[currentIndex] = index;

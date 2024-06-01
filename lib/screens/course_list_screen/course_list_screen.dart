@@ -6,7 +6,6 @@ import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:e_course_flutter/widgets/back_button.dart';
 import 'package:e_course_flutter/widgets/base_text.dart';
-import 'package:e_course_flutter/widgets/skeleton_widget.dart';
 import 'package:e_course_flutter/widgets/title_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,6 +16,7 @@ class CourseListScreen extends GetView<CourseListController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Stack(
@@ -33,7 +33,7 @@ class CourseListScreen extends GetView<CourseListController> {
                   const SizedBox(height: 70),
                 ],
               ),
-              TitleScreen(title: S.of(context).yourCourse),
+              TitleScreen(title: S.of(context).populraCourse),
               BuildBackButton(top: 24),
             ],
           ),
@@ -74,6 +74,7 @@ class CourseListScreen extends GetView<CourseListController> {
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          mainAxisExtent: 150,
           crossAxisCount: 2,
           mainAxisSpacing: 15,
           crossAxisSpacing: 15,
@@ -92,40 +93,27 @@ class CourseListScreen extends GetView<CourseListController> {
     );
   }
 
-  Stack _cardCourse(List<Course> courses, int index) {
-    return Stack(
+  Widget _cardCourse(List<Course> courses, int index) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          child: Image.network(
-            courses[index].imageIntroduce!,
-            fit: BoxFit.cover,
-            width: 200,
-            height: 200,
-            loadingBuilder: (BuildContext context, Widget child,
-                ImageChunkEvent? loadingProgress) {
-              if (loadingProgress == null) return child;
-              return const Skeleton(radius: 8);
-            },
-            errorBuilder: (context, error, stackTrace) {
-              return const Skeleton(radius: 8);
-            },
-          ),
-        ),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                courses[index].title!,
-                style: TxtStyle.text.copyWith(color: AppColors.white),
-              ),
-              Text('Hydra', style: TxtStyle.p),
-            ],
+          width: Get.width / 2,
+          height: Get.width / 4,
+          decoration: BoxDecoration(
+            boxShadow: AppColors.shadow,
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
+            image: DecorationImage(
+                image: NetworkImage(courses[index].imageIntroduce!),
+                fit: BoxFit.cover),
           ),
         ),
+        Text(
+          courses[index].title!,
+          style: TxtStyle.text,
+          overflow: TextOverflow.ellipsis,
+        ),
+        Text(courses[index].teacher!.username!, style: TxtStyle.p),
       ],
     );
   }
@@ -141,7 +129,7 @@ class CourseListScreen extends GetView<CourseListController> {
           return GestureDetector(
             onTap: () {
               controller.onChangedCategory(
-                  controller.categorys[index].id, index);
+                  controller.categorys[index].id!, index);
             },
             child: Container(
               margin: const EdgeInsets.only(right: 10),
@@ -153,7 +141,7 @@ class CourseListScreen extends GetView<CourseListController> {
               child: Obx(
                 () {
                   return Text(
-                    controller.categorys[index].category,
+                    controller.categorys[index].category!,
                     style: TxtStyle.inputStyle.copyWith(
                       fontWeight: index == controller.currentCategory.value
                           ? FontWeight.w600

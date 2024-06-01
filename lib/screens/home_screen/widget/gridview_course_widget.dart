@@ -3,7 +3,6 @@ import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
-import 'package:e_course_flutter/widgets/skeleton_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +22,7 @@ class GridViewCourseWidget extends GetView<HomeController> {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              mainAxisExtent: 140,
               crossAxisCount: 2,
               mainAxisSpacing: 15,
               crossAxisSpacing: 15,
@@ -34,25 +34,28 @@ class GridViewCourseWidget extends GetView<HomeController> {
                 onTap: () {
                   controller.onPressCourse(courses[index]);
                 },
-                child: Stack(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      child: Image.network(
-                        courses[index].imageIntroduce!,
-                        fit: BoxFit.cover,
-                        width: 200,
-                        height: 200,
-                        loadingBuilder: (BuildContext context, Widget child,
-                            ImageChunkEvent? loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return const Skeleton(radius: 8);
-                        },
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Skeleton(radius: 8);
-                        },
+                    Container(
+                      width: Get.width / 2,
+                      height: Get.width / 4,
+                      decoration: BoxDecoration(
+                        boxShadow: AppColors.shadow,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8)),
+                        image: DecorationImage(
+                            image: NetworkImage(courses[index].imageIntroduce!),
+                            fit: BoxFit.cover),
                       ),
                     ),
+                    const SizedBox(height: 8),
+                    Text(
+                      courses[index].title!,
+                      style: TxtStyle.text,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(courses[index].teacher!.username!, style: TxtStyle.p),
                   ],
                 ),
               ),

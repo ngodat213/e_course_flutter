@@ -3,6 +3,7 @@ import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 
 class RecommentWidget extends GetView<MyCourseController> {
@@ -32,7 +33,6 @@ class RecommentWidget extends GetView<MyCourseController> {
                   margin: const EdgeInsets.only(right: 10),
                   decoration: BoxDecoration(
                     color: AppColors.white,
-                    boxShadow: AppColors.shadow,
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Stack(
@@ -45,7 +45,7 @@ class RecommentWidget extends GetView<MyCourseController> {
                                 topRight: Radius.circular(25)),
                             child: Image.network(
                               width: Get.width * 0.6,
-                              height: Get.height * 0.12,
+                              height: Get.height * 0.11,
                               fit: BoxFit.cover,
                               controller.courses[index].imageIntroduce!,
                             ),
@@ -67,15 +67,19 @@ class RecommentWidget extends GetView<MyCourseController> {
                                 Text(
                                   controller.courses[index].title!,
                                   style: TxtStyle.button,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                Text(
-                                  controller.courses[index].description!,
-                                  style: TxtStyle.p,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                )
+                                ),
+                                Html(
+                                  data: controller.courses[index].description,
+                                  style: {
+                                    "p": Style(
+                                      margin: Margins.zero,
+                                      textOverflow: TextOverflow.ellipsis,
+                                      fontSize: FontSize(12.0),
+                                    ),
+                                  },
+                                ),
                               ],
                             ),
                           ),

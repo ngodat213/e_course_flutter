@@ -12,6 +12,7 @@ class MyCourseScreen extends GetView<MyCourseController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
           child: Obx(
         () => controller.isShowLoading
@@ -31,7 +32,6 @@ class MyCourseScreen extends GetView<MyCourseController> {
                         ],
                       ),
                     ),
-                    const SearchCourseWidget(),
                     const SizedBox(height: 10),
                     const MyCourseWidget(),
                     const SizedBox(height: 15),
