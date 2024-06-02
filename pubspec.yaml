@@ -41,11 +41,11 @@ dependencies:
   # HTTP
   http: ^1.2.1
   dio: ^5.4.1
+  connectivity_plus: ^5.0.2
   jwt_decoder: ^2.0.1
 
   #DOTENV
   flutter_dotenv: ^5.1.0
-  connectivity_plus: ^5.0.2
 
   #VIDEO PLAYER
   video_player: ^2.7.1

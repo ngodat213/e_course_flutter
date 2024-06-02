@@ -1,3 +1,4 @@
+import 'package:e_course_flutter/controller/setting_controller.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/themes/colors.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class SettingMenu extends StatelessWidget {
+class SettingMenu extends GetView<SettingController> {
   const SettingMenu({super.key});
 
   @override
@@ -50,14 +51,16 @@ class SettingMenu extends StatelessWidget {
             },
           ),
           const _CustomDivider(),
-          SettingTile(
-            icons: Icons.language_outlined,
-            text: S.of(context).language,
-            subtitle: "English",
-            iconColor: AppColors.label,
-            onTap: () {
-              Get.toNamed(ManagerRoutes.changeLanguage);
-            },
+          Obx(
+            () => SettingTile(
+              icons: Icons.language_outlined,
+              text: S.of(context).language,
+              subtitle: controller.language.value,
+              iconColor: AppColors.label,
+              onTap: () {
+                Get.toNamed(ManagerRoutes.changeLanguage);
+              },
+            ),
           ),
           const _CustomDivider(),
           SettingTile(
@@ -66,7 +69,6 @@ class SettingMenu extends StatelessWidget {
             subtitle: S.of(context).aboutUs,
             iconColor: AppColors.label,
             onTap: () {
-              // context.read<CommoInfoCubit>().indexChanged(0);
               Get.toNamed(ManagerRoutes.aboutUsScreen);
             },
           ),

@@ -12,7 +12,7 @@ class HomeController extends GetxController {
 
   RxInt dotIndicator = 0.obs;
   Rx<Course> currentCourse = Course().obs;
-  Rx<Exam> currentExam = const Exam().obs;
+  Rx<Exam> currentExam = Exam().obs;
 
   late List<Course> courses;
   late List<Category> categorys;

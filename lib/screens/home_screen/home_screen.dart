@@ -25,6 +25,7 @@ class HomeScreen extends GetView<HomeController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 10),
                     WelcomeUserWidget(),
                     CourseSliderWidget(),
                     Column(

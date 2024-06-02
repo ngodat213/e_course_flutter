@@ -16,11 +16,11 @@ class AppColors {
   static const Color star = Color(0xFFFFD23D);
 
   static List<BoxShadow> shadow = [
-    const BoxShadow(
-      color: Colors.white70,
-      spreadRadius: 1,
-      blurRadius: 0.5,
-      offset: Offset(0, 1),
+    BoxShadow(
+      color: Colors.grey.withOpacity(0.2),
+      spreadRadius: 2,
+      blurRadius: 2,
+      offset: const Offset(0, 1),
     )
   ];
 }

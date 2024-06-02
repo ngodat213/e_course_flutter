@@ -5,7 +5,6 @@ import 'package:e_course_flutter/screens/course_detail_screen/widget/tab_review.
 import 'package:e_course_flutter/screens/course_detail_screen/widget/video_player.dart';
 import 'package:e_course_flutter/widgets/readmore_html.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/themes/colors.dart';
@@ -13,7 +12,6 @@ import 'package:e_course_flutter/themes/images.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:e_course_flutter/widgets/back_button.dart';
 import 'package:get/get.dart';
-import 'package:readmore/readmore.dart';
 
 class CourseDetailScreen extends GetView<CourseDetailController> {
   const CourseDetailScreen({super.key});
@@ -126,17 +124,11 @@ class CourseDetailScreen extends GetView<CourseDetailController> {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Obx(
-            () => controller.isFav.value
-                ? const Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                    size: 16,
-                  )
-                : const Icon(
-                    Icons.favorite,
-                    color: Colors.grey,
-                    size: 16,
-                  ),
+            () => Icon(
+              controller.isFav.value ? Icons.favorite : Icons.favorite_border,
+              color: controller.isFav.value ? Colors.red : Colors.grey,
+              size: 16,
+            ),
           ),
         ),
       ),

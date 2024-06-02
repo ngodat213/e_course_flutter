@@ -68,15 +68,13 @@ class CourseDetailController extends GetxController
   void onClose() {
     tabController.dispose();
     videoPlayerController.dispose();
+    chewieController.pause();
     chewieController.dispose();
     super.onClose();
   }
 
-  void handleUser() {
-    currentUser = _mainController.currentAccount.value;
-  }
-
   void initVideoPlayer(String videoUrl) {
+    _isShowLoading.value = true;
     videoPlayerController =
         VideoPlayerController.networkUrl(Uri.parse(videoUrl));
     initializeVideoPlayerFuture = videoPlayerController.initialize();
@@ -89,6 +87,69 @@ class CourseDetailController extends GetxController
         return Center(child: Text(errorMessage, style: TxtStyle.p));
       },
     );
+    _isShowLoading.value = false;
+  }
+
+  void handleUser() {
+    currentUser = _mainController.currentAccount.value;
+  }
+
+  // Course
+  void handleCurrentCourse() {
+    course.value = _homeController.currentCourse.value;
+  }
+
+  Future<void> handleCourseLesson() async {
+    await _baseAPI
+        .fetchData(ManagerAddress.baseCourseLessonOf + course.value.id!,
+            method: ApiMethod.GET)
+        .then((value) async {
+      switch (value.apiStatus) {
+        case ApiStatus.SUCCEEDED:
+          {
+            courseLessons.value = List<CourseLesson>.from(
+                value.object.map((x) => CourseLesson.fromJson(x)));
+          }
+        default:
+          {
+            printLogError('FAILED');
+            Fluttertoast.showToast(msg: "Get data fail");
+          }
+      }
+    });
+  }
+
+  // Feedback
+  void onPressFeedback() async {
+    final User user = _mainController.currentAccount.value;
+    final String token = await BaseSharedPreferences.getStringValue(
+        ManagerKeyStorage.accessToken);
+    Map<String, dynamic> body = {
+      "user": user.id,
+      "course": course.value.id,
+      "title": feedbackEditingController.text,
+      "rating": rating.value,
+    };
+
+    final headers = {"Authorization": "Bearer $token"};
+    _baseAPI
+        .fetchData(ManagerAddress.baseFeedback,
+            headers: headers, body: body, method: ApiMethod.POST)
+        .then((value) async {
+      switch (value.apiStatus) {
+        case ApiStatus.SUCCEEDED:
+          {
+            handleFeedback();
+            isFeedback.value = false;
+            Fluttertoast.showToast(msg: "Thank you your feedback");
+            break;
+          }
+        default:
+          {
+            Fluttertoast.showToast(msg: "Error");
+          }
+      }
+    });
   }
 
   void handleFeedback() {
@@ -147,15 +208,7 @@ class CourseDetailController extends GetxController
     });
   }
 
-  void handleIsFav() {
-    final User user = _mainController.currentAccount.value;
-    if (user.favouritesCourses!.contains(course.value.id)) {
-      isFav = true.obs;
-    } else {
-      isFav = false.obs;
-    }
-  }
-
+  // Order
   void handleIsOrder() {
     final User user = _mainController.currentAccount.value;
     if (user.courses!.contains(course.value.id)) {
@@ -163,64 +216,6 @@ class CourseDetailController extends GetxController
     } else {
       isOrder = false.obs;
     }
-    print("courses: ${user.courses}");
-    print("Is order ${isOrder.value}");
-  }
-
-  void handleCurrentCourse() {
-    course.value = _homeController.currentCourse.value;
-  }
-
-  Future<void> handleCourseLesson() async {
-    await _baseAPI
-        .fetchData(ManagerAddress.baseCourseLessonOf + course.value.id!,
-            method: ApiMethod.GET)
-        .then((value) async {
-      switch (value.apiStatus) {
-        case ApiStatus.SUCCEEDED:
-          {
-            courseLessons.value = List<CourseLesson>.from(
-                value.object.map((x) => CourseLesson.fromJson(x)));
-          }
-        default:
-          {
-            printLogError('FAILED');
-            Fluttertoast.showToast(msg: "Get data fail");
-          }
-      }
-    });
-  }
-
-  void onPressFeedback() async {
-    final User user = _mainController.currentAccount.value;
-    final String token = await BaseSharedPreferences.getStringValue(
-        ManagerKeyStorage.accessToken);
-    Map<String, dynamic> body = {
-      "user": user.id,
-      "course": course.value.id,
-      "title": feedbackEditingController.text,
-      "rating": rating.value,
-    };
-
-    final headers = {"Authorization": "Bearer $token"};
-    _baseAPI
-        .fetchData(ManagerAddress.baseFeedback,
-            headers: headers, body: body, method: ApiMethod.POST)
-        .then((value) async {
-      switch (value.apiStatus) {
-        case ApiStatus.SUCCEEDED:
-          {
-            handleFeedback();
-            isFeedback.value = false;
-            Fluttertoast.showToast(msg: "Thank you your feedback");
-            break;
-          }
-        default:
-          {
-            Fluttertoast.showToast(msg: "Error");
-          }
-      }
-    });
   }
 
   void onPressRegister() async {
@@ -289,13 +284,24 @@ class CourseDetailController extends GetxController
     });
   }
 
+  // Fav
+  void handleIsFav() {
+    final User user = _mainController.currentAccount.value;
+    if (user.favouritesCourses!.contains(course.value.id)) {
+      isFav = true.obs;
+    } else {
+      isFav = false.obs;
+    }
+  }
+
   void onPressFav() async {
+    _isShowLoading.value = true;
     final String token = await BaseSharedPreferences.getStringValue(
         ManagerKeyStorage.accessToken);
     final User user = _mainController.currentAccount.value;
     List<String> favs = user.favouritesCourses!;
 
-    if (isFav == true) {
+    if (isFav.value == true) {
       favs.remove(course.value.id!);
     } else {
       favs.add(course.value.id!);
@@ -319,10 +325,11 @@ class CourseDetailController extends GetxController
           }
         default:
           {
-            Fluttertoast.showToast(msg: "Email already exist");
+            Fluttertoast.showToast(msg: "Error add favorite");
           }
       }
     });
+    _isShowLoading.value = false;
   }
 
   void onRatingUpdate(double value) {
@@ -332,6 +339,8 @@ class CourseDetailController extends GetxController
   void onPressVideo(CourseVideo obj) {
     if (obj.id != "") {
       currentVideo.value = obj;
+      chewieController.pause();
+      chewieController.dispose();
       initVideoPlayer(obj.videoUrl!);
     }
   }

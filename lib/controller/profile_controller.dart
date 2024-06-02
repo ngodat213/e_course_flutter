@@ -1,7 +1,10 @@
 import 'dart:typed_data';
-
+import 'dart:io';
+import 'package:dio/dio.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:e_course_flutter/api/base_api.dart';
 import 'package:e_course_flutter/controller/home_screen_controller.dart';
+import 'package:e_course_flutter/controller/main_controller.dart';
 import 'package:e_course_flutter/managers/manager_address.dart';
 import 'package:e_course_flutter/managers/manager_key_storage.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
@@ -14,6 +17,7 @@ import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends GetxController {
   final HomeController _homeController = Get.find<HomeController>();
+  final MainController _mainController = Get.find<MainController>();
   // Update username
   TextEditingController usernameController = TextEditingController();
   // Update email
@@ -54,6 +58,10 @@ class ProfileController extends GetxController {
     currentAccount.value = _homeController.currentAccount.value;
   }
 
+  void fetchCurrentAccount() {
+    _mainController.getCurrentUser();
+  }
+
   static pickImage(ImageSource source) async {
     final ImagePicker imagePicker = ImagePicker();
     XFile? file = await imagePicker.pickImage(source: source);
@@ -64,7 +72,37 @@ class ProfileController extends GetxController {
   }
 
   void changedAvatar() async {
-    Uint8List img = await pickImage(ImageSource.gallery);
+    try {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+      if (pickedFile != null) {
+        final String token = await BaseSharedPreferences.getStringValue(
+            ManagerKeyStorage.accessToken);
+        Uint8List file = await pickedFile.readAsBytes();
+
+        BaseAPI baseAPI = BaseAPI();
+        baseAPI.fetchFormData(
+          ManagerAddress.accountAvatar + currentAccount.value.id!,
+          file: file,
+          headers: {"Authorization": "Bearer $token"},
+        ).then((value) async {
+          switch (value.apiStatus) {
+            case ApiStatus.SUCCEEDED:
+              Fluttertoast.showToast(msg: "Avatar will be update!");
+              fetchCurrentAccount();
+              setCurrentAccount();
+              break;
+            default:
+              Fluttertoast.showToast(msg: "Update avatar failed");
+          }
+        });
+      } else {
+        Fluttertoast.showToast(msg: 'No image selected.');
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: 'Error occurred: $e');
+    }
   }
 
   void onPressChangedPassword() async {
@@ -86,7 +124,6 @@ class ProfileController extends GetxController {
           case ApiStatus.SUCCEEDED:
             {
               Fluttertoast.showToast(msg: "Password has been changed");
-
               setCurrentAccount();
               Get.back();
               break;

@@ -9,8 +9,9 @@ import 'package:get/get.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
-  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
+
   Get.put(ChangeLanguageController());
   await Get.find<ChangeLanguageController>().getLang();
 
@@ -25,14 +26,13 @@ class MyApp extends GetView<MainAppController> {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        final local = controller.stateAppLang.value;
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           getPages: ManagerRoutes.manager,
           initialRoute: ManagerRoutes.splashScreen,
           // INTL
           supportedLocales: L10n.support,
-          locale: local,
+          locale: Get.find<ChangeLanguageController>().locale.value,
           localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,

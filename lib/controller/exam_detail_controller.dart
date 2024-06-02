@@ -18,7 +18,7 @@ class ExamDetailController extends GetxController
   late RxBool isFav;
   late TabController tabController;
 
-  Rx<Exam> exam = const Exam().obs;
+  Rx<Exam> exam = Exam().obs;
   RxList<ExamLesson> examLessons = <ExamLesson>[].obs;
   RxList<ExamQuestion> currentQuestions = RxList<ExamQuestion>();
   Rx<ExamLesson> currentLesson = ExamLesson().obs;
@@ -42,15 +42,6 @@ class ExamDetailController extends GetxController
     handleExamLesson();
     _isShowLoading.value = false;
     super.onInit();
-  }
-
-  void handleFav() {
-    final User user = _mainController.currentAccount.value;
-    if (user.favouritesExams!.contains(exam.value.id)) {
-      isFav = true.obs;
-    } else {
-      isFav = false.obs;
-    }
   }
 
   void handleCurrentExam() {
@@ -79,7 +70,18 @@ class ExamDetailController extends GetxController
     _isShowLoading.value = false;
   }
 
+  // Fav
+  void handleFav() {
+    final User user = _mainController.currentAccount.value;
+    if (user.favouritesExams!.contains(exam.value.id)) {
+      isFav = true.obs;
+    } else {
+      isFav = false.obs;
+    }
+  }
+
   void onPressFav() async {
+    _isShowLoading.value = true;
     final String token = await BaseSharedPreferences.getStringValue(
         ManagerKeyStorage.accessToken);
     final User user = _mainController.currentAccount.value;
@@ -109,14 +111,19 @@ class ExamDetailController extends GetxController
           }
         default:
           {
-            Fluttertoast.showToast(msg: "Email already exist");
+            Fluttertoast.showToast(msg: "Error add favorite");
           }
       }
     });
+    _isShowLoading.value = false;
   }
 
   void onPressLesson(ExamLesson obj) {
     currentLesson.value = obj;
-    Get.offNamed(ManagerRoutes.examPlayScreen);
+    if (obj.questions!.isEmpty) {
+      Fluttertoast.showToast(msg: "Test is empty!");
+    } else {
+      Get.offNamed(ManagerRoutes.examPlayScreen);
+    }
   }
 }

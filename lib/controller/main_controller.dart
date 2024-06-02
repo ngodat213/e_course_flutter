@@ -76,6 +76,7 @@ class MainController extends GetxController {
             {
               courses.value = List<Course>.from(
                   value.object.map((x) => Course.fromJson(x)));
+              courses.removeWhere((course) => course.deleteAt != null);
             }
         }
       },
@@ -94,6 +95,7 @@ class MainController extends GetxController {
             {
               categorys.value = List<Category>.from(
                   value.object.map((x) => Category.fromJson(x)));
+              categorys.removeWhere((category) => category.deleteAt != null);
             }
         }
       },
@@ -112,6 +114,7 @@ class MainController extends GetxController {
             {
               exams.value =
                   List<Exam>.from(value.object.map((x) => Exam.fromJson(x)));
+              exams.removeWhere((exam) => exam.deleteAt != null);
             }
         }
       },

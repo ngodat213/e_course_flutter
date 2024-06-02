@@ -1,16 +1,17 @@
 import 'package:e_course_flutter/models/models.dart';
 
 class Exam {
-  final String? id;
-  final String? title;
-  final String? imageUrl;
-  final String? imagePublicId;
-  final String? description;
-  final Category? category;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
+  String? id;
+  String? title;
+  String? imageUrl;
+  String? imagePublicId;
+  String? description;
+  Category? category;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? deleteAt;
 
-  const Exam({
+  Exam({
     this.id,
     this.title,
     this.imageUrl,
@@ -19,20 +20,21 @@ class Exam {
     this.imagePublicId,
     this.createdAt,
     this.updatedAt,
+    this.deleteAt,
   });
 
-  factory Exam.fromJson(Map<String, dynamic> json) => Exam(
-        id: json['_id'],
-        title: json['title'],
-        imageUrl: json['imageUrl'],
-        description: json['description'],
-        category: json['category'] != null
-            ? Category.fromJson(json['category'])
-            : null,
-        imagePublicId: json['imagePublicId'],
-        createdAt: DateTime.parse(json['createdAt']),
-        updatedAt: DateTime.parse(json['updatedAt']),
-      );
+  Exam.fromJson(Map<String, dynamic> json) {
+    id = json['_id'];
+    title = json['title'];
+    imageUrl = json['imageUrl'];
+    description = json['description'];
+    category =
+        json['category'] != null ? Category.fromJson(json['category']) : null;
+    imagePublicId = json['imagePublicId'];
+    createdAt = DateTime.parse(json['createdAt']);
+    updatedAt = DateTime.parse(json['updatedAt']);
+    deleteAt = json['deleteAt'];
+  }
 
   Map<String, dynamic> toJson() => {
         '_id': id,

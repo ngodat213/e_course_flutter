@@ -21,8 +21,8 @@ class GridViewCourseWidget extends GetView<HomeController> {
           GridView.custom(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisExtent: 140,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              mainAxisExtent: Get.width / 2.7,
               crossAxisCount: 2,
               mainAxisSpacing: 15,
               crossAxisSpacing: 15,

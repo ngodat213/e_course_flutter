@@ -29,10 +29,14 @@ class TabLesson extends GetView<CourseDetailController> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: controller.courseLessons.length,
                     itemBuilder: (context, index) {
-                      return _tabbarLessonContent(
-                          context,
-                          controller.courseLessons.value[index],
-                          controller.courseLessons.value[index].videos!);
+                      if (controller
+                          .courseLessons.value[index].videos!.isNotEmpty) {
+                        return _tabbarLessonContent(
+                            context,
+                            controller.courseLessons.value[index],
+                            controller.courseLessons.value[index].videos!);
+                      }
+                      return null;
                     },
                   ),
                 ),

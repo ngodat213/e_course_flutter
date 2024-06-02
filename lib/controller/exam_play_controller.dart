@@ -83,7 +83,7 @@ class ExamPlayController extends GetxController {
   }
 
   void onPressNext() {
-    if (currentIndex.value < currentLesson.questions!.length) {
+    if (currentIndex.value < currentLesson.questions!.length - 1) {
       currentIndex.value++;
     }
   }

@@ -72,17 +72,11 @@ class ExamDetailScreen extends GetView<ExamDetailController> {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Obx(
-            () => controller.isFav.value
-                ? const Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                    size: 16,
-                  )
-                : const Icon(
-                    Icons.favorite,
-                    color: Colors.grey,
-                    size: 16,
-                  ),
+            () => Icon(
+              controller.isFav.value ? Icons.favorite : Icons.favorite_border,
+              color: controller.isFav.value ? Colors.red : Colors.grey,
+              size: 16,
+            ),
           ),
         ),
       ),

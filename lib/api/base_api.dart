@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
@@ -106,11 +107,11 @@ class BaseAPI {
     return BaseDataAPI(object: response.data, apiStatus: ApiStatus.SUCCEEDED);
   }
 
-  Future<BaseDataAPI> fileUpload(url,
+  Future<BaseDataAPI> fileUpload(String url,
       {dynamic body,
       Map<String, dynamic>? headers,
       ApiMethod method = ApiMethod.POST,
-      required File file}) async {
+      required Uint8List file}) async {
     /// Check internet connection is available
     /// * If internet connection is not available,
     ///  return [ApiStatus.INTERNET_UNAVAILABLE]
@@ -135,9 +136,8 @@ class BaseAPI {
       Options options = Options();
       options.method = apiMethod[method];
       options.headers = headers;
-      String fileName = file.path.split('/').last;
       FormData formData = FormData.fromMap({
-        'file': await MultipartFile.fromFile(file.path, filename: fileName),
+        'file': MultipartFile.fromBytes(file, filename: 'upload.png'),
       });
       response =
           await _dio.request(domain + url, data: formData, options: options);
@@ -158,6 +158,43 @@ class BaseAPI {
     printLogSusscess('Success [${apiMethod[method]} API]: ${response.data}');
     printLogYellow(
         'END API ${apiMethod[method]}<---------------================|');
+    return BaseDataAPI(object: response.data, apiStatus: ApiStatus.SUCCEEDED);
+  }
+
+  Future<BaseDataAPI> fetchFormData(
+    String url, {
+    required Uint8List file,
+    Map<String, dynamic>? headers,
+  }) async {
+    /// Check internet connection is available
+    /// * If internet connection is not available,
+    ///  return [ApiStatus.INTERNET_UNAVAILABLE]
+    /// * If internet connection is available,
+    /// continue to fetch data
+    if (!(await Connectivity().checkConnectivity() !=
+        ConnectivityResult.none)) {
+      return BaseDataAPI(apiStatus: ApiStatus.INTERNET_UNAVAILABLE);
+    }
+
+    /// Continue to fetch data
+    /// response is response of API
+    Response response;
+    try {
+      Options options = Options();
+      options.headers = headers;
+      String fileName = 'upload.png'; // Default filename
+      FormData formData = FormData.fromMap({
+        'file': MultipartFile.fromBytes(file, filename: fileName),
+      });
+      response = await _dio.put(domain + url, data: formData, options: options);
+    } on DioError catch (e) {
+      return BaseDataAPI(apiStatus: ApiStatus.FAILED);
+    }
+
+    if (response.data is DioError) {
+      return BaseDataAPI(apiStatus: ApiStatus.FAILED);
+    }
+
     return BaseDataAPI(object: response.data, apiStatus: ApiStatus.SUCCEEDED);
   }
 }

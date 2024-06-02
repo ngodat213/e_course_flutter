@@ -15,6 +15,7 @@ class ManagerAddress {
   static const String baseAccount = 'users/';
   static const String accountLogin = '${baseAccount}login/';
   static const String accountCurrent = '${baseAccount}current/';
+  static const String accountAvatar = '${baseAccount}avatar/';
   static const String accountSignup = '${baseAccount}register/';
   static const String accountForgotPassword = '${baseAccount}forgot-password/';
   static const String accountResetPassword = '${baseAccount}reset-password/';

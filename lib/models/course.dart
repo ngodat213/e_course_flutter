@@ -17,6 +17,7 @@ class Course {
   Category? category;
   String? createdAt;
   String? updatedAt;
+  String? deleteAt;
 
   Course(
       {this.id,
@@ -34,7 +35,8 @@ class Course {
       this.teacher,
       this.category,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.deleteAt});
 
   Course.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
@@ -55,6 +57,7 @@ class Course {
         json['category'] != null ? Category.fromJson(json['category']) : null;
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
+    deleteAt = json['deleteAt'];
   }
 
   Map<String, dynamic> toJson() {
@@ -79,6 +82,7 @@ class Course {
     }
     data['createdAt'] = createdAt;
     data['updatedAt'] = updatedAt;
+    data['deleteAt'] = deleteAt;
     return data;
   }
 }
