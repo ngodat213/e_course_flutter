@@ -11,6 +11,7 @@ import 'package:e_course_flutter/screens/course_video_screen/course_video_bindin
 import 'package:e_course_flutter/screens/course_video_screen/course_video_screen.dart';
 import 'package:e_course_flutter/screens/exam_detail_screen/exam_detail_screen.dart';
 import 'package:e_course_flutter/screens/exam_detail_screen/exam_detail_screen_binding.dart';
+import 'package:e_course_flutter/screens/exam_list_screen/exam_list_screen.dart';
 import 'package:e_course_flutter/screens/exam_play_screen/exam_play_binding.dart';
 import 'package:e_course_flutter/screens/favorite_course_screen/favorite_course_binding.dart';
 import 'package:e_course_flutter/screens/favorite_course_screen/favorite_course_screen.dart';

@@ -1,4 +1,3 @@
-import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/models/models.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/images.dart';
@@ -57,22 +56,10 @@ class CardExam extends StatelessWidget {
                   children: [
                     Text(
                       quiz.title!,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
                       style: TxtStyle.label.copyWith(color: AppColors.white),
                     ),
-                    Expanded(child: Container()),
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          Images.iconClock,
-                          color: AppColors.white,
-                        ),
-                        const SizedBox(width: 8),
-                        // Text(
-                        //   '${quiz.lessons!.length} ${S.of(context).lesson}',
-                        //   style: TxtStyle.p,
-                        // )
-                      ],
-                    )
                   ],
                 ),
               ),

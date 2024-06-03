@@ -1,4 +1,5 @@
 import 'package:e_course_flutter/controller/course_list_controller.dart';
+import 'package:e_course_flutter/controller/exam_list_controller.dart';
 import 'package:e_course_flutter/controller/main_controller.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/models/models.dart';
@@ -9,6 +10,7 @@ class HomeController extends GetxController {
   final MainController _mainController = Get.find<MainController>();
   final CourseListController _courseListController =
       Get.find<CourseListController>();
+  final ExamListController _examListController = Get.find<ExamListController>();
 
   RxInt dotIndicator = 0.obs;
   Rx<Course> currentCourse = Course().obs;

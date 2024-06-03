@@ -106,8 +106,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordExample": MessageLookupByLibrary.simpleMessage("********"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Số điện thoại"),
         "point": MessageLookupByLibrary.simpleMessage("Điểm"),
-        "populraCourse":
+        "populrarCourse":
             MessageLookupByLibrary.simpleMessage("Khóa học phổ biến"),
+        "populrarExam": MessageLookupByLibrary.simpleMessage("Đề thi phổ biến"),
         "profileDetail": MessageLookupByLibrary.simpleMessage("Chi tiết hồ sơ"),
         "progressTitle": MessageLookupByLibrary.simpleMessage(
             "Chào mừng bạn đến với E-Course"),
@@ -122,8 +123,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "review": MessageLookupByLibrary.simpleMessage("Nhận xét"),
         "save": MessageLookupByLibrary.simpleMessage("Lưu"),
         "search": MessageLookupByLibrary.simpleMessage("Tìm kiếm"),
-        "searchTitle": MessageLookupByLibrary.simpleMessage(
-            "Tìm kiếm khóa học, bài kiểm tra"),
+        "searchTitleCourse":
+            MessageLookupByLibrary.simpleMessage("Tìm kiếm khóa học ..."),
+        "searchTitleExam":
+            MessageLookupByLibrary.simpleMessage("Tìm kiếm bài kiểm tra ..."),
         "section": MessageLookupByLibrary.simpleMessage("Phần"),
         "seeAll": MessageLookupByLibrary.simpleMessage("Tất cả"),
         "selection": MessageLookupByLibrary.simpleMessage("Lựa chọn"),

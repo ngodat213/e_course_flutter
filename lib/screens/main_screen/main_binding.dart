@@ -1,4 +1,5 @@
 import 'package:e_course_flutter/controller/course_list_controller.dart';
+import 'package:e_course_flutter/controller/exam_list_controller.dart';
 import 'package:e_course_flutter/controller/home_screen_controller.dart';
 import 'package:e_course_flutter/controller/main_controller.dart';
 import 'package:e_course_flutter/controller/my_course_controller.dart';
@@ -10,6 +11,7 @@ class MainBinding extends Bindings {
   void dependencies() async {
     Get.put(MainController());
     Get.lazyPut(() => CourseListController());
+    Get.lazyPut(() => ExamListController());
     Get.lazyPut(() => MyCourseController());
     Get.lazyPut(() => SettingController());
     Get.lazyPut(() => HomeController());

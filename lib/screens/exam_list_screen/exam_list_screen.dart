@@ -1,7 +1,6 @@
-import 'package:e_course_flutter/controller/course_list_controller.dart';
+import 'package:e_course_flutter/controller/exam_list_controller.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
-import 'package:e_course_flutter/models/course.dart';
-import 'package:e_course_flutter/screens/my_course_screen/widgets/search_course_widget.dart';
+import 'package:e_course_flutter/models/exam.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:e_course_flutter/themes/text_styles.dart';
 import 'package:e_course_flutter/widgets/back_button.dart';
@@ -10,8 +9,8 @@ import 'package:e_course_flutter/widgets/title_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CourseListScreen extends GetView<CourseListController> {
-  const CourseListScreen({super.key});
+class ExamListScreen extends GetView<ExamListController> {
+  const ExamListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +24,41 @@ class CourseListScreen extends GetView<CourseListController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 90),
-                  const SearchCourseWidget(),
+                  _searchExam(context),
                   _listCategory(),
                   Obx(() {
-                    return _gridviewCourse(controller.courseSearch);
+                    return _gridviewCourse(controller.examSearch);
                   }),
                   const SizedBox(height: 70),
                 ],
               ),
-              TitleScreen(title: S.of(context).populrarCourse),
+              TitleScreen(title: S.of(context).populrarExam),
               BuildBackButton(top: 24),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _searchExam(BuildContext context) {
+    return Container(
+      height: 50,
+      width: Get.width,
+      margin: const EdgeInsets.symmetric(horizontal: 25),
+      decoration: BoxDecoration(
+        boxShadow: AppColors.shadow,
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: TextFormField(
+        onChanged: (value) => controller.onChangedSearch(value),
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(vertical: 17),
+          prefixIcon: const Icon(Icons.search),
+          hintText: S.of(context).searchTitleExam,
+          hintStyle: TxtStyle.description,
+          border: InputBorder.none,
         ),
       ),
     );
@@ -67,7 +89,7 @@ class CourseListScreen extends GetView<CourseListController> {
     );
   }
 
-  Container _gridviewCourse(List<Course> courses) {
+  Container _gridviewCourse(List<Exam> exams) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 25),
       child: GridView.custom(
@@ -81,19 +103,19 @@ class CourseListScreen extends GetView<CourseListController> {
           childAspectRatio: 1.6,
         ),
         childrenDelegate: SliverChildBuilderDelegate(
-          childCount: courses.length,
+          childCount: exams.length,
           (context, index) => GestureDetector(
             onTap: () {
-              controller.onPressCourse(courses[index]);
+              controller.onPressExam(exams[index]);
             },
-            child: _cardCourse(courses, index),
+            child: _cardCourse(exams, index),
           ),
         ),
       ),
     );
   }
 
-  Widget _cardCourse(List<Course> courses, int index) {
+  Widget _cardCourse(List<Exam> exams, int index) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -104,16 +126,15 @@ class CourseListScreen extends GetView<CourseListController> {
             boxShadow: AppColors.shadow,
             borderRadius: const BorderRadius.all(Radius.circular(8)),
             image: DecorationImage(
-                image: NetworkImage(courses[index].imageIntroduce!),
-                fit: BoxFit.cover),
+                image: NetworkImage(exams[index].imageUrl!), fit: BoxFit.cover),
           ),
         ),
+        const SizedBox(height: 10),
         Text(
-          courses[index].title!,
+          exams[index].title!,
           style: TxtStyle.text,
           overflow: TextOverflow.ellipsis,
         ),
-        Text(courses[index].teacher!.username!, style: TxtStyle.p),
       ],
     );
   }

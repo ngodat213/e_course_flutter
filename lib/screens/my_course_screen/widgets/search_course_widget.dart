@@ -24,7 +24,7 @@ class SearchCourseWidget extends GetView<CourseListController> {
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 17),
           prefixIcon: const Icon(Icons.search),
-          hintText: S.of(context).searchTitle,
+          hintText: S.of(context).searchTitleCourse,
           hintStyle: TxtStyle.description,
           border: InputBorder.none,
         ),

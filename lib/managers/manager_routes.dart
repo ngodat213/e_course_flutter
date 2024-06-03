@@ -14,6 +14,7 @@ class ManagerRoutes {
   static String homeScreen = '/home_screen';
   static String courseListScreen = '/course_list_screen';
   static String myCourseScreen = '/my_course_screen';
+  static String examListScreen = '/exam_list_screen';
   static String communityScreen = '/community_screen';
   static String courseVideoScreen = '/course_video_screen';
   static String courseDetailScreen = '/course_detail';
@@ -135,6 +136,10 @@ class ManagerRoutes {
     GetPage(
       name: resetPasswordScreen,
       page: () => const ResetPasswordScreen(),
+    ),
+    GetPage(
+      name: examListScreen,
+      page: () => const ExamListScreen(),
     )
   ];
 }

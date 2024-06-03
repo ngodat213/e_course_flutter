@@ -74,7 +74,7 @@ class GridViewCourseWidget extends GetView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(S.of(context).populraCourse, style: TxtStyle.title),
+            Text(S.of(context).populrarCourse, style: TxtStyle.title),
             GestureDetector(
               onTap: () {
                 Get.toNamed(ManagerRoutes.courseListScreen);

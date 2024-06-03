@@ -121,7 +121,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "point": MessageLookupByLibrary.simpleMessage("Point"),
         "popularDestination":
             MessageLookupByLibrary.simpleMessage("Populra Destination"),
-        "populraCourse": MessageLookupByLibrary.simpleMessage("Populra Course"),
+        "populrarCourse":
+            MessageLookupByLibrary.simpleMessage("Populrar Course"),
+        "populrarExam": MessageLookupByLibrary.simpleMessage("Populrar Exam"),
         "profileDetail":
             MessageLookupByLibrary.simpleMessage("Profile Details"),
         "progressTitle":
@@ -137,8 +139,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "review": MessageLookupByLibrary.simpleMessage("Review"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
-        "searchTitle":
-            MessageLookupByLibrary.simpleMessage("Search course, exam test"),
+        "searchTitleCourse":
+            MessageLookupByLibrary.simpleMessage("Search course ..."),
+        "searchTitleExam":
+            MessageLookupByLibrary.simpleMessage("Search exam ..."),
         "section": MessageLookupByLibrary.simpleMessage("Section"),
         "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
         "selection": MessageLookupByLibrary.simpleMessage("Selection"),

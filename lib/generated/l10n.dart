@@ -490,11 +490,21 @@ class S {
     );
   }
 
-  /// `Search course, exam test`
-  String get searchTitle {
+  /// `Search course ...`
+  String get searchTitleCourse {
     return Intl.message(
-      'Search course, exam test',
-      name: 'searchTitle',
+      'Search course ...',
+      name: 'searchTitleCourse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search exam ...`
+  String get searchTitleExam {
+    return Intl.message(
+      'Search exam ...',
+      name: 'searchTitleExam',
       desc: '',
       args: [],
     );
@@ -510,11 +520,21 @@ class S {
     );
   }
 
-  /// `Populra Course`
-  String get populraCourse {
+  /// `Populrar Course`
+  String get populrarCourse {
     return Intl.message(
-      'Populra Course',
-      name: 'populraCourse',
+      'Populrar Course',
+      name: 'populrarCourse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Populrar Exam`
+  String get populrarExam {
+    return Intl.message(
+      'Populrar Exam',
+      name: 'populrarExam',
       desc: '',
       args: [],
     );
