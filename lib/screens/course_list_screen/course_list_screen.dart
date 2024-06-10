@@ -128,7 +128,7 @@ class CourseListScreen extends GetView<CourseListController> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              controller.onChangedCategory(
+              controller.onPressCategory(
                   controller.categorys[index].id!, index);
             },
             child: Container(

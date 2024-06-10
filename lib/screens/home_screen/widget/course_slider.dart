@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:e_course_flutter/controller/home_screen_controller.dart';
+import 'package:e_course_flutter/controller/home_controller.dart';
 import 'package:e_course_flutter/screens/home_screen/widget/card_course.dart';
 import 'package:e_course_flutter/themes/colors.dart';
 import 'package:flutter/material.dart';

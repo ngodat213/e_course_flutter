@@ -1,6 +1,6 @@
 import 'package:chewie/chewie.dart';
 import 'package:e_course_flutter/api/base_api.dart';
-import 'package:e_course_flutter/controller/home_screen_controller.dart';
+import 'package:e_course_flutter/controller/home_controller.dart';
 import 'package:e_course_flutter/controller/main_controller.dart';
 import 'package:e_course_flutter/enums/payment.dart';
 import 'package:e_course_flutter/enums/payment_status.dart';
@@ -27,12 +27,12 @@ class CourseDetailController extends GetxController
   late Future<void> initializeVideoPlayerFuture;
   late ChewieController chewieController;
   late RxBool isFav;
-  late RxBool isOrder;
   late RxBool isFeedback = false.obs;
   late TabController tabController;
   late User currentUser;
   late RxDouble rating = 5.0.obs;
 
+  RxBool isOrder = false.obs;
   Rx<Course> course = Course().obs;
   Rx<CourseVideo> currentVideo = CourseVideo().obs;
   RxList<CourseLesson> courseLessons = RxList<CourseLesson>();
@@ -209,12 +209,12 @@ class CourseDetailController extends GetxController
   }
 
   // Order
-  void handleIsOrder() {
+  Future<void> handleIsOrder() async {
     final User user = _mainController.currentAccount.value;
     if (user.courses!.contains(course.value.id)) {
-      isOrder = true.obs;
+      isOrder.value = true;
     } else {
-      isOrder = false.obs;
+      isOrder.value = false;
     }
   }
 
@@ -222,11 +222,12 @@ class CourseDetailController extends GetxController
     final String token = await BaseSharedPreferences.getStringValue(
         ManagerKeyStorage.accessToken);
     final User user = _mainController.currentAccount.value;
-    postInOrder(token, user);
-    saveInUserOrder(token, user);
+    await postInOrder(token, user);
+    await saveInUserOrder(token, user);
+    isOrder.value = true;
   }
 
-  void postInOrder(String token, User currentUser) {
+  Future<void> postInOrder(String token, User currentUser) async {
     Map<String, dynamic> body = {
       "user": currentUser.id,
       "course": course.value.id,
@@ -236,26 +237,17 @@ class CourseDetailController extends GetxController
     };
 
     final headers = {"Authorization": "Bearer $token"};
-    _baseAPI
-        .fetchData(ManagerAddress.baseOrder,
-            headers: headers, body: body, method: ApiMethod.POST)
-        .then((value) async {
-      switch (value.apiStatus) {
-        case ApiStatus.SUCCEEDED:
-          {
-            _mainController.getCurrentUser();
-            handleIsOrder();
-            break;
-          }
-        default:
-          {
-            Fluttertoast.showToast(msg: "Error");
-          }
-      }
-    });
+    final value = await _baseAPI.fetchData(ManagerAddress.baseOrder,
+        headers: headers, body: body, method: ApiMethod.POST);
+    if (value.apiStatus == ApiStatus.SUCCEEDED) {
+      _mainController.getCurrentUser();
+      handleIsOrder();
+    } else {
+      Fluttertoast.showToast(msg: "Error");
+    }
   }
 
-  void saveInUserOrder(String token, User currentUser) async {
+  Future<void> saveInUserOrder(String token, User currentUser) async {
     List<String> courses = currentUser.courses!;
 
     courses.add(course.value.id!);
@@ -265,23 +257,17 @@ class CourseDetailController extends GetxController
     };
 
     final headers = {"Authorization": "Bearer $token"};
-    _baseAPI
-        .fetchData(ManagerAddress.baseAccount + currentUser.id!,
-            headers: headers, body: body, method: ApiMethod.PUT)
-        .then((value) async {
-      switch (value.apiStatus) {
-        case ApiStatus.SUCCEEDED:
-          {
-            _mainController.getCurrentUser();
-            handleIsOrder();
-            break;
-          }
-        default:
-          {
-            Fluttertoast.showToast(msg: "Email already exist");
-          }
-      }
-    });
+    final value = await _baseAPI.fetchData(
+        ManagerAddress.baseAccount + currentUser.id!,
+        headers: headers,
+        body: body,
+        method: ApiMethod.PUT);
+    if (value.apiStatus == ApiStatus.SUCCEEDED) {
+      _mainController.getCurrentUser();
+      handleIsOrder();
+    } else {
+      Fluttertoast.showToast(msg: "Email already exists");
+    }
   }
 
   // Fav

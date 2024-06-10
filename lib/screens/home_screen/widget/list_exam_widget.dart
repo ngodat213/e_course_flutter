@@ -1,4 +1,4 @@
-import 'package:e_course_flutter/controller/home_screen_controller.dart';
+import 'package:e_course_flutter/controller/home_controller.dart';
 import 'package:e_course_flutter/generated/l10n.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/screens/home_screen/widget/card_exam.dart';

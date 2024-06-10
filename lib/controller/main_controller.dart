@@ -56,6 +56,8 @@ class MainController extends GetxController {
             }
           default:
             {
+              await BaseSharedPreferences.remove(ManagerKeyStorage.accessToken);
+              Get.toNamed(ManagerAddress.accountLogin);
               printLogError('FAILED');
               Fluttertoast.showToast(msg: "Login Fail");
             }

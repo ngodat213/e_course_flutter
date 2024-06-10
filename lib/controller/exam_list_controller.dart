@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:e_course_flutter/api/base_api.dart';
+import 'package:e_course_flutter/controller/home_controller.dart';
 import 'package:e_course_flutter/controller/main_controller.dart';
 import 'package:e_course_flutter/managers/manager_address.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
@@ -10,7 +11,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class ExamListController extends GetxController {
-  final MainController _homeController = Get.find<MainController>();
+  final MainController _mainController = Get.find<MainController>();
+  final HomeController _homeController = Get.find<HomeController>();
 
   late List<Exam> exams;
   late List<Category> categorys;
@@ -31,9 +33,9 @@ class ExamListController extends GetxController {
 
   @override
   void onInit() {
-    exams = _homeController.exams;
-    examSearch = _homeController.exams;
-    categorys = _homeController.categorys;
+    exams = _mainController.exams;
+    examSearch = _mainController.exams;
+    categorys = _mainController.categorys;
     super.onInit();
   }
 
@@ -45,6 +47,7 @@ class ExamListController extends GetxController {
 
   Future<void> onPressExam(Exam obj) async {
     if (obj.id != "") {
+      _homeController.currentExam.value = obj;
       Get.toNamed(ManagerRoutes.examDetailScreen);
     }
   }

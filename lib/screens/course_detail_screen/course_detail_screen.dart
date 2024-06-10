@@ -19,23 +19,16 @@ class CourseDetailScreen extends GetView<CourseDetailController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Obx(
-        () => controller.isOrder.value
-            ? const SizedBox()
-            : Container(
-                color: Colors.white.withOpacity(0.1),
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-                child: const RegisterButton(),
-              ),
-      ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-            child: Obx(
-          () => controller.isShowLoading
-              ? const Center(child: CircularProgressIndicator())
-              : Stack(
-                  children: [
+        bottomNavigationBar: Obx(
+          () => controller.isOrder.value
+              ? const SizedBox()
+              : const RegisterButton(),
+        ),
+        body: SafeArea(
+            child: Obx(() => controller.isShowLoading
+                ? const Center(child: CircularProgressIndicator())
+                : SingleChildScrollView(
+                    child: Stack(children: [
                     Container(
                       margin: const EdgeInsets.symmetric(
                           horizontal: 25, vertical: 16),
@@ -56,11 +49,7 @@ class CourseDetailScreen extends GetView<CourseDetailController> {
                     ),
                     _favoriteButton(context),
                     BuildBackButton(top: 24),
-                  ],
-                ),
-        )),
-      ),
-    );
+                  ])))));
   }
 
   Widget _thumbCourse(BuildContext context) {

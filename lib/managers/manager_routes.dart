@@ -140,6 +140,7 @@ class ManagerRoutes {
     GetPage(
       name: examListScreen,
       page: () => const ExamListScreen(),
+      binding: ExamListBinding(),
     )
   ];
 }

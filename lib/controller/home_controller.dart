@@ -1,20 +1,18 @@
-import 'package:e_course_flutter/controller/course_list_controller.dart';
-import 'package:e_course_flutter/controller/exam_list_controller.dart';
 import 'package:e_course_flutter/controller/main_controller.dart';
 import 'package:e_course_flutter/managers/manager_path_routes.dart';
 import 'package:e_course_flutter/models/models.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  // ----------- Variable -----------
   final MainController _mainController = Get.find<MainController>();
-  final CourseListController _courseListController =
-      Get.find<CourseListController>();
-  final ExamListController _examListController = Get.find<ExamListController>();
 
   RxInt dotIndicator = 0.obs;
   Rx<Course> currentCourse = Course().obs;
   Rx<Exam> currentExam = Exam().obs;
+
+  // Course list
+  RxInt currentCategoryCourse = 0.obs;
+  RxString currentCategoryCourseId = "".obs;
 
   late List<Course> courses;
   late List<Category> categorys;
@@ -31,12 +29,12 @@ class HomeController extends GetxController {
   }
 
   @override
-  void onInit() async {
+  void onInit() {
+    super.onInit();
     _isShowLoading.value = true;
     getCurrentUser();
     handleData();
     _isShowLoading.value = false;
-    super.onInit();
   }
 
   void handleData() {
@@ -50,21 +48,22 @@ class HomeController extends GetxController {
   }
 
   void onPressCourse(Course obj) {
-    if (obj.id != "") {
+    if (obj.id!.isNotEmpty) {
       currentCourse.value = obj;
       Get.toNamed(ManagerRoutes.courseDetailScreen);
     }
   }
 
   void onPressExam(Exam obj) {
-    if (obj.id != "") {
+    if (obj.id!.isNotEmpty) {
       currentExam.value = obj;
       Get.toNamed(ManagerRoutes.examDetailScreen);
     }
   }
 
   void onPressCategory(String id, int index) {
-    _courseListController.onChangedCategory(id, index);
+    currentCategoryCourse.value = index;
+    currentCategoryCourseId.value = id;
     Get.toNamed(ManagerRoutes.courseListScreen);
   }
 }

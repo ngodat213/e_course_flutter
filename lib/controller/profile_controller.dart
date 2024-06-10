@@ -1,9 +1,7 @@
 import 'dart:typed_data';
-import 'dart:io';
-import 'package:dio/dio.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+
 import 'package:e_course_flutter/api/base_api.dart';
-import 'package:e_course_flutter/controller/home_screen_controller.dart';
+import 'package:e_course_flutter/controller/home_controller.dart';
 import 'package:e_course_flutter/controller/main_controller.dart';
 import 'package:e_course_flutter/managers/manager_address.dart';
 import 'package:e_course_flutter/managers/manager_key_storage.dart';
