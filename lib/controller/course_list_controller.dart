@@ -15,9 +15,9 @@ class CourseListController extends GetxController {
   final HomeController _homeController = Get.find<HomeController>();
   late List<Course> courses;
   late List<Category> categorys;
-  late RxList<Course> courseSearch;
 
   Timer? _debounce;
+  RxList<Course> courseSearch = RxList<Course>();
   RxInt currentCategory = 0.obs;
 
   final BaseAPI _baseAPI = BaseAPI();
@@ -33,9 +33,9 @@ class CourseListController extends GetxController {
   @override
   void onInit() {
     getCategoryIndex();
-    courses = _mainController.courses;
-    courseSearch = _mainController.courses;
-    categorys = _mainController.categorys;
+    courses = _mainController.courses.value;
+    courseSearch.value = _mainController.courses.value;
+    categorys = _mainController.categorys.value;
     super.onInit();
   }
 
@@ -72,6 +72,7 @@ class CourseListController extends GetxController {
           {
             courseSearch.value =
                 List<Course>.from(value.object.map((x) => Course.fromJson(x)));
+            courseSearch.removeWhere((course) => course.deleteAt != null);
           }
         default:
           {

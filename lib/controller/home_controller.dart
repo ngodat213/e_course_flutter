@@ -38,9 +38,9 @@ class HomeController extends GetxController {
   }
 
   void handleData() {
-    courses = _mainController.courses;
-    exams = _mainController.exams;
-    categorys = _mainController.categorys;
+    courses = _mainController.courses.value;
+    exams = _mainController.exams.value;
+    categorys = _mainController.categorys.value;
   }
 
   void getCurrentUser() {

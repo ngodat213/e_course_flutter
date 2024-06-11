@@ -26,12 +26,12 @@ class CourseDetailController extends GetxController
   late VideoPlayerController videoPlayerController;
   late Future<void> initializeVideoPlayerFuture;
   late ChewieController chewieController;
-  late RxBool isFav;
   late RxBool isFeedback = false.obs;
   late TabController tabController;
   late User currentUser;
   late RxDouble rating = 5.0.obs;
 
+  RxBool isFav = false.obs;
   RxBool isOrder = false.obs;
   Rx<Course> course = Course().obs;
   Rx<CourseVideo> currentVideo = CourseVideo().obs;
@@ -66,6 +66,7 @@ class CourseDetailController extends GetxController
 
   @override
   void onClose() {
+    Get.delete<CourseDetailController>();
     tabController.dispose();
     videoPlayerController.dispose();
     chewieController.pause();
@@ -274,9 +275,9 @@ class CourseDetailController extends GetxController
   void handleIsFav() {
     final User user = _mainController.currentAccount.value;
     if (user.favouritesCourses!.contains(course.value.id)) {
-      isFav = true.obs;
+      isFav.value = true;
     } else {
-      isFav = false.obs;
+      isFav.value = false;
     }
   }
 

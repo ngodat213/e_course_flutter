@@ -50,7 +50,7 @@ class SignInController extends GetxController {
           default:
             {
               printLogError('FAILED');
-              Fluttertoast.showToast(msg: "Login Fail");
+              Fluttertoast.showToast(msg: "Email or password isn't correct");
             }
         }
       });

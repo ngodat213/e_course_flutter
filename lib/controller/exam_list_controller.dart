@@ -16,9 +16,9 @@ class ExamListController extends GetxController {
 
   late List<Exam> exams;
   late List<Category> categorys;
-  late RxList<Exam> examSearch;
 
   Timer? _debounce;
+  RxList<Exam> examSearch = RxList<Exam>();
   RxInt currentCategory = 0.obs;
 
   final BaseAPI _baseAPI = BaseAPI();
@@ -33,9 +33,9 @@ class ExamListController extends GetxController {
 
   @override
   void onInit() {
-    exams = _mainController.exams;
-    examSearch = _mainController.exams;
-    categorys = _mainController.categorys;
+    exams = _mainController.exams.value;
+    examSearch.value = _mainController.exams.value;
+    categorys = _mainController.categorys.value;
     super.onInit();
   }
 
@@ -61,6 +61,7 @@ class ExamListController extends GetxController {
           {
             examSearch.value =
                 List<Exam>.from(value.object.map((x) => Exam.fromJson(x)));
+            examSearch.removeWhere((exam) => exam.deleteAt != null);
           }
         default:
           {

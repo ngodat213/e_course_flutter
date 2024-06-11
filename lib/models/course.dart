@@ -5,7 +5,7 @@ class Course {
   String? title;
   int? price;
   String? description;
-  int? rating;
+  double? rating;
   int? register;
   String? imageIntroduce;
   String? imagePublicId;
@@ -43,7 +43,7 @@ class Course {
     title = json['title'];
     price = json['price'];
     description = json['description'];
-    rating = json['rating'];
+    rating = json['rating'] is int ? json['rating'].toDouble() : json['rating'];
     register = json['register'];
     imageIntroduce = json['imageIntroduce'];
     imagePublicId = json['imagePublicId'];
